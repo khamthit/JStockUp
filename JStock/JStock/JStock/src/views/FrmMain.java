@@ -26,6 +26,7 @@ import static modelManager.LangType.LogIN;
 import static modelManager.LangType.hmapForm;
 import static modelManager.LangType.hmapSys;
 import sysConnect.module;
+import Data.MainOpenForm;
 /**
  *
  * @author Malimar
@@ -545,6 +546,7 @@ public class FrmMain extends javax.swing.JFrame {
         jTaskPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTaskPane1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
 
+        TaskMain.setExpanded(false);
         TaskMain.setSpecial(true);
         TaskMain.setTitle("Main Menu                                       ");
         TaskMain.setFont(new java.awt.Font("Saysettha MX", 1, 12)); // NOI18N
@@ -959,7 +961,11 @@ public class FrmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPickActionPerformed
 
     private void btnProSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProSizeActionPerformed
-        // TODO add your handling code here:
+        try {
+            FrmProSize f = new FrmProSize();
+            MainOpenForm.Open(f, jDesktopPane1);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnProSizeActionPerformed
 
     /**
