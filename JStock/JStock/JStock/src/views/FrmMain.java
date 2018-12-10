@@ -73,6 +73,7 @@ public class FrmMain extends javax.swing.JFrame {
             btnPack.setText(hmapSys.get("btnPack".concat(frm).toUpperCase())[LN]);
             btnZone.setText(hmapSys.get("btnZone".concat(frm).toUpperCase())[LN]);
             btnPick.setText(hmapSys.get("btnPick".concat(frm).toUpperCase())[LN]);
+            btnProSize.setText(hmapSys.get("btnProSize".concat(frm).toUpperCase())[LN]);
             
             mm.showCompany(m);
             lblAddress.setText(m.getAddress());
@@ -135,6 +136,7 @@ public class FrmMain extends javax.swing.JFrame {
         btnPack = new com.xzq.osc.JocHyperlink();
         btnPick = new com.xzq.osc.JocHyperlink();
         TaskProduct = new com.l2fprod.common.swing.JTaskPaneGroup();
+        btnProSize = new com.xzq.osc.JocHyperlink();
         jTaskPaneGroup3 = new com.l2fprod.common.swing.JTaskPaneGroup();
         jLabel1 = new javax.swing.JLabel();
         panelSetForm = new javax.swing.JPanel();
@@ -605,10 +607,24 @@ public class FrmMain extends javax.swing.JFrame {
 
         jTaskPane1.add(TaskMain);
 
-        TaskProduct.setExpanded(false);
         TaskProduct.setSpecial(true);
         TaskProduct.setTitle("Product");
         TaskProduct.setFont(new java.awt.Font("Saysettha MX", 1, 12)); // NOI18N
+
+        btnProSize.setActiveColor(new java.awt.Color(102, 0, 102));
+        btnProSize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/ProSize.png"))); // NOI18N
+        btnProSize.setRolloverColor(new java.awt.Color(102, 0, 102));
+        btnProSize.setText("ProductSize");
+        btnProSize.setUnvisitColor(new java.awt.Color(51, 51, 255));
+        btnProSize.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        btnProSize.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnProSize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProSizeActionPerformed(evt);
+            }
+        });
+        TaskProduct.getContentPane().add(btnProSize);
+
         jTaskPane1.add(TaskProduct);
 
         jTaskPaneGroup3.setExpanded(false);
@@ -942,6 +958,10 @@ public class FrmMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnPickActionPerformed
 
+    private void btnProSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProSizeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProSizeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -987,6 +1007,7 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JButton btnMini;
     private com.xzq.osc.JocHyperlink btnPack;
     private com.xzq.osc.JocHyperlink btnPick;
+    private com.xzq.osc.JocHyperlink btnProSize;
     private javax.swing.JButton btnSetting;
     private com.xzq.osc.JocHyperlink btnWareHouse;
     private com.xzq.osc.JocHyperlink btnZone;
