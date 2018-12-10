@@ -7,7 +7,10 @@ package modelManager;
 
 import Data.Msg;
 import java.sql.*;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import model.ProSize;
+import model.RemoveTableCount;
 import sysConnect.module;
 
 public class ProSizeManager {
@@ -28,6 +31,47 @@ public class ProSizeManager {
             p.close();
             return true;
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public void showData(JTable table, DefaultTableModel model){
+        try {
+            RemoveTableCount.RemoveTable(table, model);
+            sql = "Select * from tbl_ProSize\n" +
+                    "order by SizeName";
+            ResultSet rs = c.createStatement().executeQuery(sql);
+            while (rs.next()){
+                model.addRow(new Object[]{rs.getString("PSizeID"), rs.getString("sizename"), rs.getString("SizeDescriptions")});
+            }
+            table.setModel(model);
+        } catch (Exception e) {
+        }
+    }
+    public void showSearchData(JTable table, DefaultTableModel model, String x){
+        try {
+            RemoveTableCount.RemoveTable(table, model);
+            sql = "Select * from tbl_ProSize where sizename like N'%"+ x +"%' or SizeDescriptions like N'%"+ x +"%' order by SizeName";
+            ResultSet rs = c.createStatement().executeQuery(sql);
+            while (rs.next()){
+                model.addRow(new Object[]{rs.getString("PSizeID"), rs.getString("sizename"), rs.getString("SizeDescriptions")});
+            }
+            table.setModel(model);
+        } catch (Exception e) {
+        }
+    }
+    public boolean updateTblProSize(ProSize ps){
+        try {
+            sql = "update tbl_ProSize set Sizename = ?, sizeDescriptions = ? where PSizeID = (?)";
+            PreparedStatement p = c.prepareStatement(sql);
+            p.setString(1, ps.getProSizeName());
+            p.setString(2, ps.getProSizeDescriptions());
+            p.setInt(3, ps.getProSizeID());
+            p.executeUpdate();
+            msg.showMsgSucess();
+            p.close();
+            return true;            
         } catch (Exception e) {
             e.printStackTrace();
         }

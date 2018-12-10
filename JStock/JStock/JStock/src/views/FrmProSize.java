@@ -22,7 +22,7 @@ public class FrmProSize extends javax.swing.JInternalFrame {
     ProSize ps = new ProSize();
     ProSizeManager psm = new ProSizeManager();
     Msg msg = new Msg();
-    int prosizeid = 0;
+    public static int prosizeid = 0;
 
     public FrmProSize() {
         initComponents();
@@ -246,7 +246,12 @@ public class FrmProSize extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDataMouseExited
 
     private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
-
+        try {
+            showClear();
+            FrmProSizeData ps = new FrmProSizeData(null, closable);
+            ps.setVisible(true);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnDataActionPerformed
 
     private void btnSaveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseEntered
@@ -274,9 +279,12 @@ public class FrmProSize extends javax.swing.JInternalFrame {
                 }
 
             } else {
+                ps.setProSizeID(prosizeid);
+                psm.updateTblProSize(ps);
+                showClear();
+                
 
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
