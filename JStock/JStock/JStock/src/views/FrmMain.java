@@ -78,6 +78,7 @@ public class FrmMain extends javax.swing.JFrame {
             btnProUnit.setText(hmapSys.get("btnProUnit".concat(frm).toUpperCase())[LN]);
             btnProCategory.setText(hmapSys.get("btnProCategory".concat(frm).toUpperCase())[LN]);
             btnProGroup.setText(hmapSys.get("btnProGroup".concat(frm).toUpperCase())[LN]);
+            btnItem.setText(hmapSys.get("btnItem".concat(frm).toUpperCase())[LN]);
             
             mm.showCompany(m);
             lblAddress.setText(m.getAddress());
@@ -144,6 +145,7 @@ public class FrmMain extends javax.swing.JFrame {
         btnProUnit = new com.xzq.osc.JocHyperlink();
         btnProCategory = new com.xzq.osc.JocHyperlink();
         btnProGroup = new com.xzq.osc.JocHyperlink();
+        btnItem = new com.xzq.osc.JocHyperlink();
         jTaskPaneGroup3 = new com.l2fprod.common.swing.JTaskPaneGroup();
         jLabel1 = new javax.swing.JLabel();
         panelSetForm = new javax.swing.JPanel();
@@ -675,6 +677,20 @@ public class FrmMain extends javax.swing.JFrame {
         });
         TaskProduct.getContentPane().add(btnProGroup);
 
+        btnItem.setActiveColor(new java.awt.Color(102, 0, 102));
+        btnItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Item.png"))); // NOI18N
+        btnItem.setRolloverColor(new java.awt.Color(102, 0, 102));
+        btnItem.setText("Item");
+        btnItem.setUnvisitColor(new java.awt.Color(51, 51, 255));
+        btnItem.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        btnItem.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnItemActionPerformed(evt);
+            }
+        });
+        TaskProduct.getContentPane().add(btnItem);
+
         jTaskPane1.add(TaskProduct);
 
         jTaskPaneGroup3.setExpanded(false);
@@ -1041,6 +1057,14 @@ public class FrmMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnProGroupActionPerformed
 
+    private void btnItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnItemActionPerformed
+        try {
+            FrmItem ft = new FrmItem();
+            MainOpenForm.Open(ft, jDesktopPane1);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1080,6 +1104,7 @@ public class FrmMain extends javax.swing.JFrame {
     private com.l2fprod.common.swing.JTaskPaneGroup TaskMain;
     private com.l2fprod.common.swing.JTaskPaneGroup TaskProduct;
     private javax.swing.JButton btnClose;
+    private com.xzq.osc.JocHyperlink btnItem;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnMax;
