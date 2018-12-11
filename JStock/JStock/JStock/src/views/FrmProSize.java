@@ -264,6 +264,10 @@ public class FrmProSize extends javax.swing.JInternalFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         try {
+            if (txtsize.getText().equals("")){
+                msg.showMsgWarming();
+                return;
+            }
             ps.setProSizeDescriptions(txtsizeDes.getText());
             ps.setProSizeName(txtsize.getText());
             if (prosizeid == 0) {

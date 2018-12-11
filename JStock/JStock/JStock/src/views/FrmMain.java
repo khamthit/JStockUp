@@ -1010,7 +1010,11 @@ public class FrmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProUnitActionPerformed
 
     private void btnProCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProCategoryActionPerformed
-        // TODO add your handling code here:
+        try {
+            FrmProCategory fm = new FrmProCategory();
+            MainOpenForm.Open(fm, jDesktopPane1);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnProCategoryActionPerformed
 
     /**
