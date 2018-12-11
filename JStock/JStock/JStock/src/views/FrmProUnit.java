@@ -7,15 +7,19 @@ package views;
 
 import Data.ButtonColor;
 import java.sql.*;
+import model.ProUnit;
 import modelManager.LangType;
 import static modelManager.LangType.LN;
+import modelManager.MaxIDTbl;
+import modelManager.ProUnitManager;
 import sysConnect.module;
 
 public class FrmProUnit extends javax.swing.JInternalFrame {
     Connection c = module.getConnection();
     String sql, frm;
     public static int UnitID = 0;
-    
+    ProUnit pu = new ProUnit();
+    ProUnitManager pum = new ProUnitManager();    
     public FrmProUnit() {
         initComponents();
         frm = this.getClass().getSimpleName();
@@ -35,6 +39,17 @@ public class FrmProUnit extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }
+    public void showClear(){
+        try {
+            txtUnitDescriptions.setText("");
+            txtUnit_L2.setText("");
+            txtunit_l1.setText("");
+            txtunit_l1.requestFocus();
+            UnitID = 0;
+            
+        } catch (Exception e) {
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,13 +65,13 @@ public class FrmProUnit extends javax.swing.JInternalFrame {
         lblFormName = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         lblUnitL1 = new javax.swing.JLabel();
-        txtsize = new javax.swing.JTextField();
+        txtunit_l1 = new javax.swing.JTextField();
         lblUnitL2 = new javax.swing.JLabel();
-        txtsizeDes = new javax.swing.JTextField();
+        txtUnit_L2 = new javax.swing.JTextField();
         btnData = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         lblUnitInfo = new javax.swing.JLabel();
-        txtsizeDes1 = new javax.swing.JTextField();
+        txtUnitDescriptions = new javax.swing.JTextField();
 
         setClosable(true);
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/ProductUnit.png"))); // NOI18N
@@ -112,11 +127,11 @@ public class FrmProUnit extends javax.swing.JInternalFrame {
         lblUnitL1.setText("Unit L1");
         lblUnitL1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        txtsize.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        txtsize.setToolTipText("");
-        txtsize.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtunit_l1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtunit_l1.setToolTipText("");
+        txtunit_l1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtsizeKeyReleased(evt);
+                txtunit_l1KeyReleased(evt);
             }
         });
 
@@ -125,8 +140,8 @@ public class FrmProUnit extends javax.swing.JInternalFrame {
         lblUnitL2.setText("Unit L2");
         lblUnitL2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        txtsizeDes.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        txtsizeDes.setToolTipText("");
+        txtUnit_L2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtUnit_L2.setToolTipText("");
 
         btnData.setBackground(new java.awt.Color(255, 255, 255));
         btnData.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
@@ -173,8 +188,8 @@ public class FrmProUnit extends javax.swing.JInternalFrame {
         lblUnitInfo.setText("Unit Info");
         lblUnitInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        txtsizeDes1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        txtsizeDes1.setToolTipText("");
+        txtUnitDescriptions.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtUnitDescriptions.setToolTipText("");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -184,9 +199,9 @@ public class FrmProUnit extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblUnitInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                        .addComponent(lblUnitInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtsizeDes1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtUnitDescriptions, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,8 +211,8 @@ public class FrmProUnit extends javax.swing.JInternalFrame {
                                     .addComponent(lblUnitL2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtsize, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                                    .addComponent(txtsizeDes)))
+                                    .addComponent(txtunit_l1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                                    .addComponent(txtUnit_L2)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(btnData, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -209,21 +224,21 @@ public class FrmProUnit extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtsize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtunit_l1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblUnitL1))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtsizeDes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUnit_L2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblUnitL2))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtsizeDes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUnitDescriptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblUnitInfo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnData)
                     .addComponent(btnSave))
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addGap(103, 103, 103))
         );
 
         jPanel1.add(jPanel3, java.awt.BorderLayout.CENTER);
@@ -233,9 +248,9 @@ public class FrmProUnit extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtsizeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsizeKeyReleased
+    private void txtunit_l1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtunit_l1KeyReleased
 
-    }//GEN-LAST:event_txtsizeKeyReleased
+    }//GEN-LAST:event_txtunit_l1KeyReleased
 
     private void btnDataMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDataMouseEntered
         try {
@@ -249,7 +264,12 @@ public class FrmProUnit extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDataMouseExited
 
     private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
-       
+        try {
+            showClear();
+            FrmProUnitData fp = new FrmProUnitData(null, closable);
+            fp.setVisible(true);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnDataActionPerformed
 
     private void btnSaveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseEntered
@@ -261,7 +281,24 @@ public class FrmProUnit extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSaveMouseExited
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        
+        try {
+            pu.setUnit_L1(txtunit_l1.getText());
+            pu.setUnit_L2(txtUnit_L2.getText());
+            pu.setUnit_Descriptions(txtUnitDescriptions.getText());
+            if (UnitID ==0){
+                MaxIDTbl.maxID("PUID", "tbl_ProUnit");
+                pu.setPUID(MaxIDTbl.getID);
+                pum.insertTbl_ProUnit(pu);
+                showClear();
+            }else{
+                
+                
+            }
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
@@ -283,8 +320,8 @@ public class FrmProUnit extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblUnitInfo;
     private javax.swing.JLabel lblUnitL1;
     private javax.swing.JLabel lblUnitL2;
-    public static javax.swing.JTextField txtsize;
-    public static javax.swing.JTextField txtsizeDes;
-    public static javax.swing.JTextField txtsizeDes1;
+    public static javax.swing.JTextField txtUnitDescriptions;
+    public static javax.swing.JTextField txtUnit_L2;
+    public static javax.swing.JTextField txtunit_l1;
     // End of variables declaration//GEN-END:variables
 }
