@@ -12,6 +12,7 @@ import java.sql.*;
 import model.ProCategory;
 import modelManager.LangType;
 import static modelManager.LangType.LN;
+import modelManager.MaxIDTbl;
 import modelManager.ProCategoryManager;
 
 public class FrmProCategory extends javax.swing.JInternalFrame {
@@ -34,8 +35,17 @@ public class FrmProCategory extends javax.swing.JInternalFrame {
             btnSave.setText(LangType.hmapSys.get("btnSave".concat(frm).toUpperCase())[LN]);
             lblCategory_L1.setText(LangType.hmapSys.get("lblcategory_L1".concat(frm).toUpperCase())[LN]);
             lblCategory_L2.setText(LangType.hmapSys.get("lblCategory_L2".concat(frm).toUpperCase())[LN]);
-            lblCategory_Info.setText(LangType.hmapSys.get("lblcategory_info".concat(frm).toUpperCase())[LN]);
-            
+            lblCategory_Info.setText(LangType.hmapSys.get("lblcategory_info".concat(frm).toUpperCase())[LN]);            
+        } catch (Exception e) {
+        }
+    }
+    public void showClear(){
+        try {
+            txtCateInfo.setText("");
+            txtcatel1.setText("");
+            txtcatel2.setText("");
+            cateid = 0;
+            txtcatel1.requestFocus();
         } catch (Exception e) {
         }
     }
@@ -253,7 +263,12 @@ public class FrmProCategory extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDataMouseExited
 
     private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
-
+        try {
+            showClear();
+            FrmProcategoryData pd = new FrmProcategoryData(null, closable);
+            pd.setVisible(true);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnDataActionPerformed
 
     private void btnSaveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseEntered
@@ -265,7 +280,27 @@ public class FrmProCategory extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSaveMouseExited
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-
+        try {
+            if (txtcatel1.getText().equals("")){
+                msg.showMsgWarming();
+                return;
+            }
+            pc.setCate_L1(txtcatel1.getText());
+            pc.setCate_L2(txtcatel2.getText());
+            pc.setCate_Descriptions(txtCateInfo.getText());
+            if (cateid==0){
+                MaxIDTbl.maxID("PCTID", "tbl_ProCategory");
+                pc.setPCTID(MaxIDTbl.getID);
+                pcm.insertTbl_ProCategory(pc);
+                showClear();
+            }else{
+                pc.setPCTID(cateid);
+                pcm.updateTbl_Procategory(pc);     
+                showClear();
+            }            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
