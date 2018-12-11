@@ -6,18 +6,36 @@
 package views;
 
 import Data.ButtonColor;
+import java.sql.*;
+import model.ProGroup;
+import modelManager.LangType;
+import static modelManager.LangType.LN;
+import modelManager.ProGroupManager;
+import sysConnect.module;
 
-/**
- *
- * @author Admin
- */
 public class FrmProGroup extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form FrmProGroup
-     */
+    Connection c = module.getConnection();
+    String sql, frm;
+    ProGroup pg = new ProGroup();
+    ProGroupManager pgm = new ProGroupManager();
+    public static int groupid = 0;
     public FrmProGroup() {
         initComponents();
+        frm= this.getClass().getSimpleName();
+        LangType.showLang();
+        LangType.showLangForm();
+        
+    }
+    public void showLang(){
+        try {
+            lblFormName.setText(LangType.hmapForm.get(frm.toUpperCase())[LN]);
+            lblProGroup_L1.setText(LangType.hmapSys.get("lblProGroup_L1".concat(frm).toUpperCase())[LN]);
+            lblProGroup_L2.setText(LangType.hmapSys.get("lblProGroup_L2".concat(frm).toUpperCase())[LN]);
+            lblProGroup_Info.setText(LangType.hmapSys.get("lblProGroup_Info".concat(frm).toUpperCase())[LN]);
+            btnData.setText(LangType.hmapSys.get("btnData".concat(frm).toUpperCase())[LN]);
+            btnSave.setText(LangType.hmapSys.get("btnSave".concat(frm).toUpperCase())[LN]);
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -33,17 +51,34 @@ public class FrmProGroup extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         lblFormName = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        lblUnitL1 = new javax.swing.JLabel();
+        lblProGroup_L1 = new javax.swing.JLabel();
         txtgroupL1 = new javax.swing.JTextField();
-        lblUnitL2 = new javax.swing.JLabel();
+        lblProGroup_L2 = new javax.swing.JLabel();
         txtGroupL2 = new javax.swing.JTextField();
         btnData = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
-        lblUnitInfo = new javax.swing.JLabel();
+        lblProGroup_Info = new javax.swing.JLabel();
         txtgroup_Descriptions = new javax.swing.JTextField();
 
         setClosable(true);
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/ProductGroup.png"))); // NOI18N
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
@@ -74,10 +109,10 @@ public class FrmProGroup extends javax.swing.JInternalFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblUnitL1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblUnitL1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUnitL1.setText("GroupL1");
-        lblUnitL1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblProGroup_L1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblProGroup_L1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblProGroup_L1.setText("GroupL1");
+        lblProGroup_L1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtgroupL1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         txtgroupL1.setToolTipText("");
@@ -87,10 +122,10 @@ public class FrmProGroup extends javax.swing.JInternalFrame {
             }
         });
 
-        lblUnitL2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblUnitL2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUnitL2.setText("GroupL2");
-        lblUnitL2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblProGroup_L2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblProGroup_L2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblProGroup_L2.setText("GroupL2");
+        lblProGroup_L2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtGroupL2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         txtGroupL2.setToolTipText("");
@@ -135,10 +170,10 @@ public class FrmProGroup extends javax.swing.JInternalFrame {
             }
         });
 
-        lblUnitInfo.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblUnitInfo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUnitInfo.setText("GroupInfo");
-        lblUnitInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblProGroup_Info.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblProGroup_Info.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblProGroup_Info.setText("GroupInfo");
+        lblProGroup_Info.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtgroup_Descriptions.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         txtgroup_Descriptions.setToolTipText("");
@@ -151,7 +186,7 @@ public class FrmProGroup extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblUnitInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addComponent(lblProGroup_Info, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtgroup_Descriptions, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -159,8 +194,8 @@ public class FrmProGroup extends javax.swing.JInternalFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(lblUnitL1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                    .addComponent(lblUnitL2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(lblProGroup_L1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                    .addComponent(lblProGroup_L2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtgroupL1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
@@ -177,15 +212,15 @@ public class FrmProGroup extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtgroupL1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUnitL1))
+                    .addComponent(lblProGroup_L1))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtGroupL2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUnitL2))
+                    .addComponent(lblProGroup_L2))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtgroup_Descriptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUnitInfo))
+                    .addComponent(lblProGroup_Info))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnData)
@@ -216,7 +251,7 @@ public class FrmProGroup extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDataMouseExited
 
     private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
-        
+
     }//GEN-LAST:event_btnDataActionPerformed
 
     private void btnSaveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseEntered
@@ -228,8 +263,15 @@ public class FrmProGroup extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSaveMouseExited
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        
+
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        try {
+            showLang();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_formInternalFrameOpened
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -239,9 +281,9 @@ public class FrmProGroup extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblFormName;
-    private javax.swing.JLabel lblUnitInfo;
-    private javax.swing.JLabel lblUnitL1;
-    private javax.swing.JLabel lblUnitL2;
+    private javax.swing.JLabel lblProGroup_Info;
+    private javax.swing.JLabel lblProGroup_L1;
+    private javax.swing.JLabel lblProGroup_L2;
     public static javax.swing.JTextField txtGroupL2;
     public static javax.swing.JTextField txtgroupL1;
     public static javax.swing.JTextField txtgroup_Descriptions;
