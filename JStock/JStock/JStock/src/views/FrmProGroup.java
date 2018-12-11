@@ -296,6 +296,9 @@ public class FrmProGroup extends javax.swing.JInternalFrame {
                 pgm.insertTbl_ProGroup(pg);
                 showClear();
             }else{
+                pg.setGroupID(groupid);
+                pgm.updateTbl_ProGroup(pg);
+                showClear();
                 
             }            
         } catch (Exception e) {
