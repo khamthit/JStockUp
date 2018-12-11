@@ -6,10 +6,12 @@
 package views;
 
 import Data.ButtonColor;
+import Data.Msg;
 import java.sql.*;
 import model.ProGroup;
 import modelManager.LangType;
 import static modelManager.LangType.LN;
+import modelManager.MaxIDTbl;
 import modelManager.ProGroupManager;
 import sysConnect.module;
 
@@ -19,6 +21,7 @@ public class FrmProGroup extends javax.swing.JInternalFrame {
     ProGroup pg = new ProGroup();
     ProGroupManager pgm = new ProGroupManager();
     public static int groupid = 0;
+    Msg msg = new Msg();
     public FrmProGroup() {
         initComponents();
         frm= this.getClass().getSimpleName();
@@ -34,6 +37,17 @@ public class FrmProGroup extends javax.swing.JInternalFrame {
             lblProGroup_Info.setText(LangType.hmapSys.get("lblProGroup_Info".concat(frm).toUpperCase())[LN]);
             btnData.setText(LangType.hmapSys.get("btnData".concat(frm).toUpperCase())[LN]);
             btnSave.setText(LangType.hmapSys.get("btnSave".concat(frm).toUpperCase())[LN]);
+            
+        } catch (Exception e) {
+        }
+    }
+    public void showClear(){
+        try {
+            txtGroupL2.setText("");
+            txtgroupL1.setText("");
+            txtgroup_Descriptions.setText("");
+            groupid = 0;
+            txtgroupL1.requestFocus();
         } catch (Exception e) {
         }
     }
@@ -251,7 +265,12 @@ public class FrmProGroup extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDataMouseExited
 
     private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
-
+        try {
+            showClear();
+            FrmProGroupData fp = new FrmProGroupData(null, closable);
+            fp.setVisible(true);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnDataActionPerformed
 
     private void btnSaveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseEntered
@@ -263,7 +282,25 @@ public class FrmProGroup extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSaveMouseExited
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-
+        try {
+            if (txtgroupL1.getText().equals("")||txtGroupL2.getText().equals("")){
+                msg.showMsgWarming();
+                return;
+            }
+            pg.setGroupName_L1(txtgroupL1.getText());
+            pg.setGroupName_L2(txtGroupL2.getText());
+            pg.setGroupDescriptions(txtgroup_Descriptions.getText());
+            if (groupid ==0){
+                MaxIDTbl.maxID("PGID", "tbl_ProGroup");
+                pg.setGroupID(MaxIDTbl.getID);
+                pgm.insertTbl_ProGroup(pg);
+                showClear();
+            }else{
+                
+            }            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
