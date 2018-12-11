@@ -67,5 +67,21 @@ public class ProUnitManager {
             e.printStackTrace();
         }
     }
-    
+    public Boolean updateTbl_ProUnit(ProUnit pu){
+        try {
+            sql = "update tbl_prounit set unit_l1 = ?, unit_l2 = ?, Unit_Descriptions = ? where puid = (?)";
+            PreparedStatement p = c.prepareStatement(sql);
+            p.setString(1, pu.getUnit_L1());
+            p.setString(2, pu.getUnit_L2());
+            p.setString(3, pu.getUnit_Descriptions());
+            p.setInt(4, pu.getPUID());
+            p.executeUpdate();
+            msg.showMsgSucess();
+            p.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

@@ -76,6 +76,7 @@ public class FrmMain extends javax.swing.JFrame {
             btnPick.setText(hmapSys.get("btnPick".concat(frm).toUpperCase())[LN]);
             btnProSize.setText(hmapSys.get("btnProSize".concat(frm).toUpperCase())[LN]);
             btnProUnit.setText(hmapSys.get("btnProUnit".concat(frm).toUpperCase())[LN]);
+            btnProCategory.setText(hmapSys.get("btnProCategory".concat(frm).toUpperCase())[LN]);
             
             mm.showCompany(m);
             lblAddress.setText(m.getAddress());
@@ -140,6 +141,7 @@ public class FrmMain extends javax.swing.JFrame {
         TaskProduct = new com.l2fprod.common.swing.JTaskPaneGroup();
         btnProSize = new com.xzq.osc.JocHyperlink();
         btnProUnit = new com.xzq.osc.JocHyperlink();
+        btnProCategory = new com.xzq.osc.JocHyperlink();
         jTaskPaneGroup3 = new com.l2fprod.common.swing.JTaskPaneGroup();
         jLabel1 = new javax.swing.JLabel();
         panelSetForm = new javax.swing.JPanel();
@@ -643,6 +645,20 @@ public class FrmMain extends javax.swing.JFrame {
         });
         TaskProduct.getContentPane().add(btnProUnit);
 
+        btnProCategory.setActiveColor(new java.awt.Color(102, 0, 102));
+        btnProCategory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/ProductCategory.png"))); // NOI18N
+        btnProCategory.setRolloverColor(new java.awt.Color(102, 0, 102));
+        btnProCategory.setText("ProCategory");
+        btnProCategory.setUnvisitColor(new java.awt.Color(51, 51, 255));
+        btnProCategory.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        btnProCategory.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnProCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProCategoryActionPerformed(evt);
+            }
+        });
+        TaskProduct.getContentPane().add(btnProCategory);
+
         jTaskPane1.add(TaskProduct);
 
         jTaskPaneGroup3.setExpanded(false);
@@ -993,6 +1009,10 @@ public class FrmMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnProUnitActionPerformed
 
+    private void btnProCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProCategoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProCategoryActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1038,6 +1058,7 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JButton btnMini;
     private com.xzq.osc.JocHyperlink btnPack;
     private com.xzq.osc.JocHyperlink btnPick;
+    private com.xzq.osc.JocHyperlink btnProCategory;
     private com.xzq.osc.JocHyperlink btnProSize;
     private com.xzq.osc.JocHyperlink btnProUnit;
     private javax.swing.JButton btnSetting;

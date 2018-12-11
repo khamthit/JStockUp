@@ -291,11 +291,10 @@ public class FrmProUnit extends javax.swing.JInternalFrame {
                 pum.insertTbl_ProUnit(pu);
                 showClear();
             }else{
-                
-                
+                pu.setPUID(UnitID);
+                pum.updateTbl_ProUnit(pu);
+                showClear();
             }
-            
-            
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -16,28 +16,31 @@ import modelManager.ProUnitManager;
 import sysConnect.module;
 
 public class FrmProUnitData extends javax.swing.JDialog {
+
     Connection c = module.getConnection();
     String sql, frm;
     ProUnit pu = new ProUnit();
     ProUnitManager pum = new ProUnitManager();
     DefaultTableModel model = new DefaultTableModel();
+
     public FrmProUnitData(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         frm = this.getClass().getSimpleName();
-        model = (DefaultTableModel)jTable1.getModel();
+        model = (DefaultTableModel) jTable1.getModel();
         TableHeader.TableHeaderFont(jTable1);
         TableHeader.TableHeader_0(jTable1, frm);
         LangType.showLang();
         LangType.showLangForm();
-        
+
     }
-    public void showLang(){
+
+    public void showLang() {
         try {
             lblFormName.setText(LangType.hmapForm.get(frm.toUpperCase())[LN]);
             btnData.setText(LangType.hmapSys.get("btnData".concat(frm).toUpperCase())[LN]);
-            lblSearch.setText(LangType.hmapSys.get("lblSearch".concat(frm).toUpperCase())[LN]);            
-            
+            lblSearch.setText(LangType.hmapSys.get("lblSearch".concat(frm).toUpperCase())[LN]);
+
         } catch (Exception e) {
         }
     }
@@ -206,7 +209,18 @@ public class FrmProUnitData extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDataActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-       
+        try {
+            if (evt.getClickCount() == 2) {
+                int index = jTable1.getSelectedRow();
+                FrmProUnit.UnitID = Integer.parseInt(jTable1.getValueAt(index, 0).toString());
+                FrmProUnit.txtunit_l1.setText(jTable1.getValueAt(index, 1).toString());
+                FrmProUnit.txtUnit_L2.setText(jTable1.getValueAt(index, 2).toString());
+                FrmProUnit.txtUnitDescriptions.setText(jTable1.getValueAt(index, 3).toString());
+                dispose();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
