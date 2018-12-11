@@ -7,7 +7,10 @@ package modelManager;
 import Data.Msg;
 import sysConnect.module;
 import java.sql.*;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import model.ProUnit;
+import model.RemoveTableCount;
 
 public class ProUnitManager {
     Connection c = module.getConnection();
@@ -32,13 +35,37 @@ public class ProUnitManager {
                 msg.showMsgSucess();
                 p.close();
                 return true;
-            }
-            
-            
+            }            
         } catch (Exception e) {
         }
         return false;
     }
-    
+    public void showTbl_ProUnit(JTable table, DefaultTableModel model){
+        try {
+            RemoveTableCount.RemoveTable(table, model);
+            sql = "exec pd_ProUnit";
+            ResultSet rs = c.createStatement().executeQuery(sql);
+            while (rs.next()){
+                model.addRow(new Object[]{rs.getString("PUID"), rs.getString("Unit_L1"), rs.getString("Unit_L2"), rs.getString("Unit_Descriptions")});
+            }
+            table.setModel(model);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void showSearchTbl_ProUnit(JTable table, DefaultTableModel model, String x){
+        try {
+            RemoveTableCount.RemoveTable(table, model);
+            sql = "Select puid, unit_l1, unit_l2, Unit_Descriptions from tbl_ProUnit "
+                    + "Where Unit_L1 like N'%"+ x +"%' or unit_L2 like N'%"+ x +"%' or Unit_Descriptions like N'%"+ x +"%'";
+            ResultSet rs = c.createStatement().executeQuery(sql);
+            while (rs.next()){
+                model.addRow(new Object[]{rs.getString("PUID"), rs.getString("Unit_L1"), rs.getString("Unit_L2"), rs.getString("Unit_Descriptions")});
+            }
+            table.setModel(model);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     
 }

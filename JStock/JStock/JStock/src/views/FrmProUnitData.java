@@ -7,20 +7,25 @@ package views;
 
 import Data.ButtonColor;
 import java.sql.Connection;
+import javax.swing.table.DefaultTableModel;
+import model.ProUnit;
 import model.TableHeader;
 import modelManager.LangType;
 import static modelManager.LangType.LN;
+import modelManager.ProUnitManager;
 import sysConnect.module;
 
 public class FrmProUnitData extends javax.swing.JDialog {
     Connection c = module.getConnection();
     String sql, frm;
-    
-    
+    ProUnit pu = new ProUnit();
+    ProUnitManager pum = new ProUnitManager();
+    DefaultTableModel model = new DefaultTableModel();
     public FrmProUnitData(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         frm = this.getClass().getSimpleName();
+        model = (DefaultTableModel)jTable1.getModel();
         TableHeader.TableHeaderFont(jTable1);
         TableHeader.TableHeader_0(jTable1, frm);
         LangType.showLang();
@@ -31,8 +36,7 @@ public class FrmProUnitData extends javax.swing.JDialog {
         try {
             lblFormName.setText(LangType.hmapForm.get(frm.toUpperCase())[LN]);
             btnData.setText(LangType.hmapSys.get("btnData".concat(frm).toUpperCase())[LN]);
-            lblSearch.setText(LangType.hmapSys.get("lblSearch".concat(frm).toUpperCase())[LN]);
-            
+            lblSearch.setText(LangType.hmapSys.get("lblSearch".concat(frm).toUpperCase())[LN]);            
             
         } catch (Exception e) {
         }
@@ -183,7 +187,7 @@ public class FrmProUnitData extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-        
+        pum.showSearchTbl_ProUnit(jTable1, model, txtSearch.getText());
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void btnDataMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDataMouseEntered
@@ -198,7 +202,7 @@ public class FrmProUnitData extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDataMouseExited
 
     private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
-        
+        pum.showTbl_ProUnit(jTable1, model);
     }//GEN-LAST:event_btnDataActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -208,6 +212,7 @@ public class FrmProUnitData extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
             showLang();
+            pum.showTbl_ProUnit(jTable1, model);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_formWindowOpened
