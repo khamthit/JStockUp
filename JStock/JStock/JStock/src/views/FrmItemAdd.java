@@ -6,6 +6,8 @@
 package views;
 
 import Data.ButtonColor;
+import Data.ConvertDateSQL;
+import Data.Msg;
 import java.awt.Image;
 import java.sql.*;
 import java.util.HashMap;
@@ -18,31 +20,41 @@ import modelManager.ItemManager;
 import modelManager.LangType;
 import static modelManager.LangType.LN;
 import sysConnect.module;
-import Data.ResizeScall;
 import static Data.ResizeScall.ResizeScall;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import static java.time.Instant.now;
+import modelManager.MaxIDTbl;
+import java.util.Date;
 public class FrmItemAdd extends javax.swing.JDialog {
+
     Connection c = module.getConnection();
     String sql, frm;
+    public static int ITID = 0;
+    public static float costprice;
+    public static float saleprice;
+    String pathImage = "";
     Image ic;
     Item it = new Item();
     ItemManager itm = new ItemManager();
-    HashMap<String, Object[]>hmGroup = null;
-    HashMap<String, Object[]>hmCate = null;
-    HashMap<String, Object[]>hmUnit = null;
-    HashMap<String, Object[]>hmSize = null;
-    HashMap<String, Object[]>hmZone = null;
-    HashMap<String, Object[]>hmPack = null;
-    HashMap<String, Object[]>hmPick = null;
-    
+    HashMap<String, Object[]> hmGroup = null;
+    HashMap<String, Object[]> hmCate = null;
+    HashMap<String, Object[]> hmUnit = null;
+    HashMap<String, Object[]> hmSize = null;
+    HashMap<String, Object[]> hmZone = null;
+    HashMap<String, Object[]> hmPack = null;
+    HashMap<String, Object[]> hmPick = null;
+    Msg msg = new Msg();
     public FrmItemAdd(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         frm = this.getClass().getSimpleName();
         LangType.showLang();
         LangType.showLangForm();
-        
+
     }
-    public void showLang(){
+
+    public void showLang() {
         try {
             lblFormName.setText(LangType.hmapForm.get(frm.toUpperCase())[LN]);
             btnSave.setText(LangType.hmapSys.get("btnsave".concat(frm).toUpperCase())[LN]);
@@ -58,90 +70,97 @@ public class FrmItemAdd extends javax.swing.JDialog {
             lblZone.setText(LangType.hmapSys.get("lblzone".concat(frm).toUpperCase())[LN]);
             lblPack.setText(LangType.hmapSys.get("lblpack".concat(frm).toUpperCase())[LN]);
             lblPick.setText(LangType.hmapSys.get("lblPick".concat(frm).toUpperCase())[LN]);
-            
-            
-            
+            lblCost.setText(LangType.hmapSys.get("lblCost".concat(frm).toUpperCase())[LN]);
+            lblSale.setText(LangType.hmapSys.get("lblsale".concat(frm).toUpperCase())[LN]);
+            lblDescriptions.setText(LangType.hmapSys.get("lblDescriptions".concat(frm).toUpperCase())[LN]);
         } catch (Exception e) {
         }
     }
-    public void showMapGroup(){
+
+    public void showMapGroup() {
         try {
             hmGroup = itm.hmapGroup();
-            Map<String, Object>smap = new TreeMap<>(hmGroup);
+            Map<String, Object> smap = new TreeMap<>(hmGroup);
             cbbGroup.removeAllItems();
-            smap.keySet().forEach((s)->{
-               cbbGroup.addItem(s);
+            smap.keySet().forEach((s) -> {
+                cbbGroup.addItem(s);
             });
             cbbGroup.setSelectedIndex(-1);
         } catch (Exception e) {
         }
     }
-    public void showMapCategory(){
+
+    public void showMapCategory() {
         try {
             hmCate = itm.hmapCategory();
-            Map<String, Object>smap = new TreeMap<>(hmCate);
+            Map<String, Object> smap = new TreeMap<>(hmCate);
             cbbCategory.removeAllItems();
-            smap.keySet().forEach((s->{
+            smap.keySet().forEach((s -> {
                 cbbCategory.addItem(s);
             }));
             cbbCategory.setSelectedIndex(-1);
         } catch (Exception e) {
         }
     }
-    public void showMapUnit(){
+
+    public void showMapUnit() {
         try {
             hmUnit = itm.hmapUnit();
-            Map<String, Object>smap = new TreeMap<>(hmUnit);
+            Map<String, Object> smap = new TreeMap<>(hmUnit);
             cbbUnit.removeAllItems();
-            smap.keySet().forEach((s->{
+            smap.keySet().forEach((s -> {
                 cbbUnit.addItem(s);
             }));
-            cbbUnit.setSelectedIndex(-1);            
+            cbbUnit.setSelectedIndex(-1);
         } catch (Exception e) {
         }
     }
-    public void showMapSize(){
+
+    public void showMapSize() {
         try {
-            hmSize= itm.hmapSize();
-            Map<String, Object>smap = new TreeMap<>(hmSize);
+            hmSize = itm.hmapSize();
+            Map<String, Object> smap = new TreeMap<>(hmSize);
             cbbSize.removeAllItems();
-            smap.keySet().forEach((s->{
+            smap.keySet().forEach((s -> {
                 cbbSize.addItem(s);
             }));
             cbbSize.setSelectedIndex(-1);
         } catch (Exception e) {
         }
     }
-    public void showMapZone(){
+
+    public void showMapZone() {
         try {
             hmZone = itm.hmapZone();
-            Map<String, Object[]>smap = new TreeMap<>(hmZone);
+            Map<String, Object[]> smap = new TreeMap<>(hmZone);
             cbbZone.removeAllItems();
-            smap.keySet().forEach((s->{
+            smap.keySet().forEach((s -> {
                 cbbZone.addItem(s);
             }));
             cbbZone.setSelectedIndex(-1);
         } catch (Exception e) {
         }
     }
-    public void showMapPack(){
+
+    public void showMapPack() {
         try {
             hmPack = itm.hmapPack();
-            Map<String, Object>smap = new TreeMap<>(hmPack);
+            Map<String, Object> smap = new TreeMap<>(hmPack);
             cbbPack.removeAllItems();
-            smap.keySet().forEach((s->{
+            smap.keySet().forEach((s -> {
                 cbbPack.addItem(s);
             }));
             cbbPack.setSelectedIndex(-1);
         } catch (Exception e) {
         }
     }
-    public void showMapPick(){
+
+    public void showMapPick() {
         try {
             hmPick = itm.hmapPick();
-            Map<String, Object>smap = new TreeMap<>(hmPick);
+            Map<String, Object> smap = new TreeMap<>(hmPick);
             cbbPick.removeAllItems();
-            smap.keySet().forEach((s->{
+            smap.keySet().forEach((s -> {
                 cbbPick.addItem(s);
             }));
             cbbPick.setSelectedIndex(-1);
@@ -149,6 +168,7 @@ public class FrmItemAdd extends javax.swing.JDialog {
             e.printStackTrace();
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -180,13 +200,19 @@ public class FrmItemAdd extends javax.swing.JDialog {
         cbbPick = new javax.swing.JComboBox<>();
         btnSave = new javax.swing.JButton();
         lblBarcode = new javax.swing.JLabel();
-        txtSearch = new javax.swing.JTextField();
+        txtbarcode = new javax.swing.JTextField();
         lblPackBarcode = new javax.swing.JLabel();
-        txtSearch1 = new javax.swing.JTextField();
+        txtpackbarcode = new javax.swing.JTextField();
         lblItem_L1 = new javax.swing.JLabel();
-        txtSearch2 = new javax.swing.JTextField();
+        txtitemname_l1 = new javax.swing.JTextField();
         lblItem_L2 = new javax.swing.JLabel();
-        txtSearch3 = new javax.swing.JTextField();
+        txtitemname_l2 = new javax.swing.JTextField();
+        lblCost = new javax.swing.JLabel();
+        txtcost = new javax.swing.JTextField();
+        lblSale = new javax.swing.JLabel();
+        txtsale = new javax.swing.JTextField();
+        lblDescriptions = new javax.swing.JLabel();
+        txtdescriptions = new javax.swing.JTextField();
         btnBrowse = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -445,11 +471,11 @@ public class FrmItemAdd extends javax.swing.JDialog {
         lblBarcode.setText("Barcode");
         lblBarcode.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        txtSearch.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        txtSearch.setToolTipText("");
-        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtbarcode.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtbarcode.setToolTipText("");
+        txtbarcode.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSearchKeyReleased(evt);
+                txtbarcodeKeyReleased(evt);
             }
         });
 
@@ -458,11 +484,11 @@ public class FrmItemAdd extends javax.swing.JDialog {
         lblPackBarcode.setText("Pack Barcode");
         lblPackBarcode.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        txtSearch1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        txtSearch1.setToolTipText("");
-        txtSearch1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtpackbarcode.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtpackbarcode.setToolTipText("");
+        txtpackbarcode.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSearch1KeyReleased(evt);
+                txtpackbarcodeKeyReleased(evt);
             }
         });
 
@@ -471,11 +497,11 @@ public class FrmItemAdd extends javax.swing.JDialog {
         lblItem_L1.setText("Item Name L1");
         lblItem_L1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        txtSearch2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        txtSearch2.setToolTipText("");
-        txtSearch2.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtitemname_l1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtitemname_l1.setToolTipText("");
+        txtitemname_l1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSearch2KeyReleased(evt);
+                txtitemname_l1KeyReleased(evt);
             }
         });
 
@@ -484,11 +510,64 @@ public class FrmItemAdd extends javax.swing.JDialog {
         lblItem_L2.setText("Item Name L2");
         lblItem_L2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        txtSearch3.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        txtSearch3.setToolTipText("");
-        txtSearch3.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtitemname_l2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtitemname_l2.setToolTipText("");
+        txtitemname_l2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSearch3KeyReleased(evt);
+                txtitemname_l2KeyReleased(evt);
+            }
+        });
+
+        lblCost.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblCost.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCost.setText("Cost Price");
+        lblCost.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        txtcost.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtcost.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtcost.setText("0");
+        txtcost.setToolTipText("");
+        txtcost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcostActionPerformed(evt);
+            }
+        });
+        txtcost.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtcostKeyReleased(evt);
+            }
+        });
+
+        lblSale.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblSale.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblSale.setText("Sale Price");
+        lblSale.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        txtsale.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtsale.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtsale.setText("0");
+        txtsale.setToolTipText("");
+        txtsale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtsaleActionPerformed(evt);
+            }
+        });
+        txtsale.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtsaleKeyReleased(evt);
+            }
+        });
+
+        lblDescriptions.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblDescriptions.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblDescriptions.setText("Description");
+        lblDescriptions.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        txtdescriptions.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtdescriptions.setToolTipText("");
+        txtdescriptions.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtdescriptionsKeyReleased(evt);
             }
         });
 
@@ -498,7 +577,6 @@ public class FrmItemAdd extends javax.swing.JDialog {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSave, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -512,18 +590,14 @@ public class FrmItemAdd extends javax.swing.JDialog {
                                         .addGap(0, 0, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtSearch3, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                                    .addComponent(txtSearch2)
-                                    .addComponent(txtSearch)
-                                    .addComponent(txtSearch1)))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(lblPick, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbbPick, 0, 190, Short.MAX_VALUE))
+                                    .addComponent(txtitemname_l2, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                                    .addComponent(txtitemname_l1)
+                                    .addComponent(txtbarcode)
+                                    .addComponent(txtpackbarcode)))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(lblPack, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbbPack, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(cbbPack, 0, 190, Short.MAX_VALUE))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(lblZone, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -546,26 +620,41 @@ public class FrmItemAdd extends javax.swing.JDialog {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbbGroup, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cbbCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(cbbCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblPick, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblCost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblSale, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblDescriptions, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbbPick, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtcost)
+                                    .addComponent(txtsale)
+                                    .addComponent(txtdescriptions)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtbarcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblBarcode))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSearch1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtpackbarcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPackBarcode))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtitemname_l1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblItem_L1))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSearch3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtitemname_l2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblItem_L2))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -595,6 +684,18 @@ public class FrmItemAdd extends javax.swing.JDialog {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPick)
                     .addComponent(cbbPick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtcost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCost))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtsale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSale))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtdescriptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDescriptions))
                 .addGap(2, 2, 2)
                 .addComponent(btnSave)
                 .addGap(2, 2, 2))
@@ -666,21 +767,21 @@ public class FrmItemAdd extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_formWindowOpened
 
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+    private void txtbarcodeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbarcodeKeyReleased
 
-    }//GEN-LAST:event_txtSearchKeyReleased
+    }//GEN-LAST:event_txtbarcodeKeyReleased
 
-    private void txtSearch1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch1KeyReleased
+    private void txtpackbarcodeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpackbarcodeKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSearch1KeyReleased
+    }//GEN-LAST:event_txtpackbarcodeKeyReleased
 
-    private void txtSearch2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch2KeyReleased
+    private void txtitemname_l1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtitemname_l1KeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSearch2KeyReleased
+    }//GEN-LAST:event_txtitemname_l1KeyReleased
 
-    private void txtSearch3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch3KeyReleased
+    private void txtitemname_l2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtitemname_l2KeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSearch3KeyReleased
+    }//GEN-LAST:event_txtitemname_l2KeyReleased
 
     private void btnBrowseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBrowseMouseEntered
         ButtonColor.showButtonEnter(btnBrowse);
@@ -694,10 +795,16 @@ public class FrmItemAdd extends javax.swing.JDialog {
         try {
             JFileChooser choose = new JFileChooser();
             choose.showOpenDialog(null);
-            it.setPathImg(choose.getSelectedFile().getAbsolutePath());
+            pathImage = choose.getSelectedFile().getAbsolutePath();
+            it.setPathImg(pathImage);
             Image img = new ImageIcon(it.getPathImg()).getImage();
             ic = ResizeScall(img, lblImage.getWidth(), lblImage.getHeight());
-            lblImage.setIcon(new ImageIcon(ic));            
+            if (ITID==0){
+                lblImage.setIcon(new ImageIcon(ic));
+            }else{
+                lblImage.setIcon(new ImageIcon(ic));
+                
+            }            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -825,8 +932,96 @@ public class FrmItemAdd extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSaveMouseExited
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = new Date();
+            String dt = dateFormat.format(date);
+            Date date1 = new Date();
+            date1 = dateFormat.parse(dt);
+            if (txtbarcode.getText().equals("")){
+                msg.showMsgWarming();
+                txtbarcode.requestFocus();
+                return;
+            }            
+            String group = cbbGroup.getSelectedItem().toString();
+            String category = cbbCategory.getSelectedItem().toString();
+            String unit = cbbUnit.getSelectedItem().toString();
+            String size = cbbSize.getSelectedItem().toString();
+            String zone = cbbZone.getSelectedItem().toString();
+            String pack = cbbPack.getSelectedItem().toString();
+            String pick = cbbPick.getSelectedItem().toString();
+            it.setBarode(txtbarcode.getText());
+            it.setPackBarcode(txtpackbarcode.getText());
+            it.setItem_L1(txtitemname_l1.getText());
+            it.setItem_L2(txtitemname_l2.getText());
+            it.setZoneid(Integer.parseInt(hmZone.get(zone)[0].toString()));
+            it.setPackid(Integer.parseInt(hmPack.get(pack)[0].toString()));
+            it.setPickid(Integer.parseInt(hmPick.get(pick)[0].toString()));
+            it.setPsizeid(Integer.parseInt(hmSize.get(size)[0].toString()));
+            it.setPuid(Integer.parseInt(hmUnit.get(unit)[0].toString()));
+            it.setPctid(Integer.parseInt(hmCate.get(category)[0].toString()));
+            it.setPgid(Integer.parseInt(hmGroup.get(group)[0].toString()));
+            it.setIteminfo(txtdescriptions.getText().trim());
+            it.setItemuse(true);
+            it.setCreateUser(FrmMain.txtUsername.getText().trim());
+            it.setCostPrice(costprice);
+            it.setSalePrice(saleprice);
+            it.setCrateDate(ConvertDateSQL.convertUtilDateToSqlDate(date1));
+            
+            if (ITID == 0) {
+                MaxIDTbl.maxID("ITID", "tbl_Item");
+                it.setITID(MaxIDTbl.getID);
+                if (pathImage.equals("")) {
+                    itm.insertTbl_ITemNoImage(it);
+                } else {
+                    it.setPathImg(pathImage);
+                    itm.InsertTbl_ItemImage(it);
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void txtcostKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcostKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcostKeyReleased
+
+    private void txtsaleKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsaleKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtsaleKeyReleased
+
+    private void txtdescriptionsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdescriptionsKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtdescriptionsKeyReleased
+
+    private void txtcostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcostActionPerformed
+        try {
+            if (txtcost.getText().equals("")) {
+                txtcost.setText("0");
+                costprice = 0;
+            } else {
+                costprice = Float.parseFloat(txtcost.getText().replace(",", ""));
+                txtcost.setText(String.valueOf(String.format("%,.0f", costprice)));
+                txtsale.requestFocus();
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txtcostActionPerformed
+    private void txtsaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsaleActionPerformed
+        try {
+            if (txtsale.getText().equals("")) {
+                txtsale.setText("0");
+                saleprice = 0;
+            } else {
+                saleprice = Float.parseFloat(txtsale.getText().replace(",", ""));
+                txtsale.setText(String.valueOf(String.format("%,.0f", saleprice)));
+                txtdescriptions.requestFocus();
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txtsaleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -886,6 +1081,8 @@ public class FrmItemAdd extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lblBarcode;
     private javax.swing.JLabel lblCategory;
+    private javax.swing.JLabel lblCost;
+    private javax.swing.JLabel lblDescriptions;
     private javax.swing.JLabel lblFormName;
     private javax.swing.JLabel lblGroup;
     private javax.swing.JLabel lblImage;
@@ -894,12 +1091,16 @@ public class FrmItemAdd extends javax.swing.JDialog {
     private javax.swing.JLabel lblPack;
     private javax.swing.JLabel lblPackBarcode;
     private javax.swing.JLabel lblPick;
+    private javax.swing.JLabel lblSale;
     private javax.swing.JLabel lblSize;
     private javax.swing.JLabel lblUnit;
     private javax.swing.JLabel lblZone;
-    private javax.swing.JTextField txtSearch;
-    private javax.swing.JTextField txtSearch1;
-    private javax.swing.JTextField txtSearch2;
-    private javax.swing.JTextField txtSearch3;
+    private javax.swing.JTextField txtbarcode;
+    private javax.swing.JTextField txtcost;
+    private javax.swing.JTextField txtdescriptions;
+    private javax.swing.JTextField txtitemname_l1;
+    private javax.swing.JTextField txtitemname_l2;
+    private javax.swing.JTextField txtpackbarcode;
+    private javax.swing.JTextField txtsale;
     // End of variables declaration//GEN-END:variables
 }
