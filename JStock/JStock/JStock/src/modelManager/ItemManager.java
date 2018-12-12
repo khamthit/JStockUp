@@ -7,6 +7,7 @@ package modelManager;
 
 import java.sql.*;
 import java.util.HashMap;
+import model.Item;
 import sysConnect.module;
 
 public class ItemManager {
@@ -112,5 +113,13 @@ public class ItemManager {
         } catch (Exception e) {
         }
         return null;
+    }
+    public Boolean insertTbl_ITemNoImage(Item it){
+        try {
+            
+            
+        } catch (Exception e) {
+        }
+        return false;
     }
 }
