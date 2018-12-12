@@ -8,35 +8,50 @@ package views;
 import Data.ButtonColor;
 import sysConnect.module;
 import java.sql.*;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.Item;
 import model.TableHeader;
 import modelManager.ItemManager;
 import modelManager.LangType;
 import static modelManager.LangType.LN;
-
 public class FrmItem extends javax.swing.JInternalFrame {
+
     Connection c = module.getConnection();
     String sql, frm;
     DefaultTableModel model = new DefaultTableModel();
     Item it = new Item();
-    ItemManager itm = new ItemManager();    
+    ItemManager itm = new ItemManager();
+
     public FrmItem() {
         initComponents();
         frm = this.getClass().getSimpleName();
-        model = (DefaultTableModel)jTable1.getModel();
+        model = (DefaultTableModel) jTable1.getModel();
         LangType.showLang();
         LangType.showLangForm();
         TableHeader.TableHeader_0(jTable1, frm);
         TableHeader.TableHeaderFont(jTable1);
+             
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        jTable1.getColumnModel().getColumn(7).setCellRenderer(centerRenderer);
+        jTable1.getColumnModel().getColumn(8).setCellRenderer(centerRenderer);
+        jTable1.getColumnModel().getColumn(9).setCellRenderer(centerRenderer);
+        jTable1.getColumnModel().getColumn(10).setCellRenderer(centerRenderer);
+        jTable1.getColumnModel().getColumn(11).setCellRenderer(centerRenderer);
+        jTable1.getColumnModel().getColumn(12).setCellRenderer(centerRenderer);
+        jTable1.getColumnModel().getColumn(13).setCellRenderer(centerRenderer);
     }
-    public void showLang(){
+
+    public void showLang() {
         try {
             lblFormName.setText(LangType.hmapForm.get(frm.toUpperCase())[LN]);
             btnData.setText(LangType.hmapSys.get("btnData".concat(frm).toUpperCase())[LN]);
             btnNew.setText(LangType.hmapSys.get("btnNew".concat(frm).toUpperCase())[LN]);
             lblSearch.setText(LangType.hmapSys.get("lblSearch".concat(frm).toUpperCase())[LN]);
-            
+
         } catch (Exception e) {
         }
     }
@@ -249,18 +264,16 @@ public class FrmItem extends javax.swing.JInternalFrame {
         try {
             if (evt.getClickCount() == 2) {
                 int index = jTable1.getSelectedRow();
-                FrmProGroup.groupid = Integer.parseInt(jTable1.getValueAt(index, 0).toString());
-                FrmProGroup.txtgroupL1.setText(jTable1.getValueAt(index, 1).toString());
-                FrmProGroup.txtGroupL2.setText(jTable1.getValueAt(index, 2).toString());
-                FrmProGroup.txtgroup_Descriptions.setText(jTable1.getValueAt(index, 3).toString());
-                dispose();
+                FrmItemAdd.ITID = Integer.parseInt(jTable1.getValueAt(index, 0).toString());
+                FrmItemAdd fa = new FrmItemAdd(null, closable);
+                fa.setVisible(true);
             }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-       
+
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void btnDataMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDataMouseEntered
@@ -275,7 +288,7 @@ public class FrmItem extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDataMouseExited
 
     private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
-        
+        itm.showItem(jTable1, model);
     }//GEN-LAST:event_btnDataActionPerformed
 
     private void btnNewMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewMouseEntered
@@ -289,6 +302,7 @@ public class FrmItem extends javax.swing.JInternalFrame {
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         try {
             FrmItemAdd fa = new FrmItemAdd(null, closable);
+            FrmItemAdd.ITID = 0;
             fa.setVisible(true);
         } catch (Exception e) {
         }

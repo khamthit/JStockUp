@@ -763,6 +763,9 @@ public class FrmItemAdd extends javax.swing.JDialog {
             showMapZone();
             showMapPack();
             showMapPick();
+            if (ITID!=0){
+                
+            }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_formWindowOpened
