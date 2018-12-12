@@ -264,8 +264,9 @@ public class FrmItem extends javax.swing.JInternalFrame {
         try {
             if (evt.getClickCount() == 2) {
                 int index = jTable1.getSelectedRow();
-                FrmItemAdd.ITID = Integer.parseInt(jTable1.getValueAt(index, 0).toString());
-                FrmItemAdd fa = new FrmItemAdd(null, closable);
+                String x = jTable1.getValueAt(index, 0).toString();     
+                FrmItemAdd.ITID = Integer.parseInt(x);
+                FrmItemAdd fa = new FrmItemAdd(null, true, x);
                 fa.setVisible(true);
             }
         } catch (Exception e) {
@@ -301,7 +302,7 @@ public class FrmItem extends javax.swing.JInternalFrame {
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         try {
-            FrmItemAdd fa = new FrmItemAdd(null, closable);
+            FrmItemAdd fa = new FrmItemAdd(null, rootPaneCheckingEnabled, "0");
             FrmItemAdd.ITID = 0;
             fa.setVisible(true);
         } catch (Exception e) {

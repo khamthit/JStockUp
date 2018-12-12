@@ -45,7 +45,7 @@ public class FrmItemAdd extends javax.swing.JDialog {
     HashMap<String, Object[]> hmPack = null;
     HashMap<String, Object[]> hmPick = null;
     Msg msg = new Msg();
-    public FrmItemAdd(java.awt.Frame parent, boolean modal) {
+    public FrmItemAdd(java.awt.Frame parent, boolean modal, String id) {
         super(parent, modal);
         initComponents();
         frm = this.getClass().getSimpleName();
@@ -764,9 +764,11 @@ public class FrmItemAdd extends javax.swing.JDialog {
             showMapPack();
             showMapPick();
             if (ITID!=0){
-                
+                itm.showOpenItemClick(it);  
+                txtbarcode.setText(it.getBarode());
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -1056,7 +1058,7 @@ public class FrmItemAdd extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrmItemAdd dialog = new FrmItemAdd(new javax.swing.JFrame(), true);
+                FrmItemAdd dialog = new FrmItemAdd(new javax.swing.JFrame(), true, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -1098,12 +1100,12 @@ public class FrmItemAdd extends javax.swing.JDialog {
     private javax.swing.JLabel lblSize;
     private javax.swing.JLabel lblUnit;
     private javax.swing.JLabel lblZone;
-    private javax.swing.JTextField txtbarcode;
-    private javax.swing.JTextField txtcost;
-    private javax.swing.JTextField txtdescriptions;
-    private javax.swing.JTextField txtitemname_l1;
-    private javax.swing.JTextField txtitemname_l2;
-    private javax.swing.JTextField txtpackbarcode;
-    private javax.swing.JTextField txtsale;
+    public static javax.swing.JTextField txtbarcode;
+    public static javax.swing.JTextField txtcost;
+    public static javax.swing.JTextField txtdescriptions;
+    public static javax.swing.JTextField txtitemname_l1;
+    public static javax.swing.JTextField txtitemname_l2;
+    public static javax.swing.JTextField txtpackbarcode;
+    public static javax.swing.JTextField txtsale;
     // End of variables declaration//GEN-END:variables
 }

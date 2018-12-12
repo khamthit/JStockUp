@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Item;
 import model.RemoveTableCount;
 import sysConnect.module;
+import views.FrmItemAdd;
 
 public class ItemManager {
 
@@ -241,6 +242,29 @@ public class ItemManager {
                 rs.getString("zoneno"), rs.getString("packNo"), rs.getString("pickNo"), rs.getString("itemInfo")});
             }
             table.setModel(model);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void showOpenItemClick(Item it){
+        try {
+            sql = "Select it.itid, it.itemUse, it.barode, it.packbarcode, it.item_"+ LangType.Lang +" as item, it.costprice, it.saleprice, g.groupname_"+ LangType.Lang +" as groups, ca.cate_"+ LangType.Lang +" as category, "
+                    + "u.unit_"+ LangType.Lang +" as unit, sz.sizename, \n" +
+                    "z.zoneNo, pak.packNo, pik.pickNo, it.ItemInfo from tbl_Item it\n" +
+                    "left join tbl_ProGroup g on g.PGID = it.PGID\n" +
+                    "left join tbl_ProCategory ca on ca.PCTID = it.PCTID\n" +
+                    "left join tbl_ProUnit u on u.PUID = it.PUID\n" +
+                    "left join tbl_ProSize sz on sz.PSizeID = it.psizeid\n" +
+                    "left join tbl_Zone z on z.ZoneID = it.Zoneid\n" +
+                    "left join tbl_Pack pak on pak.PackID = it.packid\n" +
+                    "left join tbl_Pick pik on pik.PickID = it.pickid\n" +
+                    "where it.itid = "+ FrmItemAdd.ITID +"\n" +
+                    "order by Barode, item_l1";
+            ResultSet rs = c.createStatement().executeQuery(sql);
+            if (rs.next()){
+                it.setBarode(rs.getString("barode"));
+                
+            }            
         } catch (Exception e) {
             e.printStackTrace();
         }
