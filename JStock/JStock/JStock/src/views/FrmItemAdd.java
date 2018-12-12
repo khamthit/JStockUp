@@ -7,6 +7,11 @@ package views;
 
 import Data.ButtonColor;
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+import model.Item;
+import modelManager.ItemManager;
 import modelManager.LangType;
 import static modelManager.LangType.LN;
 import sysConnect.module;
@@ -14,6 +19,16 @@ import sysConnect.module;
 public class FrmItemAdd extends javax.swing.JDialog {
     Connection c = module.getConnection();
     String sql, frm;
+    Item it = new Item();
+    ItemManager itm = new ItemManager();
+    HashMap<String, Object[]>hmGroup = null;
+    HashMap<String, Object[]>hmCate = null;
+    HashMap<String, Object[]>hmUnit = null;
+    HashMap<String, Object[]>hmSize = null;
+    HashMap<String, Object[]>hmZone = null;
+    HashMap<String, Object[]>hmPack = null;
+    HashMap<String, Object[]>hmPick = null;
+    
     public FrmItemAdd(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -25,11 +40,110 @@ public class FrmItemAdd extends javax.swing.JDialog {
     public void showLang(){
         try {
             lblFormName.setText(LangType.hmapForm.get(frm.toUpperCase())[LN]);
+            btnSave.setText(LangType.hmapSys.get("btnsave".concat(frm).toUpperCase())[LN]);
+            btnBrowse.setText(LangType.hmapSys.get("btnBrowse".concat(frm).toUpperCase())[LN]);
+            lblBarcode.setText(LangType.hmapSys.get("lblbarcode".concat(frm).toUpperCase())[LN]);
+            lblPackBarcode.setText(LangType.hmapSys.get("lblpackbarcode".concat(frm).toUpperCase())[LN]);
+            lblItem_L1.setText(LangType.hmapSys.get("lblitem_l1".concat(frm).toUpperCase())[LN]);
+            lblItem_L2.setText(LangType.hmapSys.get("lblItem_l2".concat(frm).toUpperCase())[LN]);
+            lblGroup.setText(LangType.hmapSys.get("lblgroup".concat(frm).toUpperCase())[LN]);
+            lblCategory.setText(LangType.hmapSys.get("lblCategory".concat(frm).toUpperCase())[LN]);
+            lblUnit.setText(LangType.hmapSys.get("lblunit".concat(frm).toUpperCase())[LN]);
+            lblSize.setText(LangType.hmapSys.get("lblsize".concat(frm).toUpperCase())[LN]);
+            lblZone.setText(LangType.hmapSys.get("lblzone".concat(frm).toUpperCase())[LN]);
+            lblPack.setText(LangType.hmapSys.get("lblpack".concat(frm).toUpperCase())[LN]);
+            lblPick.setText(LangType.hmapSys.get("lblPick".concat(frm).toUpperCase())[LN]);
+            
+            
             
         } catch (Exception e) {
         }
     }
-
+    public void showMapGroup(){
+        try {
+            hmGroup = itm.hmapGroup();
+            Map<String, Object>smap = new TreeMap<>(hmGroup);
+            cbbGroup.removeAllItems();
+            smap.keySet().forEach((s)->{
+               cbbGroup.addItem(s);
+            });
+            cbbGroup.setSelectedIndex(-1);
+        } catch (Exception e) {
+        }
+    }
+    public void showMapCategory(){
+        try {
+            hmCate = itm.hmapCategory();
+            Map<String, Object>smap = new TreeMap<>(hmCate);
+            cbbCategory.removeAllItems();
+            smap.keySet().forEach((s->{
+                cbbCategory.addItem(s);
+            }));
+            cbbCategory.setSelectedIndex(-1);
+        } catch (Exception e) {
+        }
+    }
+    public void showMapUnit(){
+        try {
+            hmUnit = itm.hmapUnit();
+            Map<String, Object>smap = new TreeMap<>(hmUnit);
+            cbbUnit.removeAllItems();
+            smap.keySet().forEach((s->{
+                cbbUnit.addItem(s);
+            }));
+            cbbUnit.setSelectedIndex(-1);            
+        } catch (Exception e) {
+        }
+    }
+    public void showMapSize(){
+        try {
+            hmSize= itm.hmapSize();
+            Map<String, Object>smap = new TreeMap<>(hmSize);
+            cbbSize.removeAllItems();
+            smap.keySet().forEach((s->{
+                cbbSize.addItem(s);
+            }));
+            cbbSize.setSelectedIndex(-1);
+        } catch (Exception e) {
+        }
+    }
+    public void showMapZone(){
+        try {
+            hmZone = itm.hmapZone();
+            Map<String, Object[]>smap = new TreeMap<>(hmZone);
+            cbbZone.removeAllItems();
+            smap.keySet().forEach((s->{
+                cbbZone.addItem(s);
+            }));
+            cbbZone.setSelectedIndex(-1);
+        } catch (Exception e) {
+        }
+    }
+    public void showMapPack(){
+        try {
+            hmPack = itm.hmapPack();
+            Map<String, Object>smap = new TreeMap<>(hmPack);
+            cbbPack.removeAllItems();
+            smap.keySet().forEach((s->{
+                cbbPack.addItem(s);
+            }));
+            cbbPack.setSelectedIndex(-1);
+        } catch (Exception e) {
+        }
+    }
+    public void showMapPick(){
+        try {
+            hmPick = itm.hmapPick();
+            Map<String, Object>smap = new TreeMap<>(hmPick);
+            cbbPick.removeAllItems();
+            smap.keySet().forEach((s->{
+                cbbPick.addItem(s);
+            }));
+            cbbPick.setSelectedIndex(-1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,16 +159,31 @@ public class FrmItemAdd extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        lblSearch = new javax.swing.JLabel();
+        lblBarcode = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
-        lblSearch1 = new javax.swing.JLabel();
+        lblPackBarcode = new javax.swing.JLabel();
         txtSearch1 = new javax.swing.JTextField();
-        lblSearch2 = new javax.swing.JLabel();
+        lblItem_L1 = new javax.swing.JLabel();
         txtSearch2 = new javax.swing.JTextField();
-        lblSearch3 = new javax.swing.JLabel();
+        lblItem_L2 = new javax.swing.JLabel();
         txtSearch3 = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
-        btnNew = new javax.swing.JButton();
+        lblGroup = new javax.swing.JLabel();
+        cbbGroup = new javax.swing.JComboBox<>();
+        lblCategory = new javax.swing.JLabel();
+        cbbCategory = new javax.swing.JComboBox<>();
+        lblUnit = new javax.swing.JLabel();
+        cbbUnit = new javax.swing.JComboBox<>();
+        lblSize = new javax.swing.JLabel();
+        cbbSize = new javax.swing.JComboBox<>();
+        lblZone = new javax.swing.JLabel();
+        cbbZone = new javax.swing.JComboBox<>();
+        lblPack = new javax.swing.JLabel();
+        cbbPack = new javax.swing.JComboBox<>();
+        lblPick = new javax.swing.JLabel();
+        cbbPick = new javax.swing.JComboBox<>();
+        btnSave = new javax.swing.JButton();
+        btnBrowse = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -109,10 +238,10 @@ public class FrmItemAdd extends javax.swing.JDialog {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblSearch.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblSearch.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblSearch.setText("Barcode");
-        lblSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblBarcode.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblBarcode.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblBarcode.setText("Barcode");
+        lblBarcode.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtSearch.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         txtSearch.setToolTipText("");
@@ -122,10 +251,10 @@ public class FrmItemAdd extends javax.swing.JDialog {
             }
         });
 
-        lblSearch1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblSearch1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblSearch1.setText("Pack Barcode");
-        lblSearch1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblPackBarcode.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblPackBarcode.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblPackBarcode.setText("Pack Barcode");
+        lblPackBarcode.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtSearch1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         txtSearch1.setToolTipText("");
@@ -135,10 +264,10 @@ public class FrmItemAdd extends javax.swing.JDialog {
             }
         });
 
-        lblSearch2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblSearch2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblSearch2.setText("Item Name L1");
-        lblSearch2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblItem_L1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblItem_L1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblItem_L1.setText("Item Name L1");
+        lblItem_L1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtSearch2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         txtSearch2.setToolTipText("");
@@ -148,10 +277,10 @@ public class FrmItemAdd extends javax.swing.JDialog {
             }
         });
 
-        lblSearch3.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblSearch3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblSearch3.setText("Item Name L2");
-        lblSearch3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblItem_L2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblItem_L2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblItem_L2.setText("Item Name L2");
+        lblItem_L2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtSearch3.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         txtSearch3.setToolTipText("");
@@ -170,18 +299,18 @@ public class FrmItemAdd extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblSearch1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblBarcode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblPackBarcode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtSearch1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
                             .addComponent(txtSearch)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(lblSearch2, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                        .addComponent(lblItem_L1, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtSearch2, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(lblSearch3, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                        .addComponent(lblItem_L2, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtSearch3, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -192,52 +321,316 @@ public class FrmItemAdd extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSearch))
+                    .addComponent(lblBarcode))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearch1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSearch1))
+                    .addComponent(lblPackBarcode))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSearch2))
+                    .addComponent(lblItem_L1))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearch3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSearch3))
+                    .addComponent(lblItem_L2))
                 .addGap(0, 0, 0))
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
+        lblGroup.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblGroup.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblGroup.setText("Group");
+        lblGroup.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        cbbGroup.setEditable(true);
+        cbbGroup.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        cbbGroup.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cbbGroup.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbbGroupMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cbbGroupMouseEntered(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cbbGroupMousePressed(evt);
+            }
+        });
+        cbbGroup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbGroupActionPerformed(evt);
+            }
+        });
+
+        lblCategory.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblCategory.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCategory.setText("Category");
+        lblCategory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        cbbCategory.setEditable(true);
+        cbbCategory.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        cbbCategory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cbbCategory.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbbCategoryMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cbbCategoryMouseEntered(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cbbCategoryMousePressed(evt);
+            }
+        });
+        cbbCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbCategoryActionPerformed(evt);
+            }
+        });
+
+        lblUnit.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblUnit.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUnit.setText("Unit");
+        lblUnit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        cbbUnit.setEditable(true);
+        cbbUnit.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        cbbUnit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cbbUnit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbbUnitMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cbbUnitMouseEntered(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cbbUnitMousePressed(evt);
+            }
+        });
+        cbbUnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbUnitActionPerformed(evt);
+            }
+        });
+
+        lblSize.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblSize.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblSize.setText("Size");
+        lblSize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        cbbSize.setEditable(true);
+        cbbSize.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        cbbSize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cbbSize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbbSizeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cbbSizeMouseEntered(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cbbSizeMousePressed(evt);
+            }
+        });
+        cbbSize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbSizeActionPerformed(evt);
+            }
+        });
+
+        lblZone.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblZone.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblZone.setText("Zone");
+        lblZone.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        cbbZone.setEditable(true);
+        cbbZone.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        cbbZone.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cbbZone.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbbZoneMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cbbZoneMouseEntered(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cbbZoneMousePressed(evt);
+            }
+        });
+        cbbZone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbZoneActionPerformed(evt);
+            }
+        });
+
+        lblPack.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblPack.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblPack.setText("Pack");
+        lblPack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        cbbPack.setEditable(true);
+        cbbPack.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        cbbPack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cbbPack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbbPackMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cbbPackMouseEntered(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cbbPackMousePressed(evt);
+            }
+        });
+        cbbPack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbPackActionPerformed(evt);
+            }
+        });
+
+        lblPick.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblPick.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblPick.setText("Pick");
+        lblPick.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        cbbPick.setEditable(true);
+        cbbPick.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        cbbPick.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cbbPick.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbbPickMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cbbPickMouseEntered(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cbbPickMousePressed(evt);
+            }
+        });
+        cbbPick.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbPickActionPerformed(evt);
+            }
+        });
+
+        btnSave.setBackground(new java.awt.Color(255, 255, 255));
+        btnSave.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        btnSave.setText("Save");
+        btnSave.setContentAreaFilled(false);
+        btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSave.setOpaque(true);
+        btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSaveMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSaveMouseExited(evt);
+            }
+        });
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(lblCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(lblGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbbGroup, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbbCategory, 0, 210, Short.MAX_VALUE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(lblUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbbUnit, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(lblSize, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbbSize, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(lblZone, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbbZone, 0, 210, Short.MAX_VALUE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(lblPack, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbbPack, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(lblPick, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbbPick, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(btnSave, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(2, 2, 2)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblGroup)
+                    .addComponent(cbbGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCategory)
+                    .addComponent(cbbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUnit)
+                    .addComponent(cbbUnit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSize)
+                    .addComponent(cbbSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblZone)
+                    .addComponent(cbbZone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPack)
+                    .addComponent(cbbPack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPick)
+                    .addComponent(cbbPick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addComponent(btnSave)
+                .addGap(2, 2, 2))
         );
 
-        btnNew.setBackground(new java.awt.Color(255, 255, 255));
-        btnNew.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        btnNew.setText("Browse");
-        btnNew.setContentAreaFilled(false);
-        btnNew.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnNew.setOpaque(true);
-        btnNew.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnBrowse.setBackground(new java.awt.Color(255, 255, 255));
+        btnBrowse.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        btnBrowse.setText("Browse");
+        btnBrowse.setContentAreaFilled(false);
+        btnBrowse.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBrowse.setOpaque(true);
+        btnBrowse.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnNewMouseEntered(evt);
+                btnBrowseMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnNewMouseExited(evt);
+                btnBrowseMouseExited(evt);
             }
         });
-        btnNew.addActionListener(new java.awt.event.ActionListener() {
+        btnBrowse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNewActionPerformed(evt);
+                btnBrowseActionPerformed(evt);
             }
         });
 
@@ -249,7 +642,7 @@ public class FrmItemAdd extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBrowse, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -268,8 +661,8 @@ public class FrmItemAdd extends javax.swing.JDialog {
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnNew)
-                        .addContainerGap(218, Short.MAX_VALUE))))
+                        .addComponent(btnBrowse)
+                        .addContainerGap(249, Short.MAX_VALUE))))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -281,6 +674,13 @@ public class FrmItemAdd extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
             showLang();
+            showMapGroup();
+            showMapCategory();
+            showMapUnit();
+            showMapSize();
+            showMapZone();
+            showMapPack();
+            showMapPick();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_formWindowOpened
@@ -301,20 +701,145 @@ public class FrmItemAdd extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearch3KeyReleased
 
-    private void btnNewMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewMouseEntered
-        ButtonColor.showButtonEnter(btnNew);
-    }//GEN-LAST:event_btnNewMouseEntered
+    private void btnBrowseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBrowseMouseEntered
+        ButtonColor.showButtonEnter(btnBrowse);
+    }//GEN-LAST:event_btnBrowseMouseEntered
 
-    private void btnNewMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewMouseExited
-        ButtonColor.showButtonExited(btnNew);
-    }//GEN-LAST:event_btnNewMouseExited
+    private void btnBrowseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBrowseMouseExited
+        ButtonColor.showButtonExited(btnBrowse);
+    }//GEN-LAST:event_btnBrowseMouseExited
 
-    private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
+    private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
         try {
            
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_btnNewActionPerformed
+    }//GEN-LAST:event_btnBrowseActionPerformed
+
+    private void cbbGroupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbGroupMouseClicked
+
+    }//GEN-LAST:event_cbbGroupMouseClicked
+
+    private void cbbGroupMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbGroupMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbGroupMouseEntered
+
+    private void cbbGroupMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbGroupMousePressed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_cbbGroupMousePressed
+
+    private void cbbGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbGroupActionPerformed
+
+    }//GEN-LAST:event_cbbGroupActionPerformed
+
+    private void cbbCategoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbCategoryMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbCategoryMouseClicked
+
+    private void cbbCategoryMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbCategoryMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbCategoryMouseEntered
+
+    private void cbbCategoryMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbCategoryMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbCategoryMousePressed
+
+    private void cbbCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbCategoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbCategoryActionPerformed
+
+    private void cbbUnitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbUnitMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbUnitMouseClicked
+
+    private void cbbUnitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbUnitMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbUnitMouseEntered
+
+    private void cbbUnitMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbUnitMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbUnitMousePressed
+
+    private void cbbUnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbUnitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbUnitActionPerformed
+
+    private void cbbSizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbSizeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbSizeMouseClicked
+
+    private void cbbSizeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbSizeMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbSizeMouseEntered
+
+    private void cbbSizeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbSizeMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbSizeMousePressed
+
+    private void cbbSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbSizeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbSizeActionPerformed
+
+    private void cbbZoneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbZoneMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbZoneMouseClicked
+
+    private void cbbZoneMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbZoneMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbZoneMouseEntered
+
+    private void cbbZoneMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbZoneMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbZoneMousePressed
+
+    private void cbbZoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbZoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbZoneActionPerformed
+
+    private void cbbPackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbPackMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbPackMouseClicked
+
+    private void cbbPackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbPackMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbPackMouseEntered
+
+    private void cbbPackMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbPackMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbPackMousePressed
+
+    private void cbbPackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbPackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbPackActionPerformed
+
+    private void cbbPickMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbPickMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbPickMouseClicked
+
+    private void cbbPickMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbPickMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbPickMouseEntered
+
+    private void cbbPickMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbPickMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbPickMousePressed
+
+    private void cbbPickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbPickActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbPickActionPerformed
+
+    private void btnSaveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseEntered
+        ButtonColor.showButtonEnter(btnSave);
+    }//GEN-LAST:event_btnSaveMouseEntered
+
+    private void btnSaveMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseExited
+        ButtonColor.showButtonExited(btnSave);
+    }//GEN-LAST:event_btnSaveMouseExited
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -359,18 +884,33 @@ public class FrmItemAdd extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnNew;
+    private javax.swing.JButton btnBrowse;
+    private javax.swing.JButton btnSave;
+    public static javax.swing.JComboBox<String> cbbCategory;
+    public static javax.swing.JComboBox<String> cbbGroup;
+    public static javax.swing.JComboBox<String> cbbPack;
+    public static javax.swing.JComboBox<String> cbbPick;
+    public static javax.swing.JComboBox<String> cbbSize;
+    public static javax.swing.JComboBox<String> cbbUnit;
+    public static javax.swing.JComboBox<String> cbbZone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel lblBarcode;
+    private javax.swing.JLabel lblCategory;
     private javax.swing.JLabel lblFormName;
-    private javax.swing.JLabel lblSearch;
-    private javax.swing.JLabel lblSearch1;
-    private javax.swing.JLabel lblSearch2;
-    private javax.swing.JLabel lblSearch3;
+    private javax.swing.JLabel lblGroup;
+    private javax.swing.JLabel lblItem_L1;
+    private javax.swing.JLabel lblItem_L2;
+    private javax.swing.JLabel lblPack;
+    private javax.swing.JLabel lblPackBarcode;
+    private javax.swing.JLabel lblPick;
+    private javax.swing.JLabel lblSize;
+    private javax.swing.JLabel lblUnit;
+    private javax.swing.JLabel lblZone;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtSearch1;
     private javax.swing.JTextField txtSearch2;
