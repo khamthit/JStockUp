@@ -9,6 +9,9 @@ import Data.ButtonColor;
 import sysConnect.module;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
+import model.Item;
+import model.TableHeader;
+import modelManager.ItemManager;
 import modelManager.LangType;
 import static modelManager.LangType.LN;
 
@@ -16,12 +19,16 @@ public class FrmItem extends javax.swing.JInternalFrame {
     Connection c = module.getConnection();
     String sql, frm;
     DefaultTableModel model = new DefaultTableModel();
-    
+    Item it = new Item();
+    ItemManager itm = new ItemManager();    
     public FrmItem() {
         initComponents();
         frm = this.getClass().getSimpleName();
+        model = (DefaultTableModel)jTable1.getModel();
         LangType.showLang();
         LangType.showLangForm();
+        TableHeader.TableHeader_0(jTable1, frm);
+        TableHeader.TableHeaderFont(jTable1);
     }
     public void showLang(){
         try {
@@ -171,15 +178,22 @@ public class FrmItem extends javax.swing.JInternalFrame {
         jTable1.setForeground(new java.awt.Color(0, 51, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "lblProGroup_L1", "lblProGroup_L1", "lblProGroup_L2", "lblProGroup_Info"
+                "lblBarcode", "ItemUse", "lblBarcode", "lblPackBarcode", "lblItem", "lblCost", "lblSale", "lblGroup", "lblCategory", "lblUnit", "lblSize", "lblZone", "lblPack", "lblPick", "lblDescriptions"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, true, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -193,6 +207,36 @@ public class FrmItem extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+            jTable1.getColumnModel().getColumn(2).setMinWidth(120);
+            jTable1.getColumnModel().getColumn(2).setMaxWidth(120);
+            jTable1.getColumnModel().getColumn(3).setMinWidth(120);
+            jTable1.getColumnModel().getColumn(3).setMaxWidth(120);
+            jTable1.getColumnModel().getColumn(4).setMinWidth(150);
+            jTable1.getColumnModel().getColumn(4).setMaxWidth(150);
+            jTable1.getColumnModel().getColumn(5).setMinWidth(90);
+            jTable1.getColumnModel().getColumn(5).setMaxWidth(90);
+            jTable1.getColumnModel().getColumn(6).setMinWidth(90);
+            jTable1.getColumnModel().getColumn(6).setMaxWidth(90);
+            jTable1.getColumnModel().getColumn(7).setMinWidth(100);
+            jTable1.getColumnModel().getColumn(7).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(8).setMinWidth(100);
+            jTable1.getColumnModel().getColumn(8).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(9).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(9).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(10).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(10).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(11).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(11).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(12).setMinWidth(120);
+            jTable1.getColumnModel().getColumn(12).setMaxWidth(120);
+            jTable1.getColumnModel().getColumn(13).setMinWidth(120);
+            jTable1.getColumnModel().getColumn(13).setMaxWidth(120);
+            jTable1.getColumnModel().getColumn(14).setMinWidth(300);
+            jTable1.getColumnModel().getColumn(14).setMaxWidth(300);
+        }
 
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -253,6 +297,7 @@ public class FrmItem extends javax.swing.JInternalFrame {
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         try {
             showLang();
+            itm.showItem(jTable1, model);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_formInternalFrameOpened

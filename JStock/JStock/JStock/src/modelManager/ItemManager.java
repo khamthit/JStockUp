@@ -10,7 +10,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.sql.*;
 import java.util.HashMap;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import model.Item;
+import model.RemoveTableCount;
 import sysConnect.module;
 
 public class ItemManager {
@@ -122,31 +125,37 @@ public class ItemManager {
     }
     public Boolean insertTbl_ITemNoImage(Item it) {
         try {
-            sql = "insert into tbl_Item (ITID, Barode, PackBarcode, item_l1, item_l2, zoneid, packid, pickid, psizeid, puid, pctid, pgid, costprice, SalePrice, iteminfo, Itemuse, Createdate, Createuser) "
-                    + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            PreparedStatement p = c.prepareStatement(sql);
-            p.setInt(1, it.getITID());
-            p.setString(2, it.getBarode());
-            p.setString(3, it.getPackBarcode());
-            p.setString(4, it.getItem_L1());
-            p.setString(5, it.getItem_L2());
-            p.setInt(6, it.getZoneid());
-            p.setInt(7, it.getPackid());
-            p.setInt(8, it.getPickid());
-            p.setInt(9, it.getPsizeid());
-            p.setInt(10, it.getPuid());
-            p.setInt(11, it.getPctid());
-            p.setInt(12, it.getPgid());
-            p.setFloat(13, it.getCostPrice());
-            p.setFloat(14, it.getSalePrice());
-            p.setString(15, it.getIteminfo());
-            p.setBoolean(16, it.getItemuse());
-            p.setDate(17, (Date) it.getCrateDate());
-            p.setString(18, it.getCreateUser());
-            p.executeUpdate();
-            p.close();
-            msg.showMsgSucess();
-            return true;
+            sql = "Select barode from tbl_Item where Barode = N'"+ it.getBarode().trim() +"'";
+            ResultSet rs = c.createStatement().executeQuery(sql);
+            if (rs.next()){
+                msg.showMsgSameData();
+            }else{
+                sql = "insert into tbl_Item (ITID, Barode, PackBarcode, item_l1, item_l2, zoneid, packid, pickid, psizeid, puid, pctid, pgid, costprice, SalePrice, iteminfo, Itemuse, Createdate, Createuser) "
+                        + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                PreparedStatement p = c.prepareStatement(sql);
+                p.setInt(1, it.getITID());
+                p.setString(2, it.getBarode());
+                p.setString(3, it.getPackBarcode());
+                p.setString(4, it.getItem_L1());
+                p.setString(5, it.getItem_L2());
+                p.setInt(6, it.getZoneid());
+                p.setInt(7, it.getPackid());
+                p.setInt(8, it.getPickid());
+                p.setInt(9, it.getPsizeid());
+                p.setInt(10, it.getPuid());
+                p.setInt(11, it.getPctid());
+                p.setInt(12, it.getPgid());
+                p.setFloat(13, it.getCostPrice());
+                p.setFloat(14, it.getSalePrice());
+                p.setString(15, it.getIteminfo());
+                p.setBoolean(16, it.getItemuse());
+                p.setDate(17, (Date) it.getCrateDate());
+                p.setString(18, it.getCreateUser());
+                p.executeUpdate();
+                p.close();
+                msg.showMsgSucess();
+                return true;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -154,38 +163,86 @@ public class ItemManager {
     }
     public Boolean InsertTbl_ItemImage(Item it) {
         try {
-            sql = "insert into tbl_Item (ITID, Barode, PackBarcode, item_l1, item_l2, zoneid, packid, pickid, psizeid, puid, pctid, pgid, costprice, SalePrice, iteminfo, Itemuse, Createdate, Createuser, Item_img) "
-                    + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            PreparedStatement p = c.prepareStatement(sql);
-            p.setInt(1, it.getITID());
-            p.setString(2, it.getBarode());
-            p.setString(3, it.getPackBarcode());
-            p.setString(4, it.getItem_L1());
-            p.setString(5, it.getItem_L2());
-            p.setInt(6, it.getZoneid());
-            p.setInt(7, it.getPackid());
-            p.setInt(8, it.getPickid());
-            p.setInt(9, it.getPsizeid());
-            p.setInt(10, it.getPuid());
-            p.setInt(11, it.getPctid());
-            p.setInt(12, it.getPgid());
-            p.setFloat(13, it.getCostPrice());
-            p.setFloat(14, it.getSalePrice());
-            p.setString(15, it.getIteminfo());
-            p.setBoolean(16, it.getItemuse());
-            p.setDate(17, (Date) it.getCrateDate());
-            p.setString(18, it.getCreateUser());
-            File ff = new File(it.getPathImg());
-            FileInputStream fis = new FileInputStream(ff);
-            int len = (int) ff.length();
-            p.setBinaryStream(19, fis, len);
-            p.executeUpdate();
-            p.close();
-            msg.showMsgSucess();
-            return true;
+            sql = "Select barode from tbl_Item where Barode = N'"+ it.getBarode().trim() +"'";
+            ResultSet rs = c.createStatement().executeQuery(sql);
+            if (rs.next()){
+                msg.showMsgSameData();
+            }else{
+                sql = "insert into tbl_Item (ITID, Barode, PackBarcode, item_l1, item_l2, zoneid, packid, pickid, psizeid, puid, pctid, pgid, costprice, SalePrice, iteminfo, Itemuse, Createdate, Createuser, Item_img) "
+                        + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                PreparedStatement p = c.prepareStatement(sql);
+                p.setInt(1, it.getITID());
+                p.setString(2, it.getBarode());
+                p.setString(3, it.getPackBarcode());
+                p.setString(4, it.getItem_L1());
+                p.setString(5, it.getItem_L2());
+                p.setInt(6, it.getZoneid());
+                p.setInt(7, it.getPackid());
+                p.setInt(8, it.getPickid());
+                p.setInt(9, it.getPsizeid());
+                p.setInt(10, it.getPuid());
+                p.setInt(11, it.getPctid());
+                p.setInt(12, it.getPgid());
+                p.setFloat(13, it.getCostPrice());
+                p.setFloat(14, it.getSalePrice());
+                p.setString(15, it.getIteminfo());
+                p.setBoolean(16, it.getItemuse());
+                p.setDate(17, (Date) it.getCrateDate());
+                p.setString(18, it.getCreateUser());
+                File ff = new File(it.getPathImg());
+                FileInputStream fis = new FileInputStream(ff);
+                int len = (int) ff.length();
+                p.setBinaryStream(19, fis, len);
+                p.executeUpdate();
+                p.close();
+                msg.showMsgSucess();
+                return true;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
+    }
+    public Boolean updateImage(Item it){
+        try {
+            sql = "update tbl_Item set Item_img = ? where ITID = (?)";
+            PreparedStatement p = c.prepareStatement(sql);
+            File ff = new File(it.getPathImg());
+            FileInputStream fis = new FileInputStream(ff);
+            int len = (int) ff.length();
+            p.setBinaryStream(1, fis, len);
+            p.setInt(2, it.getITID());
+            p.executeUpdate();
+            p.close();
+            return true;            
+        } catch (Exception e) {
+        }
+        return false;
+    }
+    public void showItem(JTable table, DefaultTableModel model){
+        try {
+            RemoveTableCount.RemoveTable(table, model);
+            sql = "Select it.itid, it.itemUse, it.barode, it.packbarcode, it.item_"+ LangType.Lang +" as item, it.costprice, it.saleprice, g.groupname_"+ LangType.Lang +" as groups, ca.cate_"+ LangType.Lang +" as category, "
+                    + "u.unit_"+ LangType.Lang +" as unit, sz.sizename, \n" +
+                    "z.zoneNo, pak.packNo, pik.pickNo, it.ItemInfo from tbl_Item it\n" +
+                    "left join tbl_ProGroup g on g.PGID = it.PGID\n" +
+                    "left join tbl_ProCategory ca on ca.PCTID = it.PCTID\n" +
+                    "left join tbl_ProUnit u on u.PUID = it.PUID\n" +
+                    "left join tbl_ProSize sz on sz.PSizeID = it.psizeid\n" +
+                    "left join tbl_Zone z on z.ZoneID = it.Zoneid\n" +
+                    "left join tbl_Pack pak on pak.PackID = it.packid\n" +
+                    "left join tbl_Pick pik on pik.PickID = it.pickid\n" +
+                    "where it.ItemUse = 1\n" +
+                    "order by Barode, item_l1";
+            ResultSet rs = c.createStatement().executeQuery(sql);
+            while (rs.next()){
+                model.addRow(new Object[]{rs.getString("itid"), rs.getBoolean("itemUse"), rs.getString("barode"), rs.getString("packbarcode"), rs.getString("item"), rs.getDouble("costprice"), rs.getDouble("saleprice"), 
+                    rs.getString("groups"), rs.getString("category"), rs.getString("Unit"), rs.getString("sizename"), 
+                rs.getString("zoneno"), rs.getString("packNo"), rs.getString("pickNo"), rs.getString("itemInfo")});
+            }
+            table.setModel(model);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

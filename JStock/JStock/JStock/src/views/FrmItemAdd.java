@@ -803,7 +803,7 @@ public class FrmItemAdd extends javax.swing.JDialog {
                 lblImage.setIcon(new ImageIcon(ic));
             }else{
                 lblImage.setIcon(new ImageIcon(ic));
-                
+                itm.updateImage(it);                
             }            
         } catch (Exception e) {
             e.printStackTrace();
