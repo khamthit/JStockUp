@@ -384,4 +384,35 @@ public class ItemManager {
         }
         return false;
     }
+    public Boolean updatePickFree_Not(Item it){
+        try {
+            sql = "update tbl_Pick set PickFree = ?\n" +
+                "from tbl_Pick left join tbl_Item on tbl_item.pickid = tbl_pick.PickID\n" +
+                "where tbl_Item.itid = (?)";
+            PreparedStatement p = c.prepareStatement(sql);
+            p.setBoolean(1, false);
+            p.setInt(2, it.getITID());
+            p.executeUpdate();
+            p.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public Boolean updatePackFree_Not(Item it){
+        try {
+            sql = "update tbl_pack set PackFree = ?\n" +
+                "from tbl_Pack left join tbl_Item on tbl_item.packid = tbl_pack.PackID\n" +
+                "where tbl_Item.itid = (?)";
+            PreparedStatement p = c.prepareStatement(sql);
+            p.setBoolean(1, false);
+            p.setInt(2, it.getITID());
+            p.executeUpdate();
+            p.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

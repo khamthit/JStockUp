@@ -1016,7 +1016,11 @@ public class FrmItemAdd extends javax.swing.JDialog {
                 itm.updatePackFree(it);
             }else{
                 it.setITID(ITID);
-                itm.updateTbl_Item(it);                
+                itm.updatePickFree_Not(it);
+                itm.updatePackFree_Not(it);
+                itm.updateTbl_Item(it);         
+                itm.updatePickFree(it);
+                itm.updatePackFree(it);
             }
         } catch (Exception e) {
             e.printStackTrace();
