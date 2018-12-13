@@ -102,17 +102,62 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="lblUnitInfo" pref="170" max="32767" attributes="0"/>
+                              <Component id="lblVendor_L2" pref="170" max="32767" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="txtUnitDescriptions" min="-2" pref="194" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblPhone1" pref="170" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtUnitDescriptions1" min="-2" pref="194" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblPhone2" pref="170" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtUnitDescriptions2" min="-2" pref="194" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblFax" pref="170" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtUnitDescriptions3" min="-2" pref="194" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblEmail" pref="170" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtUnitDescriptions4" min="-2" pref="194" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblWebSite" pref="170" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtUnitDescriptions5" min="-2" pref="194" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblPostalCode" pref="170" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtUnitDescriptions6" min="-2" pref="194" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblBankAccount" max="32767" attributes="0"/>
+                                  <Component id="lblCreateVendor" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="lblAddress" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="lblBankName" alignment="1" pref="170" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtUnitDescriptions8" alignment="0" pref="194" max="32767" attributes="0"/>
+                                  <Component id="txtUnitDescriptions9" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+                                  <Component id="jDateChooser1" alignment="0" min="-2" pref="145" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="lblUnitL1" alignment="1" pref="160" max="32767" attributes="0"/>
-                                          <Component id="lblUnitL2" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="lblVendorNo" alignment="1" pref="160" max="32767" attributes="0"/>
+                                          <Component id="lblVendor_L1" alignment="1" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -127,56 +172,6 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblUnitInfo1" pref="170" max="32767" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtUnitDescriptions1" min="-2" pref="194" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblUnitInfo2" pref="170" max="32767" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtUnitDescriptions2" min="-2" pref="194" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblUnitInfo3" pref="170" max="32767" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtUnitDescriptions3" min="-2" pref="194" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblUnitInfo4" pref="170" max="32767" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtUnitDescriptions4" min="-2" pref="194" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblUnitInfo5" pref="170" max="32767" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtUnitDescriptions5" min="-2" pref="194" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblUnitInfo6" pref="170" max="32767" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtUnitDescriptions6" min="-2" pref="194" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblUnitInfo7" pref="170" max="32767" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtUnitDescriptions7" min="-2" pref="194" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblUnitInfo9" max="32767" attributes="0"/>
-                                  <Component id="lblUnitInfo11" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lblUnitInfo10" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="lblUnitInfo8" alignment="1" pref="170" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtUnitDescriptions8" alignment="0" pref="194" max="32767" attributes="0"/>
-                                  <Component id="txtUnitDescriptions9" max="32767" attributes="0"/>
-                                  <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
-                                  <Component id="jDateChooser1" alignment="0" min="-2" pref="145" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -188,72 +183,67 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtunit_l1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblUnitL1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblVendorNo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtUnit_L2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblUnitL2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblVendor_L1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtUnitDescriptions" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblUnitInfo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblVendor_L2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtUnitDescriptions1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblUnitInfo1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPhone1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtUnitDescriptions2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblUnitInfo2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPhone2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtUnitDescriptions3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblUnitInfo3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblFax" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtUnitDescriptions4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblUnitInfo4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtUnitDescriptions5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblUnitInfo5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblWebSite" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtUnitDescriptions6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblUnitInfo6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtUnitDescriptions7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblUnitInfo7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPostalCode" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtUnitDescriptions8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblUnitInfo8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblBankName" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtUnitDescriptions9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblUnitInfo9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblBankAccount" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblUnitInfo11" pref="26" max="32767" attributes="0"/>
+                          <Component id="lblCreateVendor" pref="26" max="32767" attributes="0"/>
                           <Component id="jDateChooser1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" min="-2" pref="70" max="-2" attributes="0"/>
-                          <Component id="lblUnitInfo10" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAddress" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -266,7 +256,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="lblUnitL1">
+            <Component class="javax.swing.JLabel" name="lblVendorNo">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Saysettha MX" size="12" style="0"/>
@@ -292,7 +282,7 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblUnitL2">
+            <Component class="javax.swing.JLabel" name="lblVendor_L1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Saysettha MX" size="12" style="0"/>
@@ -357,7 +347,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblUnitInfo">
+            <Component class="javax.swing.JLabel" name="lblVendor_L2">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Saysettha MX" size="12" style="0"/>
@@ -380,7 +370,7 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblUnitInfo1">
+            <Component class="javax.swing.JLabel" name="lblPhone1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Saysettha MX" size="12" style="0"/>
@@ -403,7 +393,7 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblUnitInfo2">
+            <Component class="javax.swing.JLabel" name="lblPhone2">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Saysettha MX" size="12" style="0"/>
@@ -426,7 +416,7 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblUnitInfo3">
+            <Component class="javax.swing.JLabel" name="lblFax">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Saysettha MX" size="12" style="0"/>
@@ -449,7 +439,7 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblUnitInfo4">
+            <Component class="javax.swing.JLabel" name="lblEmail">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Saysettha MX" size="12" style="0"/>
@@ -472,7 +462,7 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblUnitInfo5">
+            <Component class="javax.swing.JLabel" name="lblWebSite">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Saysettha MX" size="12" style="0"/>
@@ -495,7 +485,7 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblUnitInfo6">
+            <Component class="javax.swing.JLabel" name="lblPostalCode">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Saysettha MX" size="12" style="0"/>
@@ -518,30 +508,7 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblUnitInfo7">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Saysettha MX" size="12" style="0"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="Zip Code"/>
-                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtUnitDescriptions7">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Saysettha MX" size="12" style="0"/>
-                </Property>
-                <Property name="toolTipText" type="java.lang.String" value=""/>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblUnitInfo8">
+            <Component class="javax.swing.JLabel" name="lblBankName">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Saysettha MX" size="12" style="0"/>
@@ -564,7 +531,7 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblUnitInfo9">
+            <Component class="javax.swing.JLabel" name="lblBankAccount">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Saysettha MX" size="12" style="0"/>
@@ -605,7 +572,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="lblUnitInfo10">
+            <Component class="javax.swing.JLabel" name="lblAddress">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Saysettha MX" size="12" style="0"/>
@@ -617,7 +584,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblUnitInfo11">
+            <Component class="javax.swing.JLabel" name="lblCreateVendor">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Saysettha MX" size="12" style="0"/>

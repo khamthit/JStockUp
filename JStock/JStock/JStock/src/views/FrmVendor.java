@@ -24,7 +24,21 @@ public class FrmVendor extends javax.swing.JInternalFrame {
     public void showLang(){
         try {
             lblFormName.setText(LangType.hmapForm.get(frm.toUpperCase())[LN]);
-            
+            btnSave.setText(LangType.hmapSys.get("btnSave".concat(frm).toUpperCase())[LN]);
+            btnData.setText(LangType.hmapSys.get("btnData".concat(frm).toUpperCase())[LN]);
+            lblVendorNo.setText(LangType.hmapSys.get("lblVendorNo".concat(frm).toUpperCase())[LN]);
+            lblVendor_L1.setText(LangType.hmapSys.get("lblVendor_L1".concat(frm).toUpperCase())[LN]);
+            lblVendor_L2.setText(LangType.hmapSys.get("lblVendor_L2".concat(frm).toUpperCase())[LN]);
+            lblPhone1.setText(LangType.hmapSys.get("lblPhone1".concat(frm).toUpperCase())[LN]);
+            lblPhone2.setText(LangType.hmapSys.get("lblPhone2".concat(frm).toUpperCase())[LN]);
+            lblFax.setText(LangType.hmapSys.get("lblFax".concat(frm).toUpperCase())[LN]);
+            lblEmail.setText(LangType.hmapSys.get("lblEmail".concat(frm).toUpperCase())[LN]);
+            lblWebSite.setText(LangType.hmapSys.get("lblWebSite".concat(frm).toUpperCase())[LN]);
+            lblPostalCode.setText(LangType.hmapSys.get("lblPostalCode".concat(frm).toUpperCase())[LN]);
+            lblBankName.setText(LangType.hmapSys.get("lblBankName".concat(frm).toUpperCase())[LN]);
+            lblBankAccount.setText(LangType.hmapSys.get("lblBankAccount".concat(frm).toUpperCase())[LN]);
+            lblCreateVendor.setText(LangType.hmapSys.get("lblCreateVendor".concat(frm).toUpperCase())[LN]);
+            lblAddress.setText(LangType.hmapSys.get("lblAddress".concat(frm).toUpperCase())[LN]);            
         } catch (Exception e) {
         }
     }
@@ -42,36 +56,34 @@ public class FrmVendor extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         lblFormName = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        lblUnitL1 = new javax.swing.JLabel();
+        lblVendorNo = new javax.swing.JLabel();
         txtunit_l1 = new javax.swing.JTextField();
-        lblUnitL2 = new javax.swing.JLabel();
+        lblVendor_L1 = new javax.swing.JLabel();
         txtUnit_L2 = new javax.swing.JTextField();
         btnData = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
-        lblUnitInfo = new javax.swing.JLabel();
+        lblVendor_L2 = new javax.swing.JLabel();
         txtUnitDescriptions = new javax.swing.JTextField();
-        lblUnitInfo1 = new javax.swing.JLabel();
+        lblPhone1 = new javax.swing.JLabel();
         txtUnitDescriptions1 = new javax.swing.JTextField();
-        lblUnitInfo2 = new javax.swing.JLabel();
+        lblPhone2 = new javax.swing.JLabel();
         txtUnitDescriptions2 = new javax.swing.JTextField();
-        lblUnitInfo3 = new javax.swing.JLabel();
+        lblFax = new javax.swing.JLabel();
         txtUnitDescriptions3 = new javax.swing.JTextField();
-        lblUnitInfo4 = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
         txtUnitDescriptions4 = new javax.swing.JTextField();
-        lblUnitInfo5 = new javax.swing.JLabel();
+        lblWebSite = new javax.swing.JLabel();
         txtUnitDescriptions5 = new javax.swing.JTextField();
-        lblUnitInfo6 = new javax.swing.JLabel();
+        lblPostalCode = new javax.swing.JLabel();
         txtUnitDescriptions6 = new javax.swing.JTextField();
-        lblUnitInfo7 = new javax.swing.JLabel();
-        txtUnitDescriptions7 = new javax.swing.JTextField();
-        lblUnitInfo8 = new javax.swing.JLabel();
+        lblBankName = new javax.swing.JLabel();
         txtUnitDescriptions8 = new javax.swing.JTextField();
-        lblUnitInfo9 = new javax.swing.JLabel();
+        lblBankAccount = new javax.swing.JLabel();
         txtUnitDescriptions9 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        lblUnitInfo10 = new javax.swing.JLabel();
-        lblUnitInfo11 = new javax.swing.JLabel();
+        lblAddress = new javax.swing.JLabel();
+        lblCreateVendor = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
@@ -123,10 +135,10 @@ public class FrmVendor extends javax.swing.JInternalFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblUnitL1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblUnitL1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUnitL1.setText("Vendor No");
-        lblUnitL1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblVendorNo.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblVendorNo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblVendorNo.setText("Vendor No");
+        lblVendorNo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtunit_l1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         txtunit_l1.setToolTipText("");
@@ -136,10 +148,10 @@ public class FrmVendor extends javax.swing.JInternalFrame {
             }
         });
 
-        lblUnitL2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblUnitL2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUnitL2.setText("Vendor L1");
-        lblUnitL2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblVendor_L1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblVendor_L1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblVendor_L1.setText("Vendor L1");
+        lblVendor_L1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtUnit_L2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         txtUnit_L2.setToolTipText("");
@@ -184,82 +196,74 @@ public class FrmVendor extends javax.swing.JInternalFrame {
             }
         });
 
-        lblUnitInfo.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblUnitInfo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUnitInfo.setText("Vendor L2");
-        lblUnitInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblVendor_L2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblVendor_L2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblVendor_L2.setText("Vendor L2");
+        lblVendor_L2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtUnitDescriptions.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         txtUnitDescriptions.setToolTipText("");
 
-        lblUnitInfo1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblUnitInfo1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUnitInfo1.setText("Phone 1");
-        lblUnitInfo1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblPhone1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblPhone1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblPhone1.setText("Phone 1");
+        lblPhone1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtUnitDescriptions1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         txtUnitDescriptions1.setToolTipText("");
 
-        lblUnitInfo2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblUnitInfo2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUnitInfo2.setText("Phone 2");
-        lblUnitInfo2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblPhone2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblPhone2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblPhone2.setText("Phone 2");
+        lblPhone2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtUnitDescriptions2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         txtUnitDescriptions2.setToolTipText("");
 
-        lblUnitInfo3.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblUnitInfo3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUnitInfo3.setText("Fax");
-        lblUnitInfo3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblFax.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblFax.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblFax.setText("Fax");
+        lblFax.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtUnitDescriptions3.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         txtUnitDescriptions3.setToolTipText("");
 
-        lblUnitInfo4.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblUnitInfo4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUnitInfo4.setText("Email");
-        lblUnitInfo4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblEmail.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblEmail.setText("Email");
+        lblEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtUnitDescriptions4.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         txtUnitDescriptions4.setToolTipText("");
 
-        lblUnitInfo5.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblUnitInfo5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUnitInfo5.setText("WebSite");
-        lblUnitInfo5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblWebSite.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblWebSite.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblWebSite.setText("WebSite");
+        lblWebSite.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtUnitDescriptions5.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         txtUnitDescriptions5.setToolTipText("");
 
-        lblUnitInfo6.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblUnitInfo6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUnitInfo6.setText("Postal Code");
-        lblUnitInfo6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblPostalCode.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblPostalCode.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblPostalCode.setText("Postal Code");
+        lblPostalCode.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtUnitDescriptions6.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         txtUnitDescriptions6.setToolTipText("");
 
-        lblUnitInfo7.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblUnitInfo7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUnitInfo7.setText("Zip Code");
-        lblUnitInfo7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        txtUnitDescriptions7.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        txtUnitDescriptions7.setToolTipText("");
-
-        lblUnitInfo8.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblUnitInfo8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUnitInfo8.setText("Bank Name");
-        lblUnitInfo8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblBankName.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblBankName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblBankName.setText("Bank Name");
+        lblBankName.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtUnitDescriptions8.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         txtUnitDescriptions8.setToolTipText("");
 
-        lblUnitInfo9.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblUnitInfo9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUnitInfo9.setText("Bank Account");
-        lblUnitInfo9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblBankAccount.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblBankAccount.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblBankAccount.setText("Bank Account");
+        lblBankAccount.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtUnitDescriptions9.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         txtUnitDescriptions9.setToolTipText("");
@@ -269,15 +273,15 @@ public class FrmVendor extends javax.swing.JInternalFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        lblUnitInfo10.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblUnitInfo10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUnitInfo10.setText("Address");
-        lblUnitInfo10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblAddress.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblAddress.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblAddress.setText("Address");
+        lblAddress.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        lblUnitInfo11.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblUnitInfo11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUnitInfo11.setText("Create Vendor");
-        lblUnitInfo11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCreateVendor.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblCreateVendor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCreateVendor.setText("Create Vendor");
+        lblCreateVendor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jDateChooser1.setDateFormatString("dd-MM-yyyy");
         jDateChooser1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
@@ -290,16 +294,52 @@ public class FrmVendor extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblUnitInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addComponent(lblVendor_L2, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtUnitDescriptions, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblPhone1, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtUnitDescriptions1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblPhone2, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtUnitDescriptions2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblFax, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtUnitDescriptions3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtUnitDescriptions4, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblWebSite, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtUnitDescriptions5, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblPostalCode, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtUnitDescriptions6, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblBankAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblCreateVendor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblAddress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblBankName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtUnitDescriptions8, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                            .addComponent(txtUnitDescriptions9)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(lblUnitL1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                    .addComponent(lblUnitL2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(lblVendorNo, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                    .addComponent(lblVendor_L1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtunit_l1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
@@ -307,47 +347,7 @@ public class FrmVendor extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(btnData, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblUnitInfo1, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtUnitDescriptions1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblUnitInfo2, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtUnitDescriptions2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblUnitInfo3, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtUnitDescriptions3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblUnitInfo4, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtUnitDescriptions4, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblUnitInfo5, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtUnitDescriptions5, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblUnitInfo6, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtUnitDescriptions6, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblUnitInfo7, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtUnitDescriptions7, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblUnitInfo9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblUnitInfo11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblUnitInfo10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblUnitInfo8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUnitDescriptions8, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                            .addComponent(txtUnitDescriptions9)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -356,59 +356,55 @@ public class FrmVendor extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtunit_l1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUnitL1))
+                    .addComponent(lblVendorNo))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUnit_L2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUnitL2))
+                    .addComponent(lblVendor_L1))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUnitDescriptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUnitInfo))
+                    .addComponent(lblVendor_L2))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUnitDescriptions1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUnitInfo1))
+                    .addComponent(lblPhone1))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUnitDescriptions2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUnitInfo2))
+                    .addComponent(lblPhone2))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUnitDescriptions3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUnitInfo3))
+                    .addComponent(lblFax))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUnitDescriptions4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUnitInfo4))
+                    .addComponent(lblEmail))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUnitDescriptions5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUnitInfo5))
+                    .addComponent(lblWebSite))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUnitDescriptions6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUnitInfo6))
-                .addGap(2, 2, 2)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUnitDescriptions7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUnitInfo7))
+                    .addComponent(lblPostalCode))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUnitDescriptions8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUnitInfo8))
+                    .addComponent(lblBankName))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUnitDescriptions9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUnitInfo9))
+                    .addComponent(lblBankAccount))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblUnitInfo11, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                    .addComponent(lblCreateVendor, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUnitInfo10))
+                    .addComponent(lblAddress))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnData)
@@ -471,21 +467,20 @@ public class FrmVendor extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lblAddress;
+    private javax.swing.JLabel lblBankAccount;
+    private javax.swing.JLabel lblBankName;
+    private javax.swing.JLabel lblCreateVendor;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblFax;
     private javax.swing.JLabel lblFormName;
-    private javax.swing.JLabel lblUnitInfo;
-    private javax.swing.JLabel lblUnitInfo1;
-    private javax.swing.JLabel lblUnitInfo10;
-    private javax.swing.JLabel lblUnitInfo11;
-    private javax.swing.JLabel lblUnitInfo2;
-    private javax.swing.JLabel lblUnitInfo3;
-    private javax.swing.JLabel lblUnitInfo4;
-    private javax.swing.JLabel lblUnitInfo5;
-    private javax.swing.JLabel lblUnitInfo6;
-    private javax.swing.JLabel lblUnitInfo7;
-    private javax.swing.JLabel lblUnitInfo8;
-    private javax.swing.JLabel lblUnitInfo9;
-    private javax.swing.JLabel lblUnitL1;
-    private javax.swing.JLabel lblUnitL2;
+    private javax.swing.JLabel lblPhone1;
+    private javax.swing.JLabel lblPhone2;
+    private javax.swing.JLabel lblPostalCode;
+    private javax.swing.JLabel lblVendorNo;
+    private javax.swing.JLabel lblVendor_L1;
+    private javax.swing.JLabel lblVendor_L2;
+    private javax.swing.JLabel lblWebSite;
     public static javax.swing.JTextField txtUnitDescriptions;
     public static javax.swing.JTextField txtUnitDescriptions1;
     public static javax.swing.JTextField txtUnitDescriptions2;
@@ -493,7 +488,6 @@ public class FrmVendor extends javax.swing.JInternalFrame {
     public static javax.swing.JTextField txtUnitDescriptions4;
     public static javax.swing.JTextField txtUnitDescriptions5;
     public static javax.swing.JTextField txtUnitDescriptions6;
-    public static javax.swing.JTextField txtUnitDescriptions7;
     public static javax.swing.JTextField txtUnitDescriptions8;
     public static javax.swing.JTextField txtUnitDescriptions9;
     public static javax.swing.JTextField txtUnit_L2;
