@@ -50,6 +50,29 @@ public class FrmVendor extends javax.swing.JInternalFrame {
         btnSave = new javax.swing.JButton();
         lblUnitInfo = new javax.swing.JLabel();
         txtUnitDescriptions = new javax.swing.JTextField();
+        lblUnitInfo1 = new javax.swing.JLabel();
+        txtUnitDescriptions1 = new javax.swing.JTextField();
+        lblUnitInfo2 = new javax.swing.JLabel();
+        txtUnitDescriptions2 = new javax.swing.JTextField();
+        lblUnitInfo3 = new javax.swing.JLabel();
+        txtUnitDescriptions3 = new javax.swing.JTextField();
+        lblUnitInfo4 = new javax.swing.JLabel();
+        txtUnitDescriptions4 = new javax.swing.JTextField();
+        lblUnitInfo5 = new javax.swing.JLabel();
+        txtUnitDescriptions5 = new javax.swing.JTextField();
+        lblUnitInfo6 = new javax.swing.JLabel();
+        txtUnitDescriptions6 = new javax.swing.JTextField();
+        lblUnitInfo7 = new javax.swing.JLabel();
+        txtUnitDescriptions7 = new javax.swing.JTextField();
+        lblUnitInfo8 = new javax.swing.JLabel();
+        txtUnitDescriptions8 = new javax.swing.JTextField();
+        lblUnitInfo9 = new javax.swing.JLabel();
+        txtUnitDescriptions9 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        lblUnitInfo10 = new javax.swing.JLabel();
+        lblUnitInfo11 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/vendor.png"))); // NOI18N
@@ -169,6 +192,96 @@ public class FrmVendor extends javax.swing.JInternalFrame {
         txtUnitDescriptions.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         txtUnitDescriptions.setToolTipText("");
 
+        lblUnitInfo1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblUnitInfo1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUnitInfo1.setText("Phone 1");
+        lblUnitInfo1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        txtUnitDescriptions1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtUnitDescriptions1.setToolTipText("");
+
+        lblUnitInfo2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblUnitInfo2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUnitInfo2.setText("Phone 2");
+        lblUnitInfo2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        txtUnitDescriptions2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtUnitDescriptions2.setToolTipText("");
+
+        lblUnitInfo3.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblUnitInfo3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUnitInfo3.setText("Fax");
+        lblUnitInfo3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        txtUnitDescriptions3.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtUnitDescriptions3.setToolTipText("");
+
+        lblUnitInfo4.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblUnitInfo4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUnitInfo4.setText("Email");
+        lblUnitInfo4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        txtUnitDescriptions4.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtUnitDescriptions4.setToolTipText("");
+
+        lblUnitInfo5.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblUnitInfo5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUnitInfo5.setText("WebSite");
+        lblUnitInfo5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        txtUnitDescriptions5.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtUnitDescriptions5.setToolTipText("");
+
+        lblUnitInfo6.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblUnitInfo6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUnitInfo6.setText("Postal Code");
+        lblUnitInfo6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        txtUnitDescriptions6.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtUnitDescriptions6.setToolTipText("");
+
+        lblUnitInfo7.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblUnitInfo7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUnitInfo7.setText("Zip Code");
+        lblUnitInfo7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        txtUnitDescriptions7.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtUnitDescriptions7.setToolTipText("");
+
+        lblUnitInfo8.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblUnitInfo8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUnitInfo8.setText("Bank Name");
+        lblUnitInfo8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        txtUnitDescriptions8.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtUnitDescriptions8.setToolTipText("");
+
+        lblUnitInfo9.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblUnitInfo9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUnitInfo9.setText("Bank Account");
+        lblUnitInfo9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        txtUnitDescriptions9.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtUnitDescriptions9.setToolTipText("");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        lblUnitInfo10.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblUnitInfo10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUnitInfo10.setText("Address");
+        lblUnitInfo10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        lblUnitInfo11.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblUnitInfo11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUnitInfo11.setText("Create Vendor");
+        lblUnitInfo11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jDateChooser1.setDateFormatString("dd-MM-yyyy");
+        jDateChooser1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -194,7 +307,47 @@ public class FrmVendor extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(btnData, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblUnitInfo1, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtUnitDescriptions1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblUnitInfo2, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtUnitDescriptions2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblUnitInfo3, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtUnitDescriptions3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblUnitInfo4, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtUnitDescriptions4, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblUnitInfo5, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtUnitDescriptions5, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblUnitInfo6, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtUnitDescriptions6, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblUnitInfo7, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtUnitDescriptions7, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblUnitInfo9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblUnitInfo11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblUnitInfo10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblUnitInfo8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtUnitDescriptions8, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                            .addComponent(txtUnitDescriptions9)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -212,11 +365,55 @@ public class FrmVendor extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUnitDescriptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblUnitInfo))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUnitDescriptions1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUnitInfo1))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUnitDescriptions2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUnitInfo2))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUnitDescriptions3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUnitInfo3))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUnitDescriptions4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUnitInfo4))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUnitDescriptions5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUnitInfo5))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUnitDescriptions6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUnitInfo6))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUnitDescriptions7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUnitInfo7))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUnitDescriptions8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUnitInfo8))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUnitDescriptions9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUnitInfo9))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblUnitInfo11, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUnitInfo10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnData)
                     .addComponent(btnSave))
-                .addGap(103, 103, 103))
+                .addGap(2, 2, 2))
         );
 
         jPanel1.add(jPanel3, java.awt.BorderLayout.CENTER);
@@ -268,14 +465,37 @@ public class FrmVendor extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnData;
     private javax.swing.JButton btnSave;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblFormName;
     private javax.swing.JLabel lblUnitInfo;
+    private javax.swing.JLabel lblUnitInfo1;
+    private javax.swing.JLabel lblUnitInfo10;
+    private javax.swing.JLabel lblUnitInfo11;
+    private javax.swing.JLabel lblUnitInfo2;
+    private javax.swing.JLabel lblUnitInfo3;
+    private javax.swing.JLabel lblUnitInfo4;
+    private javax.swing.JLabel lblUnitInfo5;
+    private javax.swing.JLabel lblUnitInfo6;
+    private javax.swing.JLabel lblUnitInfo7;
+    private javax.swing.JLabel lblUnitInfo8;
+    private javax.swing.JLabel lblUnitInfo9;
     private javax.swing.JLabel lblUnitL1;
     private javax.swing.JLabel lblUnitL2;
     public static javax.swing.JTextField txtUnitDescriptions;
+    public static javax.swing.JTextField txtUnitDescriptions1;
+    public static javax.swing.JTextField txtUnitDescriptions2;
+    public static javax.swing.JTextField txtUnitDescriptions3;
+    public static javax.swing.JTextField txtUnitDescriptions4;
+    public static javax.swing.JTextField txtUnitDescriptions5;
+    public static javax.swing.JTextField txtUnitDescriptions6;
+    public static javax.swing.JTextField txtUnitDescriptions7;
+    public static javax.swing.JTextField txtUnitDescriptions8;
+    public static javax.swing.JTextField txtUnitDescriptions9;
     public static javax.swing.JTextField txtUnit_L2;
     public static javax.swing.JTextField txtunit_l1;
     // End of variables declaration//GEN-END:variables
