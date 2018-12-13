@@ -79,6 +79,7 @@ public class FrmMain extends javax.swing.JFrame {
             btnProCategory.setText(hmapSys.get("btnProCategory".concat(frm).toUpperCase())[LN]);
             btnProGroup.setText(hmapSys.get("btnProGroup".concat(frm).toUpperCase())[LN]);
             btnItem.setText(hmapSys.get("btnItem".concat(frm).toUpperCase())[LN]);
+            btnVendor.setText(hmapSys.get("btnVendor".concat(frm).toUpperCase())[LN]);
             
             mm.showCompany(m);
             lblAddress.setText(m.getAddress());
@@ -146,6 +147,7 @@ public class FrmMain extends javax.swing.JFrame {
         btnProCategory = new com.xzq.osc.JocHyperlink();
         btnProGroup = new com.xzq.osc.JocHyperlink();
         btnItem = new com.xzq.osc.JocHyperlink();
+        btnVendor = new com.xzq.osc.JocHyperlink();
         jTaskPaneGroup3 = new com.l2fprod.common.swing.JTaskPaneGroup();
         jLabel1 = new javax.swing.JLabel();
         panelSetForm = new javax.swing.JPanel();
@@ -691,6 +693,20 @@ public class FrmMain extends javax.swing.JFrame {
         });
         TaskProduct.getContentPane().add(btnItem);
 
+        btnVendor.setActiveColor(new java.awt.Color(102, 0, 102));
+        btnVendor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/vendor.png"))); // NOI18N
+        btnVendor.setRolloverColor(new java.awt.Color(102, 0, 102));
+        btnVendor.setText("Vendor");
+        btnVendor.setUnvisitColor(new java.awt.Color(51, 51, 255));
+        btnVendor.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        btnVendor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnVendor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVendorActionPerformed(evt);
+            }
+        });
+        TaskProduct.getContentPane().add(btnVendor);
+
         jTaskPane1.add(TaskProduct);
 
         jTaskPaneGroup3.setExpanded(false);
@@ -1065,6 +1081,14 @@ public class FrmMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnItemActionPerformed
 
+    private void btnVendorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendorActionPerformed
+        try {
+            FrmVendor fv = new FrmVendor();
+            MainOpenForm.Open(fv, jDesktopPane1);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnVendorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1116,6 +1140,7 @@ public class FrmMain extends javax.swing.JFrame {
     private com.xzq.osc.JocHyperlink btnProSize;
     private com.xzq.osc.JocHyperlink btnProUnit;
     private javax.swing.JButton btnSetting;
+    private com.xzq.osc.JocHyperlink btnVendor;
     private com.xzq.osc.JocHyperlink btnWareHouse;
     private com.xzq.osc.JocHyperlink btnZone;
     private javax.swing.ButtonGroup buttonGroup1;

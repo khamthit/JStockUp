@@ -1079,6 +1079,30 @@
                                                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnItemActionPerformed"/>
                                                   </Events>
                                                 </Component>
+                                                <Component class="com.xzq.osc.JocHyperlink" name="btnVendor">
+                                                  <Properties>
+                                                    <Property name="activeColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                                      <Color blue="66" green="0" red="66" type="rgb"/>
+                                                    </Property>
+                                                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                                      <Image iconType="3" name="/icon/vendor.png"/>
+                                                    </Property>
+                                                    <Property name="rolloverColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                                      <Color blue="66" green="0" red="66" type="rgb"/>
+                                                    </Property>
+                                                    <Property name="text" type="java.lang.String" value="Vendor"/>
+                                                    <Property name="unvisitColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                                      <Color blue="ff" green="33" red="33" type="rgb"/>
+                                                    </Property>
+                                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                      <Font name="Saysettha MX" size="12" style="0"/>
+                                                    </Property>
+                                                    <Property name="horizontalAlignment" type="int" value="2"/>
+                                                  </Properties>
+                                                  <Events>
+                                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVendorActionPerformed"/>
+                                                  </Events>
+                                                </Component>
                                               </SubComponents>
                                               <LayoutCode>
                                                 <CodeStatement>
@@ -1223,6 +1247,22 @@
                                                     </CodeExpression>
                                                   </Parameters>
                                                 </CodeStatement>
+                                                <CodeStatement>
+                                                  <CodeExpression id="13"/>
+                                                  <StatementProvider type="CodeMethod">
+                                                    <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
+                                                  </StatementProvider>
+                                                  <Parameters>
+                                                    <CodeExpression id="20_btnVendor">
+                                                      <CodeVariable name="btnVendor" type="8194" declaredType="com.xzq.osc.JocHyperlink"/>
+                                                      <ExpressionOrigin>
+                                                        <ExpressionProvider type="ComponentRef">
+                                                          <ComponentRef name="btnVendor"/>
+                                                        </ExpressionProvider>
+                                                      </ExpressionOrigin>
+                                                    </CodeExpression>
+                                                  </Parameters>
+                                                </CodeStatement>
                                               </LayoutCode>
                                             </Container>
                                             <Container class="com.l2fprod.common.swing.JTaskPaneGroup" name="jTaskPaneGroup3">
@@ -1236,7 +1276,7 @@
                                               </Properties>
                                               <LayoutCode>
                                                 <CodeStatement>
-                                                  <CodeExpression id="20_percentLayout39">
+                                                  <CodeExpression id="21_percentLayout39">
                                                     <CodeVariable name="percentLayout39" type="4096" declaredType="com.l2fprod.common.swing.PercentLayout"/>
                                                     <ExpressionOrigin>
                                                       <ExpressionProvider type="CodeConstructor">
@@ -1245,16 +1285,16 @@
                                                     </ExpressionOrigin>
                                                   </CodeExpression>
                                                   <StatementProvider type="CodeExpression">
-                                                    <CodeExpression id="20_percentLayout39"/>
+                                                    <CodeExpression id="21_percentLayout39"/>
                                                   </StatementProvider>
                                                 </CodeStatement>
                                                 <CodeStatement>
-                                                  <CodeExpression id="20_percentLayout39"/>
+                                                  <CodeExpression id="21_percentLayout39"/>
                                                   <StatementProvider type="CodeMethod">
                                                     <CodeMethod name="setGap" class="com.l2fprod.common.swing.PercentLayout" parameterTypes="int"/>
                                                   </StatementProvider>
                                                   <Parameters>
-                                                    <CodeExpression id="21">
+                                                    <CodeExpression id="22">
                                                       <ExpressionOrigin>
                                                         <Value type="int" value="2"/>
                                                       </ExpressionOrigin>
@@ -1262,12 +1302,12 @@
                                                   </Parameters>
                                                 </CodeStatement>
                                                 <CodeStatement>
-                                                  <CodeExpression id="20_percentLayout39"/>
+                                                  <CodeExpression id="21_percentLayout39"/>
                                                   <StatementProvider type="CodeMethod">
                                                     <CodeMethod name="setOrientation" class="com.l2fprod.common.swing.PercentLayout" parameterTypes="int"/>
                                                   </StatementProvider>
                                                   <Parameters>
-                                                    <CodeExpression id="22">
+                                                    <CodeExpression id="23">
                                                       <ExpressionOrigin>
                                                         <Value type="int" value="1"/>
                                                       </ExpressionOrigin>
@@ -1275,9 +1315,9 @@
                                                   </Parameters>
                                                 </CodeStatement>
                                                 <CodeStatement>
-                                                  <CodeExpression id="23">
+                                                  <CodeExpression id="24">
                                                     <ExpressionOrigin>
-                                                      <CodeExpression id="24_jTaskPaneGroup3">
+                                                      <CodeExpression id="25_jTaskPaneGroup3">
                                                         <CodeVariable name="jTaskPaneGroup3" type="8194" declaredType="com.l2fprod.common.swing.JTaskPaneGroup"/>
                                                         <ExpressionOrigin>
                                                           <ExpressionProvider type="ComponentRef">
@@ -1294,7 +1334,7 @@
                                                     <CodeMethod name="setLayout" class="java.awt.Container" parameterTypes="java.awt.LayoutManager"/>
                                                   </StatementProvider>
                                                   <Parameters>
-                                                    <CodeExpression id="20_percentLayout39"/>
+                                                    <CodeExpression id="21_percentLayout39"/>
                                                   </Parameters>
                                                 </CodeStatement>
                                               </LayoutCode>
@@ -1302,7 +1342,7 @@
                                           </SubComponents>
                                           <LayoutCode>
                                             <CodeStatement>
-                                              <CodeExpression id="25_percentLayout34">
+                                              <CodeExpression id="26_percentLayout34">
                                                 <CodeVariable name="percentLayout34" type="4096" declaredType="com.l2fprod.common.swing.PercentLayout"/>
                                                 <ExpressionOrigin>
                                                   <ExpressionProvider type="CodeConstructor">
@@ -1311,16 +1351,16 @@
                                                 </ExpressionOrigin>
                                               </CodeExpression>
                                               <StatementProvider type="CodeExpression">
-                                                <CodeExpression id="25_percentLayout34"/>
+                                                <CodeExpression id="26_percentLayout34"/>
                                               </StatementProvider>
                                             </CodeStatement>
                                             <CodeStatement>
-                                              <CodeExpression id="25_percentLayout34"/>
+                                              <CodeExpression id="26_percentLayout34"/>
                                               <StatementProvider type="CodeMethod">
                                                 <CodeMethod name="setGap" class="com.l2fprod.common.swing.PercentLayout" parameterTypes="int"/>
                                               </StatementProvider>
                                               <Parameters>
-                                                <CodeExpression id="26">
+                                                <CodeExpression id="27">
                                                   <ExpressionOrigin>
                                                     <Value type="int" value="14"/>
                                                   </ExpressionOrigin>
@@ -1328,12 +1368,12 @@
                                               </Parameters>
                                             </CodeStatement>
                                             <CodeStatement>
-                                              <CodeExpression id="25_percentLayout34"/>
+                                              <CodeExpression id="26_percentLayout34"/>
                                               <StatementProvider type="CodeMethod">
                                                 <CodeMethod name="setOrientation" class="com.l2fprod.common.swing.PercentLayout" parameterTypes="int"/>
                                               </StatementProvider>
                                               <Parameters>
-                                                <CodeExpression id="27">
+                                                <CodeExpression id="28">
                                                   <ExpressionOrigin>
                                                     <Value type="int" value="1"/>
                                                   </ExpressionOrigin>
@@ -1341,7 +1381,7 @@
                                               </Parameters>
                                             </CodeStatement>
                                             <CodeStatement>
-                                              <CodeExpression id="28_jTaskPane1">
+                                              <CodeExpression id="29_jTaskPane1">
                                                 <CodeVariable name="jTaskPane1" type="8194" declaredType="com.l2fprod.common.swing.JTaskPane"/>
                                                 <ExpressionOrigin>
                                                   <ExpressionProvider type="ComponentRef">
@@ -1353,11 +1393,11 @@
                                                 <CodeMethod name="setLayout" class="java.awt.Container" parameterTypes="java.awt.LayoutManager"/>
                                               </StatementProvider>
                                               <Parameters>
-                                                <CodeExpression id="25_percentLayout34"/>
+                                                <CodeExpression id="26_percentLayout34"/>
                                               </Parameters>
                                             </CodeStatement>
                                             <CodeStatement>
-                                              <CodeExpression id="28_jTaskPane1"/>
+                                              <CodeExpression id="29_jTaskPane1"/>
                                               <StatementProvider type="CodeMethod">
                                                 <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
                                               </StatementProvider>
@@ -1366,7 +1406,7 @@
                                               </Parameters>
                                             </CodeStatement>
                                             <CodeStatement>
-                                              <CodeExpression id="28_jTaskPane1"/>
+                                              <CodeExpression id="29_jTaskPane1"/>
                                               <StatementProvider type="CodeMethod">
                                                 <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
                                               </StatementProvider>
@@ -1375,12 +1415,12 @@
                                               </Parameters>
                                             </CodeStatement>
                                             <CodeStatement>
-                                              <CodeExpression id="28_jTaskPane1"/>
+                                              <CodeExpression id="29_jTaskPane1"/>
                                               <StatementProvider type="CodeMethod">
                                                 <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
                                               </StatementProvider>
                                               <Parameters>
-                                                <CodeExpression id="24_jTaskPaneGroup3"/>
+                                                <CodeExpression id="25_jTaskPaneGroup3"/>
                                               </Parameters>
                                             </CodeStatement>
                                           </LayoutCode>
