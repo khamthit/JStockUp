@@ -27,6 +27,7 @@ import java.text.SimpleDateFormat;
 import static java.time.Instant.now;
 import modelManager.MaxIDTbl;
 import java.util.Date;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 public class FrmItemAdd extends javax.swing.JDialog {
 
     Connection c = module.getConnection();
@@ -77,29 +78,30 @@ public class FrmItemAdd extends javax.swing.JDialog {
         } catch (Exception e) {
         }
     }
-
     public void showMapGroup() {
         try {
             hmGroup = itm.hmapGroup();
-            Map<String, Object> smap = new TreeMap<>(hmGroup);
+            Map<String, Object[]> smap = new TreeMap<>(hmGroup);
             cbbGroup.removeAllItems();
             smap.keySet().forEach((s) -> {
                 cbbGroup.addItem(s);
             });
             cbbGroup.setSelectedIndex(-1);
+            AutoCompleteDecorator.decorate(cbbGroup);
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-
     public void showMapCategory() {
         try {
             hmCate = itm.hmapCategory();
-            Map<String, Object> smap = new TreeMap<>(hmCate);
+            Map<String, Object[]> smap = new TreeMap<>(hmCate);
             cbbCategory.removeAllItems();
             smap.keySet().forEach((s -> {
                 cbbCategory.addItem(s);
             }));
             cbbCategory.setSelectedIndex(-1);
+             AutoCompleteDecorator.decorate(cbbCategory);
         } catch (Exception e) {
         }
     }
@@ -107,12 +109,13 @@ public class FrmItemAdd extends javax.swing.JDialog {
     public void showMapUnit() {
         try {
             hmUnit = itm.hmapUnit();
-            Map<String, Object> smap = new TreeMap<>(hmUnit);
+            Map<String, Object[]> smap = new TreeMap<>(hmUnit);
             cbbUnit.removeAllItems();
             smap.keySet().forEach((s -> {
                 cbbUnit.addItem(s);
             }));
             cbbUnit.setSelectedIndex(-1);
+            AutoCompleteDecorator.decorate(cbbUnit);
         } catch (Exception e) {
         }
     }
@@ -120,12 +123,13 @@ public class FrmItemAdd extends javax.swing.JDialog {
     public void showMapSize() {
         try {
             hmSize = itm.hmapSize();
-            Map<String, Object> smap = new TreeMap<>(hmSize);
+            Map<String, Object[]> smap = new TreeMap<>(hmSize);
             cbbSize.removeAllItems();
             smap.keySet().forEach((s -> {
                 cbbSize.addItem(s);
             }));
             cbbSize.setSelectedIndex(-1);
+            AutoCompleteDecorator.decorate(cbbSize);
         } catch (Exception e) {
         }
     }
@@ -139,6 +143,7 @@ public class FrmItemAdd extends javax.swing.JDialog {
                 cbbZone.addItem(s);
             }));
             cbbZone.setSelectedIndex(-1);
+            AutoCompleteDecorator.decorate(cbbZone);
         } catch (Exception e) {
         }
     }
@@ -146,12 +151,13 @@ public class FrmItemAdd extends javax.swing.JDialog {
     public void showMapPack() {
         try {
             hmPack = itm.hmapPack();
-            Map<String, Object> smap = new TreeMap<>(hmPack);
+            Map<String, Object[]> smap = new TreeMap<>(hmPack);
             cbbPack.removeAllItems();
             smap.keySet().forEach((s -> {
                 cbbPack.addItem(s);
             }));
             cbbPack.setSelectedIndex(-1);
+            AutoCompleteDecorator.decorate(cbbPack);
         } catch (Exception e) {
         }
     }
@@ -159,12 +165,13 @@ public class FrmItemAdd extends javax.swing.JDialog {
     public void showMapPick() {
         try {
             hmPick = itm.hmapPick();
-            Map<String, Object> smap = new TreeMap<>(hmPick);
+            Map<String, Object[]> smap = new TreeMap<>(hmPick);
             cbbPick.removeAllItems();
             smap.keySet().forEach((s -> {
                 cbbPick.addItem(s);
             }));
             cbbPick.setSelectedIndex(-1);
+            AutoCompleteDecorator.decorate(cbbPick);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1005,6 +1012,8 @@ public class FrmItemAdd extends javax.swing.JDialog {
                     it.setPathImg(pathImage);
                     itm.InsertTbl_ItemImage(it);
                 }
+                itm.updatePickFree(it);
+                itm.updatePackFree(it);
             }else{
                 it.setITID(ITID);
                 itm.updateTbl_Item(it);                

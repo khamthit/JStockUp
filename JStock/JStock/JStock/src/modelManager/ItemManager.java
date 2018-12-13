@@ -356,4 +356,32 @@ public class ItemManager {
             e.printStackTrace();
         }
     }
+    public Boolean updatePickFree(Item it){
+        try {
+            sql = "update tbl_pick set PickFree = ? where pickid = ?";
+            PreparedStatement p = c.prepareStatement(sql);
+            p.setBoolean(1, true);
+            p.setInt(2, it.getPickid());
+            p.executeUpdate();
+            p.close();
+            return true;            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public Boolean updatePackFree(Item it){
+        try {
+            sql = "update tbl_pack set packFree = ? where packid = (?)";
+            PreparedStatement p = c.prepareStatement(sql);
+            p.setBoolean(1, true);
+            p.setInt(2, it.getPackid());
+            p.executeUpdate();
+            p.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

@@ -18,6 +18,8 @@ import sysConnect.module;
 import model.Pack;
 import modelManager.MaxIDTbl;
 import modelManager.PackManager;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import static views.FrmItemAdd.cbbGroup;
 
 public class FrmPack extends javax.swing.JInternalFrame {
     Connection c = module.getConnection();
@@ -74,7 +76,8 @@ public class FrmPack extends javax.swing.JInternalFrame {
             smap.keySet().forEach((s)->{
                 cbbZone.addItem(s);
             });
-            cbbZone.setSelectedIndex(-1);            
+            cbbZone.setSelectedIndex(-1);    
+            AutoCompleteDecorator.decorate(cbbZone);
             
         } catch (Exception e) {
             e.printStackTrace();

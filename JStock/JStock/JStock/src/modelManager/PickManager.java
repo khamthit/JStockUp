@@ -51,11 +51,10 @@ public class PickManager {
             e.printStackTrace();
         }
         return null;
-    }
-    
+    }    
     public Boolean insertTbl_Pick(Pick pi){
         try {
-            sql = "Insert into tbl_pick (pickid, pickno, pickdata, packid, zoneid, used) values (?,?,?,?,?,?)";
+            sql = "Insert into tbl_pick (pickid, pickno, pickdata, packid, zoneid, used, pickFree) values (?,?,?,?,?,?,?)";
             PreparedStatement p = c.prepareStatement(sql);
             p.setInt(1, pi.getPickid());
             p.setString(2, pi.getPickNo());
@@ -63,6 +62,7 @@ public class PickManager {
             p.setInt(4, pi.getPackID());
             p.setInt(5, pi.getZoneid());
             p.setBoolean(6, pi.getUsed());
+            p.setBoolean(7, false);
             p.executeUpdate();
             p.close();
             return true;

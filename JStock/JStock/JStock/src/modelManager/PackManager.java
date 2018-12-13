@@ -25,13 +25,14 @@ public class PackManager {
             if (rs.next()){
                 msg.showMsgSameData();
             }else{
-                sql = "Insert into tbl_pack (PackID, PackNo, PackData, Used, Zoneid) values (?,?,?,?,?)";
+                sql = "Insert into tbl_pack (PackID, PackNo, PackData, Used, Zoneid, PackFree) values (?,?,?,?,?,?)";
                 PreparedStatement p = c.prepareStatement(sql);
                 p.setInt(1, pa.getPackID());
                 p.setString(2, pa.getPackNo());
                 p.setString(3, pa.getPackName());
                 p.setBoolean(4, pa.getUsed());
                 p.setInt(5, pa.getZoneid());
+                p.setBoolean(6, false);
                 p.executeUpdate();
                 p.close();   
                 msg.showMsgSucess();

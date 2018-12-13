@@ -17,7 +17,9 @@ import modelManager.LangType;
 import static modelManager.LangType.LN;
 import modelManager.MaxIDTbl;
 import modelManager.PickManager;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import sysConnect.module;
+import static views.FrmItemAdd.cbbGroup;
 public class FrmPick extends javax.swing.JInternalFrame {
 
     Connection c =module.getConnection();
@@ -72,7 +74,8 @@ public class FrmPick extends javax.swing.JInternalFrame {
             mZ.keySet().forEach((s->{
                 cbbZone.addItem(s);
             }));
-            cbbZone.setSelectedIndex(-1);            
+            cbbZone.setSelectedIndex(-1);    
+            AutoCompleteDecorator.decorate(cbbZone);
         } catch (Exception e) {
         }
     }
@@ -84,7 +87,8 @@ public class FrmPick extends javax.swing.JInternalFrame {
             smap.keySet().forEach((s->{
                 cbbPack.addItem(s);
             }));
-            cbbPack.setSelectedIndex(-1);            
+            cbbPack.setSelectedIndex(-1); 
+            AutoCompleteDecorator.decorate(cbbPack);
         } catch (Exception e) {
             e.printStackTrace();
         }
