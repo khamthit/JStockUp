@@ -22,6 +22,7 @@ import static modelManager.LangType.LN;
 import sysConnect.module;
 import static Data.ResizeScall.ResizeScall;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import static java.time.Instant.now;
 import modelManager.MaxIDTbl;
@@ -755,6 +756,7 @@ public class FrmItemAdd extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
+            DecimalFormat dcf = new DecimalFormat("##,###");
             showLang();
             showMapGroup();
             showMapCategory();
@@ -766,9 +768,28 @@ public class FrmItemAdd extends javax.swing.JDialog {
             if (ITID!=0){
                 itm.showOpenItemClick(it);  
                 txtbarcode.setText(it.getBarode());
+                txtpackbarcode.setText(it.getPackBarcode());
+                txtitemname_l1.setText(it.getItem_L1());
+                txtitemname_l2.setText(it.getItem_L2());
+                costprice = it.getCostPrice();
+                txtcost.setText(dcf.format(costprice));
+                saleprice = it.getSalePrice();
+                txtsale.setText(dcf.format(saleprice));
+                txtdescriptions.setText(it.getIteminfo());
+                cbbGroup.setSelectedItem(it.getGroupname().trim());
+                cbbCategory.setSelectedItem(it.getCategory().trim());
+                cbbPack.setSelectedItem(it.getPackNo().trim());
+                cbbPick.setSelectedItem(it.getPickNo().trim());
+                cbbZone.setSelectedItem(it.getZoneNo().trim());
+                cbbUnit.setSelectedItem(it.getUnitname().trim());
+                cbbSize.setSelectedItem(it.getSizeNo().trim());                    
+                ImageIcon format = null;
+                format = new ImageIcon(it.getImages());
+                Image ic = format.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_DEFAULT);
+                lblImage.setIcon(new ImageIcon(ic));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -807,9 +828,12 @@ public class FrmItemAdd extends javax.swing.JDialog {
             if (ITID==0){
                 lblImage.setIcon(new ImageIcon(ic));
             }else{
+                it.setITID(ITID);
+                it.setPathImg(pathImage);
                 lblImage.setIcon(new ImageIcon(ic));
-                itm.updateImage(it);                
-            }            
+                itm.updateImage(it);      
+                pathImage ="";  
+            }                      
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -971,8 +995,7 @@ public class FrmItemAdd extends javax.swing.JDialog {
             it.setCreateUser(FrmMain.txtUsername.getText().trim());
             it.setCostPrice(costprice);
             it.setSalePrice(saleprice);
-            it.setCrateDate(ConvertDateSQL.convertUtilDateToSqlDate(date1));
-            
+            it.setCrateDate(ConvertDateSQL.convertUtilDateToSqlDate(date1));            
             if (ITID == 0) {
                 MaxIDTbl.maxID("ITID", "tbl_Item");
                 it.setITID(MaxIDTbl.getID);
@@ -982,7 +1005,9 @@ public class FrmItemAdd extends javax.swing.JDialog {
                     it.setPathImg(pathImage);
                     itm.InsertTbl_ItemImage(it);
                 }
-
+            }else{
+                it.setITID(ITID);
+                itm.updateTbl_Item(it);                
             }
         } catch (Exception e) {
             e.printStackTrace();

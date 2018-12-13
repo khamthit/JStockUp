@@ -27,9 +27,81 @@ public class Item {
   Boolean Itemuse;
   Date CrateDate;
   String CreateUser;
+  String groupname;
+  String category;
+  String unitname;
+  String packNo;
+  String pickNo;
+  String sizeNo;
+  String zoneNo;
+  byte[] images;
+
+    public void setImages(byte[] images) {
+        this.images = images;
+    }
+
+    public byte[] getImages() {
+        return images;
+    }
+
+    public void setSizeNo(String sizeNo) {
+        this.sizeNo = sizeNo;
+    }
+
+    public void setZoneNo(String zoneNo) {
+        this.zoneNo = zoneNo;
+    }
+
+    public String getSizeNo() {
+        return sizeNo;
+    }
+
+    public String getZoneNo() {
+        return zoneNo;
+    }
 
     public void setITID(int ITID) {
         this.ITID = ITID;
+    }
+
+    public void setGroupname(String groupname) {
+        this.groupname = groupname;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setUnitname(String unitname) {
+        this.unitname = unitname;
+    }
+
+    public void setPackNo(String packNo) {
+        this.packNo = packNo;
+    }
+
+    public void setPickNo(String pickNo) {
+        this.pickNo = pickNo;
+    }
+
+    public String getGroupname() {
+        return groupname;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getUnitname() {
+        return unitname;
+    }
+
+    public String getPackNo() {
+        return packNo;
+    }
+
+    public String getPickNo() {
+        return pickNo;
     }
 
     public void setBarode(String Barode) {

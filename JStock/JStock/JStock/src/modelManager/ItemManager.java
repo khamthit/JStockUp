@@ -217,6 +217,7 @@ public class ItemManager {
             p.close();
             return true;            
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return false;
     }
@@ -248,9 +249,9 @@ public class ItemManager {
     }
     public void showOpenItemClick(Item it){
         try {
-            sql = "Select it.itid, it.itemUse, it.barode, it.packbarcode, it.item_"+ LangType.Lang +" as item, it.costprice, it.saleprice, g.groupname_"+ LangType.Lang +" as groups, ca.cate_"+ LangType.Lang +" as category, "
+            sql = "Select it.itid, it.itemUse, it.barode, it.packbarcode, it.item_L1, it.item_L2, it.costprice, it.saleprice, g.groupname_"+ LangType.Lang +" as groups, ca.cate_"+ LangType.Lang +" as category, "
                     + "u.unit_"+ LangType.Lang +" as unit, sz.sizename, \n" +
-                    "z.zoneNo, pak.packNo, pik.pickNo, it.ItemInfo from tbl_Item it\n" +
+                    "z.zoneNo, pak.packNo, pik.pickNo, it.ItemInfo, it.Item_img from tbl_Item it\n" +
                     "left join tbl_ProGroup g on g.PGID = it.PGID\n" +
                     "left join tbl_ProCategory ca on ca.PCTID = it.PCTID\n" +
                     "left join tbl_ProUnit u on u.PUID = it.PUID\n" +
@@ -263,8 +264,94 @@ public class ItemManager {
             ResultSet rs = c.createStatement().executeQuery(sql);
             if (rs.next()){
                 it.setBarode(rs.getString("barode"));
-                
+                it.setPackBarcode(rs.getString("PackBarcode"));
+                it.setItem_L1(rs.getString("Item_L1"));
+                it.setItem_L2(rs.getString("item_L2"));
+                it.setCostPrice(rs.getFloat("costprice"));
+                it.setSalePrice(rs.getFloat("saleprice"));
+                it.setGroupname(rs.getString("groups"));
+                it.setCategory(rs.getString("category"));
+                it.setUnitname(rs.getString("unit"));
+                it.setSizeNo(rs.getString("sizename"));
+                it.setZoneNo(rs.getString("zoneno"));
+                it.setPackNo(rs.getString("packNo"));
+                it.setPickNo(rs.getString("PickNo"));
+                it.setIteminfo(rs.getString("iteminfo"));     
+                it.setImages(rs.getBytes("Item_Img"));
             }            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public Boolean updateTbl_Item(Item it){
+        try {
+            sql = "update tbl_Item set Barode=?, PackBarcode=?, item_l1=?, item_l2=?, zoneid=?, packid=?, pickid=?, psizeid=?, puid=?, pctid=?, "
+                    + "pgid=?, costprice=?, SalePrice=?, iteminfo=?, Createdate=?, Createuser=? where ITID = (?)";
+            PreparedStatement p = c.prepareStatement(sql);
+            p.setString(1, it.getBarode());
+            p.setString(2, it.getPackBarcode());
+            p.setString(3, it.getItem_L1().trim());
+            p.setString(4, it.getItem_L2().trim());
+            p.setInt(5, it.getZoneid());
+            p.setInt(6, it.getPackid());
+            p.setInt(7, it.getPickid());
+            p.setInt(8, it.getPsizeid());
+            p.setInt(9, it.getPuid());
+            p.setInt(10, it.getPctid());
+            p.setInt(11, it.getPgid());
+            p.setFloat(12, it.getCostPrice()); 
+            p.setFloat(13, it.getSalePrice()); 
+            p.setString(14, it.getIteminfo().trim()); 
+            p.setDate(15, (Date) it.getCrateDate()); 
+            p.setString(16, it.getCreateUser().trim()); 
+            p.setInt(17, it.getITID());
+            p.executeUpdate();
+            p.close();
+            msg.showMsgSucess();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public Boolean updateTbl_Item_Used(Item it){
+        try {
+            sql = "update tbl_Item set ItemUse = ? where ITID = (?)";
+            PreparedStatement p = c.prepareStatement(sql);
+            p.setBoolean(1, it.getItemuse());
+            p.setInt(2, it.getITID());
+            p.executeUpdate();
+            p.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public void showSearchTbl_Item(JTable table, DefaultTableModel model, String x){
+        try {
+            RemoveTableCount.RemoveTable(table, model);
+            sql = "Select it.itid, it.itemUse, it.barode, it.packbarcode, it.item_"+ LangType.Lang +" as item, it.costprice, it.saleprice, g.groupname_"+ LangType.Lang +" as groups, ca.cate_"+ LangType.Lang +" as category, "
+                    + "u.unit_"+ LangType.Lang +" as unit, sz.sizename, \n" +
+                    "z.zoneNo, pak.packNo, pik.pickNo, it.ItemInfo from tbl_Item it\n" +
+                    "left join tbl_ProGroup g on g.PGID = it.PGID\n" +
+                    "left join tbl_ProCategory ca on ca.PCTID = it.PCTID\n" +
+                    "left join tbl_ProUnit u on u.PUID = it.PUID\n" +
+                    "left join tbl_ProSize sz on sz.PSizeID = it.psizeid\n" +
+                    "left join tbl_Zone z on z.ZoneID = it.Zoneid\n" +
+                    "left join tbl_Pack pak on pak.PackID = it.packid\n" +
+                    "left join tbl_Pick pik on pik.PickID = it.pickid\n" +
+                    "where it.barode like N'%"+ x +"%' or it.Packbarcode like N'%"+ x +"%' or it.item_"+ LangType.Lang +" like N'%"+ x +"%' or it.costprice like N'%"+ x +"%' or it.salePrice like N'%"+ x +"%' or g.groupname_"+ LangType.Lang +" like N'%"+ x +"%' or ca.cate_"+ LangType.Lang +" like N'%"+ x +"%' "
+                    + "or u.unit_"+ LangType.Lang +" like N'%"+ x +"%' or sz.sizename like N'%"+ x +"%' or z.zoneNo like N'%"+ x +"%' or pak.packno like N'%"+ x +"%' or pik.pickNo like N'%"+ x +"%' "
+                    + "or it.iteminfo like N'%"+ x +"%' or it.createUser like N'%"+ x +"%'\n" +
+                    "order by Barode, item_l1";
+            ResultSet rs = c.createStatement().executeQuery(sql);
+            while (rs.next()){
+                model.addRow(new Object[]{rs.getString("itid"), rs.getBoolean("itemUse"), rs.getString("barode"), rs.getString("packbarcode"), rs.getString("item"), rs.getDouble("costprice"), rs.getDouble("saleprice"), 
+                    rs.getString("groups"), rs.getString("category"), rs.getString("Unit"), rs.getString("sizename"), 
+                rs.getString("zoneno"), rs.getString("packNo"), rs.getString("pickNo"), rs.getString("itemInfo")});
+            }
+            table.setModel(model);
         } catch (Exception e) {
             e.printStackTrace();
         }

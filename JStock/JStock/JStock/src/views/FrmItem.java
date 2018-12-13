@@ -262,19 +262,24 @@ public class FrmItem extends javax.swing.JInternalFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         try {
-            if (evt.getClickCount() == 2) {
-                int index = jTable1.getSelectedRow();
-                String x = jTable1.getValueAt(index, 0).toString();     
+            int index = jTable1.getSelectedRow();
+            String x = jTable1.getValueAt(index, 0).toString();   
+            if (evt.getClickCount() == 2) {          
                 FrmItemAdd.ITID = Integer.parseInt(x);
                 FrmItemAdd fa = new FrmItemAdd(null, true, x);
                 fa.setVisible(true);
+            }else{
+                it.setItemuse((Boolean)jTable1.getValueAt(index, 1));
+                it.setITID(Integer.parseInt(x));
+                itm.updateTbl_Item_Used(it);                
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-
+        itm.showSearchTbl_Item(jTable1, model, txtSearch.getText().trim());
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void btnDataMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDataMouseEntered
