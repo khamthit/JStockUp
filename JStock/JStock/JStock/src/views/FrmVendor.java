@@ -13,6 +13,7 @@ import static modelManager.LangType.LN;
 import modelManager.VendorManager;
 import sysConnect.module;
 import java.util.Date;
+import modelManager.MaxIDTbl;
 
 public class FrmVendor extends javax.swing.JInternalFrame {
 
@@ -430,7 +431,11 @@ public class FrmVendor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDataMouseExited
 
     private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
-       
+        try {
+            FrmVendorData fd = new FrmVendorData(null, closable);
+            fd.setVisible(true);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnDataActionPerformed
 
     private void btnSaveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseEntered
@@ -468,8 +473,14 @@ public class FrmVendor extends javax.swing.JInternalFrame {
             v.setCreateUser(FrmMain.txtUsername.getText());
             v.setCreatedate(createNow);
             v.setVendorStart(dtf);
-            vm.insertTbl_Vendor(v);
-            showClear();            
+            if (VENID==0){
+                MaxIDTbl.maxID("VENID", "tbl_vendor");
+                v.setVenid(MaxIDTbl.getID);
+                vm.insertTbl_Vendor(v);
+                showClear();  
+            }else{
+                
+            }          
         } catch (Exception e) {
             e.printStackTrace();
         }

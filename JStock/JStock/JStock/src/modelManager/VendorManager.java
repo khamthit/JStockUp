@@ -7,6 +7,9 @@ package modelManager;
 import Data.ConvertDateSQL;
 import Data.Msg;
 import java.sql.*;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import model.RemoveTableCount;
 import model.Vendor;
 import sysConnect.module;
 public class VendorManager {
@@ -48,5 +51,26 @@ public class VendorManager {
             e.printStackTrace();
         }
         return false;
+    }
+    public void showTbl_Vendor(JTable table, DefaultTableModel model){
+        try {
+            RemoveTableCount.RemoveTable(table, model);
+            if (LangType.Lang.equals("L1")){
+                sql = "exec pd_vendorL1";
+                ResultSet rs = c.createStatement().executeQuery(sql);
+                while (rs.next()){
+                    model.addRow(new Object[]{rs.getString("venid"), rs.getBoolean("vendorusing"), rs.getString("ven_l1"), rs.getString("phone1"), rs.getString("phone2"), rs.getString("fax"), rs.getString("email"), rs.getString("website"), rs.getString("postalCode"), rs.getString("BankName"), rs.getString("bankAccount"), rs.getString("vendorStart"), rs.getString("vendorInfo")});
+                }
+                table.setModel(model);
+            }else{
+                sql = "exec pd_vendorL2";
+                ResultSet rs = c.createStatement().executeQuery(sql);
+                while (rs.next()){
+                    model.addRow(new Object[]{rs.getString("venid"), rs.getBoolean("vendorusing"), rs.getString("ven_l2"), rs.getString("phone1"), rs.getString("phone2"), rs.getString("fax"), rs.getString("email"), rs.getString("website"), rs.getString("postalCode"), rs.getString("BankName"), rs.getString("bankAccount"), rs.getString("vendorStart"), rs.getString("vendorInfo")});
+                }
+                table.setModel(model);
+            }            
+        } catch (Exception e) {
+        }
     }
 }
