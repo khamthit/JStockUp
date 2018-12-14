@@ -6,15 +6,21 @@
 package views;
 import java.sql.*;
 import Data.ButtonColor;
+import java.text.SimpleDateFormat;
+import model.Vendor;
 import modelManager.LangType;
 import static modelManager.LangType.LN;
+import modelManager.VendorManager;
 import sysConnect.module;
+import java.util.Date;
 
 public class FrmVendor extends javax.swing.JInternalFrame {
 
     Connection c = module.getConnection();
     String sql, frm;
-    
+    Vendor v = new Vendor();
+    VendorManager vm = new VendorManager();
+    public static int VENID = 0;
     public FrmVendor() {
         initComponents();
         frm = this.getClass().getSimpleName();
@@ -25,8 +31,7 @@ public class FrmVendor extends javax.swing.JInternalFrame {
         try {
             lblFormName.setText(LangType.hmapForm.get(frm.toUpperCase())[LN]);
             btnSave.setText(LangType.hmapSys.get("btnSave".concat(frm).toUpperCase())[LN]);
-            btnData.setText(LangType.hmapSys.get("btnData".concat(frm).toUpperCase())[LN]);
-            lblVendorNo.setText(LangType.hmapSys.get("lblVendorNo".concat(frm).toUpperCase())[LN]);
+            btnData.setText(LangType.hmapSys.get("btnData".concat(frm).toUpperCase())[LN]);           
             lblVendor_L1.setText(LangType.hmapSys.get("lblVendor_L1".concat(frm).toUpperCase())[LN]);
             lblVendor_L2.setText(LangType.hmapSys.get("lblVendor_L2".concat(frm).toUpperCase())[LN]);
             lblPhone1.setText(LangType.hmapSys.get("lblPhone1".concat(frm).toUpperCase())[LN]);
@@ -39,6 +44,23 @@ public class FrmVendor extends javax.swing.JInternalFrame {
             lblBankAccount.setText(LangType.hmapSys.get("lblBankAccount".concat(frm).toUpperCase())[LN]);
             lblCreateVendor.setText(LangType.hmapSys.get("lblCreateVendor".concat(frm).toUpperCase())[LN]);
             lblAddress.setText(LangType.hmapSys.get("lblAddress".concat(frm).toUpperCase())[LN]);            
+        } catch (Exception e) {
+        }
+    }
+    public void showClear(){
+        try {
+            txtBankAccount.setText("");
+            txtBankname.setText("");
+            txtemail.setText("");
+            txtfax.setText("");
+            txtphone1.setText("");
+            txtphone2.setText("");
+            txtpostalcode.setText("");
+            txtvendorInfo.setText("");
+            txtvendorl1.setText("");
+            txtvendorl2.setText("");
+            txtwebsite.setText("");
+            txtvendorl1.requestFocus();
         } catch (Exception e) {
         }
     }
@@ -56,32 +78,30 @@ public class FrmVendor extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         lblFormName = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        lblVendorNo = new javax.swing.JLabel();
-        txtunit_l1 = new javax.swing.JTextField();
         lblVendor_L1 = new javax.swing.JLabel();
-        txtUnit_L2 = new javax.swing.JTextField();
+        txtvendorl1 = new javax.swing.JTextField();
         btnData = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         lblVendor_L2 = new javax.swing.JLabel();
-        txtUnitDescriptions = new javax.swing.JTextField();
+        txtvendorl2 = new javax.swing.JTextField();
         lblPhone1 = new javax.swing.JLabel();
-        txtUnitDescriptions1 = new javax.swing.JTextField();
+        txtphone1 = new javax.swing.JTextField();
         lblPhone2 = new javax.swing.JLabel();
-        txtUnitDescriptions2 = new javax.swing.JTextField();
+        txtphone2 = new javax.swing.JTextField();
         lblFax = new javax.swing.JLabel();
-        txtUnitDescriptions3 = new javax.swing.JTextField();
+        txtfax = new javax.swing.JTextField();
         lblEmail = new javax.swing.JLabel();
-        txtUnitDescriptions4 = new javax.swing.JTextField();
+        txtemail = new javax.swing.JTextField();
         lblWebSite = new javax.swing.JLabel();
-        txtUnitDescriptions5 = new javax.swing.JTextField();
+        txtwebsite = new javax.swing.JTextField();
         lblPostalCode = new javax.swing.JLabel();
-        txtUnitDescriptions6 = new javax.swing.JTextField();
+        txtpostalcode = new javax.swing.JTextField();
         lblBankName = new javax.swing.JLabel();
-        txtUnitDescriptions8 = new javax.swing.JTextField();
+        txtBankname = new javax.swing.JTextField();
         lblBankAccount = new javax.swing.JLabel();
-        txtUnitDescriptions9 = new javax.swing.JTextField();
+        txtBankAccount = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtvendorInfo = new javax.swing.JTextArea();
         lblAddress = new javax.swing.JLabel();
         lblCreateVendor = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
@@ -135,26 +155,13 @@ public class FrmVendor extends javax.swing.JInternalFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblVendorNo.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblVendorNo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblVendorNo.setText("Vendor No");
-        lblVendorNo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        txtunit_l1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        txtunit_l1.setToolTipText("");
-        txtunit_l1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtunit_l1KeyReleased(evt);
-            }
-        });
-
         lblVendor_L1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         lblVendor_L1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblVendor_L1.setText("Vendor L1");
         lblVendor_L1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        txtUnit_L2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        txtUnit_L2.setToolTipText("");
+        txtvendorl1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtvendorl1.setToolTipText("");
 
         btnData.setBackground(new java.awt.Color(255, 255, 255));
         btnData.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
@@ -201,77 +208,77 @@ public class FrmVendor extends javax.swing.JInternalFrame {
         lblVendor_L2.setText("Vendor L2");
         lblVendor_L2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        txtUnitDescriptions.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        txtUnitDescriptions.setToolTipText("");
+        txtvendorl2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtvendorl2.setToolTipText("");
 
         lblPhone1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         lblPhone1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPhone1.setText("Phone 1");
         lblPhone1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        txtUnitDescriptions1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        txtUnitDescriptions1.setToolTipText("");
+        txtphone1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtphone1.setToolTipText("");
 
         lblPhone2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         lblPhone2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPhone2.setText("Phone 2");
         lblPhone2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        txtUnitDescriptions2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        txtUnitDescriptions2.setToolTipText("");
+        txtphone2.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtphone2.setToolTipText("");
 
         lblFax.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         lblFax.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFax.setText("Fax");
         lblFax.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        txtUnitDescriptions3.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        txtUnitDescriptions3.setToolTipText("");
+        txtfax.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtfax.setToolTipText("");
 
         lblEmail.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         lblEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblEmail.setText("Email");
         lblEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        txtUnitDescriptions4.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        txtUnitDescriptions4.setToolTipText("");
+        txtemail.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtemail.setToolTipText("");
 
         lblWebSite.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         lblWebSite.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblWebSite.setText("WebSite");
         lblWebSite.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        txtUnitDescriptions5.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        txtUnitDescriptions5.setToolTipText("");
+        txtwebsite.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtwebsite.setToolTipText("");
 
         lblPostalCode.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         lblPostalCode.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPostalCode.setText("Postal Code");
         lblPostalCode.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        txtUnitDescriptions6.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        txtUnitDescriptions6.setToolTipText("");
+        txtpostalcode.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtpostalcode.setToolTipText("");
 
         lblBankName.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         lblBankName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblBankName.setText("Bank Name");
         lblBankName.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        txtUnitDescriptions8.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        txtUnitDescriptions8.setToolTipText("");
+        txtBankname.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtBankname.setToolTipText("");
 
         lblBankAccount.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         lblBankAccount.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblBankAccount.setText("Bank Account");
         lblBankAccount.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        txtUnitDescriptions9.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        txtUnitDescriptions9.setToolTipText("");
+        txtBankAccount.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtBankAccount.setToolTipText("");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtvendorInfo.setColumns(20);
+        txtvendorInfo.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        txtvendorInfo.setRows(5);
+        jScrollPane1.setViewportView(txtvendorInfo);
 
         lblAddress.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         lblAddress.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -296,31 +303,31 @@ public class FrmVendor extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(lblVendor_L2, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtUnitDescriptions, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtvendorl2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(lblPhone1, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtUnitDescriptions1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtphone1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(lblPhone2, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtUnitDescriptions2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtphone2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(lblFax, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtUnitDescriptions3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtfax, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtUnitDescriptions4, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(lblWebSite, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtUnitDescriptions5, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtwebsite, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(lblPostalCode, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtUnitDescriptions6, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtpostalcode, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblBankAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -329,21 +336,17 @@ public class FrmVendor extends javax.swing.JInternalFrame {
                             .addComponent(lblBankName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUnitDescriptions8, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                            .addComponent(txtUnitDescriptions9)
+                            .addComponent(txtBankname, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                            .addComponent(txtBankAccount)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(lblVendorNo, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                    .addComponent(lblVendor_L1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(lblVendor_L1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtunit_l1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                                    .addComponent(txtUnit_L2)))
+                                .addComponent(txtvendorl1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(btnData, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -353,49 +356,45 @@ public class FrmVendor extends javax.swing.JInternalFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtunit_l1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblVendorNo))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUnit_L2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtvendorl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblVendor_L1))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUnitDescriptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtvendorl2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblVendor_L2))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUnitDescriptions1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtphone1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPhone1))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUnitDescriptions2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtphone2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPhone2))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUnitDescriptions3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtfax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblFax))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUnitDescriptions4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEmail))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUnitDescriptions5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtwebsite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblWebSite))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUnitDescriptions6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtpostalcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPostalCode))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUnitDescriptions8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBankname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblBankName))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUnitDescriptions9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBankAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblBankAccount))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -418,10 +417,6 @@ public class FrmVendor extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtunit_l1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtunit_l1KeyReleased
-
-    }//GEN-LAST:event_txtunit_l1KeyReleased
 
     private void btnDataMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDataMouseEntered
         try {
@@ -447,7 +442,37 @@ public class FrmVendor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSaveMouseExited
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date dt = new Date();
+            Date now = new Date();
+            Date dtf = new Date();
+            Date createNow = new Date();
+            dt = jDateChooser1.getDate();
+            String stDate = sdf.format(dt);
+            String createDate = sdf.format(now);
+            dtf = sdf.parse(stDate);
+            createNow = sdf.parse(createDate);            
+            v.setVen_l1(txtvendorl1.getText());
+            v.setVen_l2(txtvendorl2.getText());
+            v.setPhone1(txtphone1.getText());
+            v.setPhone2(txtphone2.getText());
+            v.setFax(txtfax.getText());
+            v.setEmail(txtemail.getText());
+            v.setWebsite(txtwebsite.getText());
+            v.setBankname(txtBankname.getText());
+            v.setBankAccount(txtBankAccount.getText());
+            v.setVendorInfo(txtvendorInfo.getText().trim());
+            v.setPostalCode(txtpostalcode.getText().trim());
+            v.setVendorUsing(true);
+            v.setCreateUser(FrmMain.txtUsername.getText());
+            v.setCreatedate(createNow);
+            v.setVendorStart(dtf);
+            vm.insertTbl_Vendor(v);
+            showClear();            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
@@ -466,7 +491,6 @@ public class FrmVendor extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBankAccount;
     private javax.swing.JLabel lblBankName;
@@ -477,20 +501,19 @@ public class FrmVendor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblPhone1;
     private javax.swing.JLabel lblPhone2;
     private javax.swing.JLabel lblPostalCode;
-    private javax.swing.JLabel lblVendorNo;
     private javax.swing.JLabel lblVendor_L1;
     private javax.swing.JLabel lblVendor_L2;
     private javax.swing.JLabel lblWebSite;
-    public static javax.swing.JTextField txtUnitDescriptions;
-    public static javax.swing.JTextField txtUnitDescriptions1;
-    public static javax.swing.JTextField txtUnitDescriptions2;
-    public static javax.swing.JTextField txtUnitDescriptions3;
-    public static javax.swing.JTextField txtUnitDescriptions4;
-    public static javax.swing.JTextField txtUnitDescriptions5;
-    public static javax.swing.JTextField txtUnitDescriptions6;
-    public static javax.swing.JTextField txtUnitDescriptions8;
-    public static javax.swing.JTextField txtUnitDescriptions9;
-    public static javax.swing.JTextField txtUnit_L2;
-    public static javax.swing.JTextField txtunit_l1;
+    public static javax.swing.JTextField txtBankAccount;
+    public static javax.swing.JTextField txtBankname;
+    public static javax.swing.JTextField txtemail;
+    public static javax.swing.JTextField txtfax;
+    public static javax.swing.JTextField txtphone1;
+    public static javax.swing.JTextField txtphone2;
+    public static javax.swing.JTextField txtpostalcode;
+    private javax.swing.JTextArea txtvendorInfo;
+    public static javax.swing.JTextField txtvendorl1;
+    public static javax.swing.JTextField txtvendorl2;
+    public static javax.swing.JTextField txtwebsite;
     // End of variables declaration//GEN-END:variables
 }
