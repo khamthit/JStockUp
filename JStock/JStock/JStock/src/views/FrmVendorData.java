@@ -145,17 +145,17 @@ public class FrmVendorData extends javax.swing.JDialog {
         jTable1.setForeground(new java.awt.Color(0, 51, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "lblVendorNo", "lblvendorUsing", "lblVendor", "lblPhone1", "lblPhone2", "lblFax", "lblEmail", "lblWebSite", "lblPostalCode", "lblBankName", "lblBankAccount", "lblCreateVendor", "lblAddress"
+                "lblVendorNo", "lblvendorUsing", "lblVendor", "lblven_l2", "lblPhone1", "lblPhone2", "lblFax", "lblEmail", "lblWebSite", "lblPostalCode", "lblBankName", "lblBankAccount", "lblCreateVendor", "lblAddress"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false, false, false, false, false, false, false, false, false
+                false, true, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -181,26 +181,28 @@ public class FrmVendorData extends javax.swing.JDialog {
             jTable1.getColumnModel().getColumn(1).setMaxWidth(80);
             jTable1.getColumnModel().getColumn(2).setMinWidth(150);
             jTable1.getColumnModel().getColumn(2).setMaxWidth(150);
-            jTable1.getColumnModel().getColumn(3).setMinWidth(90);
-            jTable1.getColumnModel().getColumn(3).setMaxWidth(90);
+            jTable1.getColumnModel().getColumn(3).setMinWidth(150);
+            jTable1.getColumnModel().getColumn(3).setMaxWidth(150);
             jTable1.getColumnModel().getColumn(4).setMinWidth(90);
             jTable1.getColumnModel().getColumn(4).setMaxWidth(90);
             jTable1.getColumnModel().getColumn(5).setMinWidth(90);
             jTable1.getColumnModel().getColumn(5).setMaxWidth(90);
-            jTable1.getColumnModel().getColumn(6).setMinWidth(150);
-            jTable1.getColumnModel().getColumn(6).setMaxWidth(150);
+            jTable1.getColumnModel().getColumn(6).setMinWidth(90);
+            jTable1.getColumnModel().getColumn(6).setMaxWidth(90);
             jTable1.getColumnModel().getColumn(7).setMinWidth(150);
             jTable1.getColumnModel().getColumn(7).setMaxWidth(150);
-            jTable1.getColumnModel().getColumn(8).setMinWidth(120);
-            jTable1.getColumnModel().getColumn(8).setMaxWidth(120);
+            jTable1.getColumnModel().getColumn(8).setMinWidth(150);
+            jTable1.getColumnModel().getColumn(8).setMaxWidth(150);
             jTable1.getColumnModel().getColumn(9).setMinWidth(120);
             jTable1.getColumnModel().getColumn(9).setMaxWidth(120);
             jTable1.getColumnModel().getColumn(10).setMinWidth(120);
             jTable1.getColumnModel().getColumn(10).setMaxWidth(120);
-            jTable1.getColumnModel().getColumn(11).setMinWidth(90);
-            jTable1.getColumnModel().getColumn(11).setMaxWidth(90);
-            jTable1.getColumnModel().getColumn(12).setMinWidth(300);
-            jTable1.getColumnModel().getColumn(12).setMaxWidth(300);
+            jTable1.getColumnModel().getColumn(11).setMinWidth(120);
+            jTable1.getColumnModel().getColumn(11).setMaxWidth(120);
+            jTable1.getColumnModel().getColumn(12).setMinWidth(90);
+            jTable1.getColumnModel().getColumn(12).setMaxWidth(90);
+            jTable1.getColumnModel().getColumn(13).setMinWidth(300);
+            jTable1.getColumnModel().getColumn(13).setMaxWidth(300);
         }
 
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
