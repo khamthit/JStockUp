@@ -274,9 +274,14 @@ public class FrmVendorData extends javax.swing.JDialog {
                 FrmVendor.txtvendorInfo.setText(v.getVendorInfo());                
                 dispose();
             }else{
-                
-            }
-            
+                if (v.getVendorUsing()==true){
+                    v.setVendorUsing(true);
+                    vm.updateTbl_VendorUsing(v);
+                }else{
+                    v.setVendorUsing(false);
+                    vm.updateTbl_VendorUsing(v);
+                }
+            }            
         } catch (Exception e) {
             e.printStackTrace();
         }

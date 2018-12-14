@@ -72,7 +72,6 @@ public class VendorManager {
         } catch (Exception e) {
         }
     }
-
     public void showSearchTbl_Vendor(JTable table, DefaultTableModel model, String x) {
         try {
             RemoveTableCount.RemoveTable(table, model);
@@ -89,7 +88,6 @@ public class VendorManager {
             e.printStackTrace();
         }
     }
-
     public Boolean updateTbl_Vendor(Vendor v) {
         try {
             sql = "update tbl_vendor set ven_l1=?, ven_l2=?, phone1=?, phone2=?, fax=?, email=?, "
@@ -112,6 +110,20 @@ public class VendorManager {
             p.setInt(14, v.getVenid());
             p.executeUpdate();
             msg.showMsgSucess();
+            p.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public Boolean updateTbl_VendorUsing(Vendor v){
+        try {
+            sql = "update tbl_vendor set VendorUsing = ? where venid = (?)";
+            PreparedStatement p = c.prepareStatement(sql);
+            p.setBoolean(1, v.getVendorUsing());
+            p.setInt(2, v.getVenid());
+            p.executeUpdate();
             p.close();
             return true;
         } catch (Exception e) {
