@@ -432,6 +432,7 @@ public class FrmVendor extends javax.swing.JInternalFrame {
 
     private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
         try {
+            showClear();
             FrmVendorData fd = new FrmVendorData(null, closable);
             fd.setVisible(true);
         } catch (Exception e) {

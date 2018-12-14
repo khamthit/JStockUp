@@ -212,7 +212,10 @@ public class FrmVendorData extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-       
+        try {
+            vm.showSearchTbl_Vendor(jTable1, model, txtSearch.getText().trim());
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void btnDataMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDataMouseEntered

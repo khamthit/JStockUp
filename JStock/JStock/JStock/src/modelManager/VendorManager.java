@@ -73,4 +73,32 @@ public class VendorManager {
         } catch (Exception e) {
         }
     }
+    public void showSearchTbl_Vendor(JTable table, DefaultTableModel model, String x){
+        try {
+            RemoveTableCount.RemoveTable(table, model);
+            if (LangType.Lang.equals("L1")){
+                sql = "select venid, vendorusing, ven_l1, phone1, phone2, fax, email, website, postalCode, bankname, bankAccount, format(vendorStart, 'dd-MM-yyyy') AS vendorStart, vendorInfo \n" +
+                    "from tbl_Vendor\n" +
+                    "where ven_l1 like N'%"+ x +"%' or ven_l2 like N'%"+ x +"%' or phone1 like N'%"+ x +"%' or phone2 like N'%"+ x +"%' or fax like N'%"+ x +"%' or email like N'%"+ x +"%' or website like N'%"+ x +"%' or postalcode like N'%"+ x +"%' or bankname like N'%"+ x +"%' or bankAccount  like N'%"+ x +"%' or vendorinfo like N'%"+ x +"%' \n" +
+                    "order by ven_l1";
+                ResultSet rs = c.createStatement().executeQuery(sql);
+                while (rs.next()){
+                    model.addRow(new Object[]{rs.getString("venid"), rs.getBoolean("vendorusing"), rs.getString("ven_l1"), rs.getString("phone1"), rs.getString("phone2"), rs.getString("fax"), rs.getString("email"), rs.getString("website"), rs.getString("postalCode"), rs.getString("BankName"), rs.getString("bankAccount"), rs.getString("vendorStart"), rs.getString("vendorInfo")});
+                }
+                table.setModel(model);
+            }else{
+                 sql = "select venid, vendorusing, ven_l2, phone1, phone2, fax, email, website, postalCode, bankname, bankAccount, format(vendorStart, 'dd-MM-yyyy') AS vendorStart, vendorInfo \n" +
+                    "from tbl_Vendor\n" +
+                    "where ven_l1 like N'%"+ x +"%' or ven_l2 like N'%"+ x +"%' or phone1 like N'%"+ x +"%' or phone2 like N'%"+ x +"%' or fax like N'%"+ x +"%' or email like N'%"+ x +"%' or website like N'%"+ x +"%' or postalcode like N'%"+ x +"%' or bankname like N'%"+ x +"%' or bankAccount  like N'%"+ x +"%' or vendorinfo like N'%"+ x +"%' \n" +
+                    "order by ven_l1";
+                ResultSet rs = c.createStatement().executeQuery(sql);
+                while (rs.next()){
+                    model.addRow(new Object[]{rs.getString("venid"), rs.getBoolean("vendorusing"), rs.getString("ven_l2"), rs.getString("phone1"), rs.getString("phone2"), rs.getString("fax"), rs.getString("email"), rs.getString("website"), rs.getString("postalCode"), rs.getString("BankName"), rs.getString("bankAccount"), rs.getString("vendorStart"), rs.getString("vendorInfo")});
+                }
+                table.setModel(model);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
