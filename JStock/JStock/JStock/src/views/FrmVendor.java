@@ -480,7 +480,8 @@ public class FrmVendor extends javax.swing.JInternalFrame {
                 vm.insertTbl_Vendor(v);
                 showClear();  
             }else{
-                
+                v.setVenid(VENID);
+                vm.updateTbl_Vendor(v);
             }          
         } catch (Exception e) {
             e.printStackTrace();
@@ -498,7 +499,7 @@ public class FrmVendor extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnData;
     private javax.swing.JButton btnSave;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    public static com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -523,7 +524,7 @@ public class FrmVendor extends javax.swing.JInternalFrame {
     public static javax.swing.JTextField txtphone1;
     public static javax.swing.JTextField txtphone2;
     public static javax.swing.JTextField txtpostalcode;
-    private javax.swing.JTextArea txtvendorInfo;
+    public static javax.swing.JTextArea txtvendorInfo;
     public static javax.swing.JTextField txtvendorl1;
     public static javax.swing.JTextField txtvendorl2;
     public static javax.swing.JTextField txtwebsite;

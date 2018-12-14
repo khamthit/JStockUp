@@ -7,6 +7,7 @@ package views;
 
 import Data.ButtonColor;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
 import model.TableHeader;
 import model.Vendor;
@@ -14,7 +15,7 @@ import modelManager.LangType;
 import static modelManager.LangType.LN;
 import modelManager.VendorManager;
 import sysConnect.module;
-
+import java.util.Date;
 public class FrmVendorData extends javax.swing.JDialog {
 
     Connection c = module.getConnection();
@@ -236,7 +237,49 @@ public class FrmVendorData extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDataActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            Date dt = new Date();
+            String sdt;
+            int index = jTable1.getSelectedRow();
+            v.setVenid(Integer.parseInt(jTable1.getValueAt(index, 0).toString()));
+            v.setVendorUsing((Boolean) jTable1.getValueAt(index, 1));
+            v.setVen_l1(jTable1.getValueAt(index, 2).toString().trim());
+            v.setVen_l2(jTable1.getValueAt(index, 3).toString().trim());
+            v.setPhone1(jTable1.getValueAt(index, 4).toString());
+            v.setPhone2(jTable1.getValueAt(index, 5).toString());
+            v.setFax(jTable1.getValueAt(index, 6).toString());
+            v.setEmail(jTable1.getValueAt(index, 7).toString());
+            v.setWebsite(jTable1.getValueAt(index, 8).toString());
+            v.setPostalCode(jTable1.getValueAt(index, 9).toString());
+            v.setBankname(jTable1.getValueAt(index, 10).toString());
+            v.setBankAccount(jTable1.getValueAt(index, 11).toString());
+            sdt = jTable1.getValueAt(index, 12).toString();
+            dt = sdf.parse(sdt);            
+            v.setVendorStart(dt);
+            v.setVendorInfo(jTable1.getValueAt(index, 13).toString());           
+            if (evt.getClickCount()==2){
+                FrmVendor.VENID = v.getVenid();
+                FrmVendor.txtvendorl1.setText(v.getVen_l1());
+                FrmVendor.txtvendorl2.setText(v.getVen_l2());
+                FrmVendor.txtphone1.setText(v.getPhone1());
+                FrmVendor.txtphone2.setText(v.getPhone2());
+                FrmVendor.txtfax.setText(v.getFax());
+                FrmVendor.txtemail.setText(v.getEmail());
+                FrmVendor.txtwebsite.setText(v.getWebsite());
+                FrmVendor.txtpostalcode.setText(v.getPostalCode());
+                FrmVendor.txtBankname.setText(v.getBankname());
+                FrmVendor.txtBankAccount.setText(v.getBankAccount());
+                FrmVendor.jDateChooser1.setDate(v.getVendorStart());
+                FrmVendor.txtvendorInfo.setText(v.getVendorInfo());                
+                dispose();
+            }else{
+                
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

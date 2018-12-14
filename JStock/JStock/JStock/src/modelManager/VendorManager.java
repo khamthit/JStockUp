@@ -72,6 +72,7 @@ public class VendorManager {
         } catch (Exception e) {
         }
     }
+
     public void showSearchTbl_Vendor(JTable table, DefaultTableModel model, String x) {
         try {
             RemoveTableCount.RemoveTable(table, model);
@@ -82,10 +83,40 @@ public class VendorManager {
             ResultSet rs = c.createStatement().executeQuery(sql);
             while (rs.next()) {
                 model.addRow(new Object[]{rs.getString("venid"), rs.getBoolean("vendorusing"), rs.getString("ven_l1"), rs.getString("ven_l2"), rs.getString("phone1"), rs.getString("phone2"), rs.getString("fax"), rs.getString("email"), rs.getString("website"), rs.getString("postalCode"), rs.getString("BankName"), rs.getString("bankAccount"), rs.getString("vendorStart"), rs.getString("vendorInfo")});
-            }           
+            }
             table.setModel(model);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public Boolean updateTbl_Vendor(Vendor v) {
+        try {
+            sql = "update tbl_vendor set ven_l1=?, ven_l2=?, phone1=?, phone2=?, fax=?, email=?, "
+                    + "website=?, BankName=?, BankAccount=?, VendorStart=?, VendorInfo=?, CreateDate=?, PostalCode=? "
+                    + "where venid = (?)";
+            PreparedStatement p = c.prepareStatement(sql);
+            p.setString(1, v.getVen_l1().trim());
+            p.setString(2, v.getVen_l2().trim());
+            p.setString(3, v.getPhone1());
+            p.setString(4, v.getPhone2());
+            p.setString(5, v.getFax());
+            p.setString(6, v.getEmail());
+            p.setString(7, v.getWebsite());
+            p.setString(8, v.getBankname());
+            p.setString(9, v.getBankAccount().trim());
+            p.setDate(10, ConvertDateSQL.convertUtilDateToSqlDate(v.getVendorStart()));
+            p.setString(11, v.getVendorInfo().trim());
+            p.setDate(12, ConvertDateSQL.convertUtilDateToSqlDate(v.getCreatedate()));
+            p.setString(13, v.getPostalCode());
+            p.setInt(14, v.getVenid());
+            p.executeUpdate();
+            msg.showMsgSucess();
+            p.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
