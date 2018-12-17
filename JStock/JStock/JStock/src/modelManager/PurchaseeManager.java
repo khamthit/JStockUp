@@ -148,4 +148,11 @@ public class PurchaseeManager {
             e.printStackTrace();
         }
     }
+    public void showFrmPurchaseOrderAddDetails(JTable table, DefaultTableModel model){
+        try {
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

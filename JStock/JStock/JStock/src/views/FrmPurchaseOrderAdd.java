@@ -416,6 +416,11 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
                     pc.setActiviing(true);
                     pc.setActdid(MaxIDTbl.getID);
                     pcm.insertActivityDetails(pc);       
+                    
+                    FrmPurchaseOrderAddDetails fad = new FrmPurchaseOrderAddDetails(null, true);
+                    fad.lblPONumber.setText(pc.getActNo());
+                    fad.setVisible(true);
+                    
                 }
             } 
             msg.showMsgSucess();
