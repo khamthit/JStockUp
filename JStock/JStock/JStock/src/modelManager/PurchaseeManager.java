@@ -5,10 +5,12 @@
  */
 package modelManager;
 
+import Data.Msg;
 import java.util.HashMap;
 import java.sql.*;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import model.Purchase;
 import model.RemoveTableCount;
 import sysConnect.module;
 
@@ -20,6 +22,7 @@ import sysConnect.module;
 public class PurchaseeManager {
     Connection c = module.getConnection();
     String sql;
+    Msg msg = new Msg();
     public HashMap<String, Object[]>hmapStock(){
         try {
             HashMap<String, Object[]>mapStock = new HashMap();
@@ -56,7 +59,7 @@ public class PurchaseeManager {
     public void showTbl_Vendor(JTable table, DefaultTableModel model){
         try {
             RemoveTableCount.RemoveTable(table, model);
-            sql = "Select itid, 'false' as chooser, barode, packBarcode, item_l1, item_l2, costprice, '0' As Qty from tbl_Item\n" +
+            sql = "Select itid, 'false' as chooser, barode, packBarcode, item_l1, item_l2, costprice, '' As Qty from tbl_Item\n" +
                 "where itemuse = 1\n" +
                 "order by Barode";
             ResultSet rs = c.createStatement().executeQuery(sql);
@@ -69,5 +72,64 @@ public class PurchaseeManager {
             e.printStackTrace();
         }
     }
-    
+    public void showSearchTbl_Vendor(JTable table, DefaultTableModel model, String x){
+        try {
+            RemoveTableCount.RemoveTable(table, model);
+            sql = "Select itid, 'false' as chooser, barode, packBarcode, item_l1, item_l2, costprice, '' As Qty from tbl_Item\n" +
+                "where barode like N'%"+ x +"%' or packBarcode like N'%"+ x +"%' or item_l1 like N'%"+ x +"%' "
+                    + "or item_l2 like N'%"+ x +"%' and itemuse = 1\n" +
+                "order by Barode";
+            ResultSet rs = c.createStatement().executeQuery(sql);
+            while(rs.next()){
+                model.addRow(new Object[]{rs.getString("itid"), rs.getBoolean("chooser"), rs.getString("barode"), rs.getString("packbarcode"), rs.getString("Item_l1"), 
+                rs.getString("item_l2"), rs.getFloat("costprice"), rs.getString("qty")});
+            }
+            table.setModel(model);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public Boolean insertActivity(Purchase pc){
+        try {
+            sql = "Insert into tbl_activity (actid, actno, createdate, createuser, rec_type) values "
+                    + "(?,?,?,?,?)";
+            PreparedStatement p = c.prepareStatement(sql);
+            p.setInt(1, pc.getActid());
+            p.setString(2, pc.getActNo());
+            p.setDate(3, (Date) pc.getActivityCreateDate());
+            p.setString(4, pc.getCreateUser());
+            p.setString(5, pc.getActivityRec_type());
+            p.executeUpdate();
+            p.close();
+            return true;            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public Boolean insertActivityDetails(Purchase pc){
+        try {
+            sql = "insert into tbl_activityDetails (actdid, actid, itid, venid, barode, packbarcode, item_l1, item_l2, costprice, qty, activing, rec_type) values "
+                    + "(?,?,?,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement p = c.prepareStatement(sql);
+            p.setInt(1, pc.getActdid());
+            p.setInt(2, pc.getActid());
+            p.setInt(3, pc.getItid());
+            p.setInt(4, pc.getVenid());
+            p.setString(5, pc.getBarcode());
+            p.setString(6, pc.getPackbarcode());
+            p.setString(7, pc.getItem_l1());
+            p.setString(8, pc.getItem_l2());
+            p.setFloat(9, pc.getCostprice());
+            p.setFloat(10, pc.getQty());
+            p.setBoolean(11, pc.getActiviing());
+            p.setString(12, pc.getActivityRec_type());
+            p.executeUpdate();
+            p.close();            
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

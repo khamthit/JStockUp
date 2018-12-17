@@ -56,7 +56,7 @@ public class TableHeader {
     public static void TableCellRenderRightFrmPurchaseOrderAdd(JTable table){
         try {
             DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-            centerRenderer.setHorizontalAlignment(JLabel.RIGHT);
+            centerRenderer.setHorizontalAlignment(JLabel.CENTER);
             table.getColumnModel().getColumn(7).setCellRenderer(centerRenderer);
         } catch (Exception e) {
         }

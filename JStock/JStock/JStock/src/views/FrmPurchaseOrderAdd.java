@@ -6,7 +6,10 @@
 package views;
 
 import Data.ButtonColor;
+import Data.ConvertDateSQL;
+import Data.Msg;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -17,40 +20,46 @@ import model.Purchase;
 import model.TableHeader;
 import modelManager.LangType;
 import static modelManager.LangType.LN;
+import modelManager.MaxIDTbl;
 import modelManager.PurchaseeManager;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import sysConnect.module;
+import java.util.Date;
+import org.apache.commons.beanutils.converters.SqlDateConverter;
 
 /**
  *
  * @author Admin
  */
 public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
+
     Connection c = module.getConnection();
     String sql, frm;
     DefaultTableModel model = new DefaultTableModel();
     public static int ACTID = 0;
     Purchase pc = new Purchase();
     PurchaseeManager pcm = new PurchaseeManager();
-    HashMap<String, Object[]>hmStock = null;
-    HashMap<String, Object[]>hmVendor= null;
+    HashMap<String, Object[]> hmStock = null;
+    HashMap<String, Object[]> hmVendor = null;
+    Msg msg = new Msg();
     public FrmPurchaseOrderAdd(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         frm = this.getClass().getSimpleName();
-        model = (DefaultTableModel)jTable1.getModel();
+        model = (DefaultTableModel) jTable1.getModel();
         LangType.showLang();
         LangType.showLangForm();
-        TableHeader.TableHeaderFont(jTable1);        
-        TableHeader.TableHeader_0(jTable1, frm);        
+        TableHeader.TableHeaderFont(jTable1);
+        TableHeader.TableHeader_0(jTable1, frm);
         TableHeader.TableCellRenderRightFrmPurchaseOrderAdd(jTable1);
     }
-    public void showMapStock(){
+
+    public void showMapStock() {
         try {
             hmStock = pcm.hmapStock();
-            Map<String, Object[]>smap = new TreeMap<>(hmStock);
+            Map<String, Object[]> smap = new TreeMap<>(hmStock);
             cbbVendorStock.removeAllItems();
-            smap.keySet().forEach((s)->{
+            smap.keySet().forEach((s) -> {
                 cbbVendorStock.addItem(s);
             });
             cbbVendorStock.setSelectedIndex(-1);
@@ -58,12 +67,13 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
         } catch (Exception e) {
         }
     }
-    public void showMapVendor(){
+
+    public void showMapVendor() {
         try {
             hmVendor = pcm.hmapVendor();
-            Map<String, Object[]>smap = new TreeMap<>(hmVendor);
+            Map<String, Object[]> smap = new TreeMap<>(hmVendor);
             cbbVendorStock.removeAllItems();
-            smap.keySet().forEach((s->{
+            smap.keySet().forEach((s -> {
                 cbbVendorStock.addItem(s);
             }));
             cbbVendorStock.setSelectedIndex(-1);
@@ -72,7 +82,8 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
             e.printStackTrace();
         }
     }
-    public void showLang(){
+
+    public void showLang() {
         try {
             lblFormName.setText(LangType.hmapForm.get(frm.toUpperCase())[LN]);
             btnData.setText(LangType.hmapSys.get("btnData".concat(frm).toUpperCase())[LN]);
@@ -81,7 +92,7 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
             lblSearch.setText(LangType.hmapSys.get("lblSearch".concat(frm).toUpperCase())[LN]);
             lblStock.setText(LangType.hmapSys.get("lblStock".concat(frm).toUpperCase())[LN]);
             lblChooserVendor.setText(LangType.hmapSys.get("lblchooservendor".concat(frm).toUpperCase())[LN]);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -312,10 +323,10 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
             jTable1.getColumnModel().getColumn(4).setMaxWidth(200);
             jTable1.getColumnModel().getColumn(5).setMinWidth(200);
             jTable1.getColumnModel().getColumn(5).setMaxWidth(200);
-            jTable1.getColumnModel().getColumn(6).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(6).setMaxWidth(100);
-            jTable1.getColumnModel().getColumn(7).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(7).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(6).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(6).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(7).setMinWidth(60);
+            jTable1.getColumnModel().getColumn(7).setMaxWidth(60);
         }
 
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -327,7 +338,10 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-        
+        try {
+            pcm.showSearchTbl_Vendor(jTable1, model, txtSearch.getText().trim());
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void btnDataMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDataMouseEntered
@@ -342,11 +356,20 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDataMouseExited
 
     private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
-       
+
     }//GEN-LAST:event_btnDataActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        
+        try {
+            int index = jTable1.getSelectedRow();
+            Boolean x = (Boolean) jTable1.getValueAt(index, 1);
+            if (x == true) {
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void btnPOMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPOMouseEntered
@@ -358,7 +381,48 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     }//GEN-LAST:event_btnPOMouseExited
 
     private void btnPOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPOActionPerformed
-        // TODO add your handling code here:
+        try {
+            //this is insert activity
+            int index = jTable1.getSelectedRow();
+            String indx = cbbVendorStock.getSelectedItem().toString();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date dt = new Date();
+            String sd = sdf.format(dt);
+            Date now = new Date();
+            now = sdf.parse(sd);
+
+            MaxIDTbl.maxID("actid", "tbl_activity");
+            MaxIDTbl.maxID("actno", "tbl_activity");
+            pc.setActid(MaxIDTbl.getID);
+            pc.setActNo("0" + MaxIDTbl.getID);
+            pc.setActivityCreateDate(ConvertDateSQL.convertUtilDateToSqlDate(now));
+            pc.setCreateUser(FrmMain.txtUsername.getText());
+            pc.setActivityRec_type("PO");
+            pcm.insertActivity(pc);
+            int row = jTable1.getRowCount();
+            for (int i = 0; i < row; i++) {
+                Boolean ch = (Boolean) jTable1.getValueAt(i, 1);
+                if (ch == true) {
+                    MaxIDTbl.maxID("Actdid", "tbl_activityDetails");
+                    pc.setItid(Integer.parseInt(jTable1.getValueAt(i, 0).toString()));
+                    pc.setVenid(Integer.parseInt(hmVendor.get(indx)[0].toString()));
+                    pc.setBarcode(jTable1.getValueAt(i, 2).toString().trim());
+                    pc.setPackbarcode(jTable1.getValueAt(i, 3).toString().trim());
+                    pc.setItem_l1(jTable1.getValueAt(i, 4).toString().trim());
+                    pc.setItem_l2(jTable1.getValueAt(i, 5).toString().trim());
+                    pc.setCostprice(Float.parseFloat(jTable1.getValueAt(i, 6).toString()));
+                    pc.setQty(Float.parseFloat(jTable1.getValueAt(i, 7).toString()));
+                    pc.setActivityRec_type("PO");
+                    pc.setActiviing(true);
+                    pc.setActdid(MaxIDTbl.getID);
+                    pcm.insertActivityDetails(pc);       
+                }
+            } 
+            msg.showMsgSucess();
+            pcm.showTbl_Vendor(jTable1, model);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnPOActionPerformed
 
     private void btnImportMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImportMouseEntered
@@ -377,16 +441,17 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
         try {
             showLang();
             pcm.showTbl_Vendor(jTable1, model);
+            showMapVendor();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_formWindowOpened
 
     private void lblStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblStockActionPerformed
         try {
-            if (lblStock.isSelected()==true){
+            if (lblStock.isSelected() == true) {
                 showMapStock();
                 pcm.showTbl_Vendor(jTable1, model);
-            }else{
+            } else {
                 showMapVendor();
             }
         } catch (Exception e) {
