@@ -6,6 +6,7 @@
 package views;
 import java.sql.*;
 import Data.ButtonColor;
+import Data.Msg;
 import java.text.SimpleDateFormat;
 import model.Vendor;
 import modelManager.LangType;
@@ -22,6 +23,7 @@ public class FrmVendor extends javax.swing.JInternalFrame {
     Vendor v = new Vendor();
     VendorManager vm = new VendorManager();
     public static int VENID = 0;
+    Msg msg = new Msg();
     public FrmVendor() {
         initComponents();
         frm = this.getClass().getSimpleName();
@@ -62,6 +64,7 @@ public class FrmVendor extends javax.swing.JInternalFrame {
             txtvendorl2.setText("");
             txtwebsite.setText("");
             txtvendorl1.requestFocus();
+            jDateChooser1.setDate(null);
         } catch (Exception e) {
         }
     }
@@ -474,6 +477,10 @@ public class FrmVendor extends javax.swing.JInternalFrame {
             v.setCreateUser(FrmMain.txtUsername.getText());
             v.setCreatedate(createNow);
             v.setVendorStart(dtf);
+            if (txtvendorl1.getText().equals("")){
+                msg.showMsgSameData();
+                return;
+            }
             if (VENID==0){
                 MaxIDTbl.maxID("VENID", "tbl_vendor");
                 v.setVenid(MaxIDTbl.getID);
@@ -482,6 +489,7 @@ public class FrmVendor extends javax.swing.JInternalFrame {
             }else{
                 v.setVenid(VENID);
                 vm.updateTbl_Vendor(v);
+                showClear();
             }          
         } catch (Exception e) {
             e.printStackTrace();

@@ -62,7 +62,7 @@ public class FrmMain extends javax.swing.JFrame {
         try {            
             TaskMain.setTitle(hmapSys.get("TaskMain".concat(frm).toUpperCase())[LN]);
             TaskProduct.setTitle(hmapSys.get("TaskProduct".concat(frm).toUpperCase())[LN]);
-            
+            TaskProductAcitivity.setTitle(hmapSys.get("TaskProductAcitivity".concat(frm).toUpperCase())[LN]);            
             lblFormName.setText(hmapForm.get(frm.toUpperCase()) [LangType.LN]);
             btnSetting.setText(hmapSys.get("btnSetting".concat(frm).toUpperCase()) [LN]);
             btnLogin.setText(hmapSys.get("btnLogin".concat(frm).toUpperCase())[LN]);
@@ -80,13 +80,13 @@ public class FrmMain extends javax.swing.JFrame {
             btnProGroup.setText(hmapSys.get("btnProGroup".concat(frm).toUpperCase())[LN]);
             btnItem.setText(hmapSys.get("btnItem".concat(frm).toUpperCase())[LN]);
             btnVendor.setText(hmapSys.get("btnVendor".concat(frm).toUpperCase())[LN]);
+            btnPurchaseOrder.setText(hmapSys.get("btnPurchaseOrder".concat(frm).toUpperCase())[LN]);
             
             mm.showCompany(m);
             lblAddress.setText(m.getAddress());
             lblCompany.setText(m.getCompany());
             lblMobile.setText(m.getMobile());
-            lblFax.setText(m.getFax());
-            
+            lblFax.setText(m.getFax());            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -148,7 +148,8 @@ public class FrmMain extends javax.swing.JFrame {
         btnProGroup = new com.xzq.osc.JocHyperlink();
         btnItem = new com.xzq.osc.JocHyperlink();
         btnVendor = new com.xzq.osc.JocHyperlink();
-        jTaskPaneGroup3 = new com.l2fprod.common.swing.JTaskPaneGroup();
+        TaskProductAcitivity = new com.l2fprod.common.swing.JTaskPaneGroup();
+        btnPurchaseOrder = new com.xzq.osc.JocHyperlink();
         jLabel1 = new javax.swing.JLabel();
         panelSetForm = new javax.swing.JPanel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
@@ -619,6 +620,7 @@ public class FrmMain extends javax.swing.JFrame {
 
         jTaskPane1.add(TaskMain);
 
+        TaskProduct.setExpanded(false);
         TaskProduct.setSpecial(true);
         TaskProduct.setTitle("Product");
         TaskProduct.setFont(new java.awt.Font("Saysettha MX", 1, 12)); // NOI18N
@@ -709,11 +711,25 @@ public class FrmMain extends javax.swing.JFrame {
 
         jTaskPane1.add(TaskProduct);
 
-        jTaskPaneGroup3.setExpanded(false);
-        jTaskPaneGroup3.setSpecial(true);
-        jTaskPaneGroup3.setTitle("Report");
-        jTaskPaneGroup3.setFont(new java.awt.Font("Saysettha MX", 1, 12)); // NOI18N
-        jTaskPane1.add(jTaskPaneGroup3);
+        TaskProductAcitivity.setSpecial(true);
+        TaskProductAcitivity.setTitle("Product Activity");
+        TaskProductAcitivity.setFont(new java.awt.Font("Saysettha MX", 1, 12)); // NOI18N
+
+        btnPurchaseOrder.setActiveColor(new java.awt.Color(102, 0, 102));
+        btnPurchaseOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/PurchaseOrder.png"))); // NOI18N
+        btnPurchaseOrder.setRolloverColor(new java.awt.Color(102, 0, 102));
+        btnPurchaseOrder.setText("Purchse Order");
+        btnPurchaseOrder.setUnvisitColor(new java.awt.Color(51, 51, 255));
+        btnPurchaseOrder.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        btnPurchaseOrder.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnPurchaseOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPurchaseOrderActionPerformed(evt);
+            }
+        });
+        TaskProductAcitivity.getContentPane().add(btnPurchaseOrder);
+
+        jTaskPane1.add(TaskProductAcitivity);
 
         jPanel7.add(jTaskPane1, java.awt.BorderLayout.CENTER);
 
@@ -1089,6 +1105,10 @@ public class FrmMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVendorActionPerformed
 
+    private void btnPurchaseOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPurchaseOrderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPurchaseOrderActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1127,6 +1147,7 @@ public class FrmMain extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.l2fprod.common.swing.JTaskPaneGroup TaskMain;
     private com.l2fprod.common.swing.JTaskPaneGroup TaskProduct;
+    private com.l2fprod.common.swing.JTaskPaneGroup TaskProductAcitivity;
     private javax.swing.JButton btnClose;
     private com.xzq.osc.JocHyperlink btnItem;
     private javax.swing.JButton btnLogin;
@@ -1139,6 +1160,7 @@ public class FrmMain extends javax.swing.JFrame {
     private com.xzq.osc.JocHyperlink btnProGroup;
     private com.xzq.osc.JocHyperlink btnProSize;
     private com.xzq.osc.JocHyperlink btnProUnit;
+    private com.xzq.osc.JocHyperlink btnPurchaseOrder;
     private javax.swing.JButton btnSetting;
     private com.xzq.osc.JocHyperlink btnVendor;
     private com.xzq.osc.JocHyperlink btnWareHouse;
@@ -1162,7 +1184,6 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private com.l2fprod.common.swing.JTaskPane jTaskPane1;
-    private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup3;
     private javax.swing.JLabel lblAdd;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblCompany;
