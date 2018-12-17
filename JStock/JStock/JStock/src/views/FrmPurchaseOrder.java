@@ -6,11 +6,15 @@
 package views;
 
 import Data.ButtonColor;
+import com.l2fprod.common.swing.renderer.DefaultCellRenderer;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableModel;
 import model.Purchase;
+import model.TableHeader;
 import modelManager.LangType;
 import static modelManager.LangType.LN;
 import modelManager.PurchaseeManager;
@@ -30,14 +34,20 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
     HashMap<String, Object[]>hmStock = null;
     Purchase pc = new Purchase();
     PurchaseeManager pcm = new PurchaseeManager();
+    DefaultTableModel model = new DefaultTableModel();
     public FrmPurchaseOrder() {
         initComponents();
         frm = this.getClass().getSimpleName();
+        model = (DefaultTableModel)jTable1.getModel();
+        TableHeader.TableHeaderFont(jTable1);
+        TableHeader.TableHeader_0(jTable1, frm);
         LangType.showLang();
-        LangType.showLangForm();
-        
-    }
-    
+        LangType.showLangForm();     
+        DefaultCellRenderer cellRender = new DefaultCellRenderer();
+        cellRender.setHorizontalAlignment(JLabel.CENTER);
+        jTable1.getColumnModel().getColumn(2).setCellRenderer(cellRender);
+        jTable1.getColumnModel().getColumn(3).setCellRenderer(cellRender);
+    }    
     public void showLang(){
         try {
             lblFormName.setText(LangType.hmapForm.get(frm.toUpperCase())[LN]);
@@ -214,13 +224,14 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(lblFormName, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSearch)
-                    .addComponent(btnData)
-                    .addComponent(btnNew)
-                    .addComponent(btnPrint)
-                    .addComponent(lblPOCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPOCheck, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblSearch)
+                        .addComponent(btnData)
+                        .addComponent(btnNew)
+                        .addComponent(btnPrint)))
                 .addGap(2, 2, 2))
         );
 
@@ -234,15 +245,22 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
         jTable1.setForeground(new java.awt.Color(0, 51, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "lblProGroup_L1", "lblProGroup_L1", "lblProGroup_L2", "lblProGroup_Info"
+                "createDate", "PoNo", "Product", "Qty", "TotalPrice", "Vendor", "Email", "Website", "createUser"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -256,6 +274,26 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(100);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(1).setMinWidth(130);
+            jTable1.getColumnModel().getColumn(1).setMaxWidth(130);
+            jTable1.getColumnModel().getColumn(2).setMinWidth(100);
+            jTable1.getColumnModel().getColumn(2).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(3).setMinWidth(100);
+            jTable1.getColumnModel().getColumn(3).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(4).setMinWidth(100);
+            jTable1.getColumnModel().getColumn(4).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(5).setMinWidth(150);
+            jTable1.getColumnModel().getColumn(5).setMaxWidth(150);
+            jTable1.getColumnModel().getColumn(6).setMinWidth(150);
+            jTable1.getColumnModel().getColumn(6).setMaxWidth(150);
+            jTable1.getColumnModel().getColumn(7).setMinWidth(150);
+            jTable1.getColumnModel().getColumn(7).setMaxWidth(150);
+            jTable1.getColumnModel().getColumn(8).setMinWidth(150);
+            jTable1.getColumnModel().getColumn(8).setMaxWidth(150);
+        }
 
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -290,6 +328,7 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         try {
             showLang();
+            pcm.showTbl_Activity(jTable1, model);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_formInternalFrameOpened

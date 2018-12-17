@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
     <Property name="frameIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -70,13 +70,15 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="lblFormName" min="-2" pref="39" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtSearch" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblSearch" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnData" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnNew" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnPrint" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblPOCheck" alignment="1" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnData" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnPrint" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
               </Group>
@@ -241,14 +243,68 @@
                   <Color blue="ff" green="33" red="0" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="1">
-                    <Column editable="false" title="lblProGroup_L1" type="java.lang.Object"/>
-                    <Column editable="false" title="lblProGroup_L1" type="java.lang.Object"/>
-                    <Column editable="false" title="lblProGroup_L2" type="java.lang.Object"/>
-                    <Column editable="false" title="lblProGroup_Info" type="java.lang.Object"/>
+                  <Table columnCount="9" rowCount="1">
+                    <Column editable="false" title="createDate" type="java.lang.Object"/>
+                    <Column editable="false" title="PoNo" type="java.lang.Object"/>
+                    <Column editable="false" title="Product" type="java.lang.Double"/>
+                    <Column editable="false" title="Qty" type="java.lang.Double"/>
+                    <Column editable="false" title="TotalPrice" type="java.lang.Double"/>
+                    <Column editable="false" title="Vendor" type="java.lang.Object"/>
+                    <Column editable="false" title="Email" type="java.lang.Object"/>
+                    <Column editable="false" title="Website" type="java.lang.Object"/>
+                    <Column editable="false" title="createUser" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="autoResizeMode" type="int" value="0"/>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0">
+                    <Column maxWidth="100" minWidth="100" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="130" minWidth="130" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="100" minWidth="100" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="100" minWidth="100" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="100" minWidth="100" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="150" minWidth="150" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="150" minWidth="150" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="150" minWidth="150" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="150" minWidth="150" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                  </TableColumnModel>
+                </Property>
                 <Property name="rowHeight" type="int" value="30"/>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
