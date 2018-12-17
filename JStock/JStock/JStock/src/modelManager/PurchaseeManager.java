@@ -23,6 +23,7 @@ public class PurchaseeManager {
     Connection c = module.getConnection();
     String sql;
     Msg msg = new Msg();
+    
     public HashMap<String, Object[]>hmapStock(){
         try {
             HashMap<String, Object[]>mapStock = new HashMap();
@@ -131,5 +132,20 @@ public class PurchaseeManager {
             e.printStackTrace();
         }
         return false;
+    }
+    public void showTbl_Activity(JTable table, DefaultTableModel model){
+        try {
+            RemoveTableCount.RemoveTable(table, model);
+            sql = "select createdate, actno, products, qty, totalPrice, ven_"+ LangType.Lang +" AS vendor, email, website, createUser from vw_PO\n" +
+                    "order by createDate";
+            ResultSet rs = c.createStatement().executeQuery(sql);
+            while (rs.next()){
+                model.addRow(new Object[]{rs.getString("createdate"), rs.getString("actno"), rs.getDouble("products"), rs.getDouble("qty"), rs.getDouble("totalPrice"), 
+                rs.getString("vendor"), rs.getString("email"), rs.getString("website"), rs.getString("createUser")});
+            }
+            table.setModel(model);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
