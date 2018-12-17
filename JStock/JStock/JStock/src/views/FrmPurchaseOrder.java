@@ -7,8 +7,13 @@ package views;
 
 import Data.ButtonColor;
 import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+import model.Purchase;
 import modelManager.LangType;
 import static modelManager.LangType.LN;
+import modelManager.PurchaseeManager;
 import sysConnect.module;
 
 /**
@@ -22,6 +27,9 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
      */
     Connection c = module.getConnection();
     String sql, frm;
+    HashMap<String, Object[]>hmStock = null;
+    Purchase pc = new Purchase();
+    PurchaseeManager pcm = new PurchaseeManager();
     public FrmPurchaseOrder() {
         initComponents();
         frm = this.getClass().getSimpleName();
@@ -29,6 +37,7 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
         LangType.showLangForm();
         
     }
+    
     public void showLang(){
         try {
             lblFormName.setText(LangType.hmapForm.get(frm.toUpperCase())[LN]);

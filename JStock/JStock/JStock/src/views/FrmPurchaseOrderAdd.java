@@ -7,9 +7,18 @@ package views;
 
 import Data.ButtonColor;
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import model.Purchase;
+import model.TableHeader;
 import modelManager.LangType;
 import static modelManager.LangType.LN;
+import modelManager.PurchaseeManager;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import sysConnect.module;
 
 /**
@@ -21,13 +30,47 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     String sql, frm;
     DefaultTableModel model = new DefaultTableModel();
     public static int ACTID = 0;
-    
+    Purchase pc = new Purchase();
+    PurchaseeManager pcm = new PurchaseeManager();
+    HashMap<String, Object[]>hmStock = null;
+    HashMap<String, Object[]>hmVendor= null;
     public FrmPurchaseOrderAdd(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         frm = this.getClass().getSimpleName();
+        model = (DefaultTableModel)jTable1.getModel();
         LangType.showLang();
         LangType.showLangForm();
+        TableHeader.TableHeaderFont(jTable1);        
+        TableHeader.TableHeader_0(jTable1, frm);        
+        TableHeader.TableCellRenderRightFrmPurchaseOrderAdd(jTable1);
+    }
+    public void showMapStock(){
+        try {
+            hmStock = pcm.hmapStock();
+            Map<String, Object[]>smap = new TreeMap<>(hmStock);
+            cbbVendorStock.removeAllItems();
+            smap.keySet().forEach((s)->{
+                cbbVendorStock.addItem(s);
+            });
+            cbbVendorStock.setSelectedIndex(-1);
+            AutoCompleteDecorator.decorate(cbbVendorStock);
+        } catch (Exception e) {
+        }
+    }
+    public void showMapVendor(){
+        try {
+            hmVendor = pcm.hmapVendor();
+            Map<String, Object[]>smap = new TreeMap<>(hmVendor);
+            cbbVendorStock.removeAllItems();
+            smap.keySet().forEach((s->{
+                cbbVendorStock.addItem(s);
+            }));
+            cbbVendorStock.setSelectedIndex(-1);
+            AutoCompleteDecorator.decorate(cbbVendorStock);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     public void showLang(){
         try {
@@ -119,6 +162,11 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
         lblStock.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         lblStock.setText("Stock");
         lblStock.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblStockActionPerformed(evt);
+            }
+        });
 
         lblChooserVendor.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         lblChooserVendor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -222,17 +270,17 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
         jTable1.setForeground(new java.awt.Color(0, 51, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "lblVendorNo", "lblvendorUsing", "lblVendor", "lblven_l2", "lblPhone1", "lblPhone2", "lblFax", "lblEmail", "lblWebSite", "lblPostalCode", "lblBankName", "lblBankAccount", "lblCreateVendor", "lblAddress"
+                "choose", "choose", "Barcode", "PackBarcode", "ItemL1", "ItemL2", "Costprice", "qty"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false, false, false, false, false, false, false, false, false, false
+                false, true, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -251,6 +299,24 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+            jTable1.getColumnModel().getColumn(1).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(1).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(2).setMinWidth(120);
+            jTable1.getColumnModel().getColumn(2).setMaxWidth(120);
+            jTable1.getColumnModel().getColumn(3).setMinWidth(120);
+            jTable1.getColumnModel().getColumn(3).setMaxWidth(120);
+            jTable1.getColumnModel().getColumn(4).setMinWidth(200);
+            jTable1.getColumnModel().getColumn(4).setMaxWidth(200);
+            jTable1.getColumnModel().getColumn(5).setMinWidth(200);
+            jTable1.getColumnModel().getColumn(5).setMaxWidth(200);
+            jTable1.getColumnModel().getColumn(6).setMinWidth(100);
+            jTable1.getColumnModel().getColumn(6).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(7).setMinWidth(100);
+            jTable1.getColumnModel().getColumn(7).setMaxWidth(100);
+        }
 
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -310,10 +376,23 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
             showLang();
-            
+            pcm.showTbl_Vendor(jTable1, model);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void lblStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblStockActionPerformed
+        try {
+            if (lblStock.isSelected()==true){
+                showMapStock();
+                pcm.showTbl_Vendor(jTable1, model);
+            }else{
+                showMapVendor();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_lblStockActionPerformed
 
     /**
      * @param args the command line arguments

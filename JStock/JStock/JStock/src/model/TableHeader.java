@@ -6,7 +6,9 @@
 package model;
 
 import java.awt.Font;
+import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
@@ -49,6 +51,14 @@ public class TableHeader {
             table.getTableHeader().setFont(new Font("Saysettha MX", Font.BOLD, 10));            
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    public static void TableCellRenderRightFrmPurchaseOrderAdd(JTable table){
+        try {
+            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment(JLabel.RIGHT);
+            table.getColumnModel().getColumn(7).setCellRenderer(centerRenderer);
+        } catch (Exception e) {
         }
     }
 }
