@@ -1106,7 +1106,11 @@ public class FrmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVendorActionPerformed
 
     private void btnPurchaseOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPurchaseOrderActionPerformed
-        // TODO add your handling code here:
+        try {
+            FrmPurchaseOrder po = new FrmPurchaseOrder();
+            MainOpenForm.Open(po, jDesktopPane1);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnPurchaseOrderActionPerformed
 
     /**
