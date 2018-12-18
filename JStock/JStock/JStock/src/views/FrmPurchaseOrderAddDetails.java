@@ -21,14 +21,16 @@ public class FrmPurchaseOrderAddDetails extends javax.swing.JDialog {
     Connection c = module.getConnection();
     String frm,sql;
     DefaultTableModel model = new DefaultTableModel();
+    public static String Actid;
     
-    public FrmPurchaseOrderAddDetails(java.awt.Frame parent, boolean modal) {
+    public FrmPurchaseOrderAddDetails(java.awt.Frame parent, boolean modal, String xy) {
         super(parent, modal);
         initComponents();
         frm = this.getClass().getSimpleName();
         model = (DefaultTableModel)jTable1.getModel();
         LangType.showLang();
         LangType.showLangForm();
+        lblPONumber.setText(Actid);        
     }
     public void showLang(){
         try {
@@ -227,7 +229,7 @@ public class FrmPurchaseOrderAddDetails extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrmPurchaseOrderAddDetails dialog = new FrmPurchaseOrderAddDetails(new javax.swing.JFrame(), true);
+                FrmPurchaseOrderAddDetails dialog = new FrmPurchaseOrderAddDetails(new javax.swing.JFrame(), true, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

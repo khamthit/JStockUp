@@ -42,6 +42,7 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     HashMap<String, Object[]> hmStock = null;
     HashMap<String, Object[]> hmVendor = null;
     Msg msg = new Msg();
+
     public FrmPurchaseOrderAdd(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -383,14 +384,12 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     private void btnPOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPOActionPerformed
         try {
             //this is insert activity
-            int index = jTable1.getSelectedRow();
             String indx = cbbVendorStock.getSelectedItem().toString();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date dt = new Date();
             String sd = sdf.format(dt);
             Date now = new Date();
             now = sdf.parse(sd);
-
             MaxIDTbl.maxID("actid", "tbl_activity");
             MaxIDTbl.maxID("actno", "tbl_activity");
             pc.setActid(MaxIDTbl.getID);
@@ -415,16 +414,15 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
                     pc.setActivityRec_type("PO");
                     pc.setActiviing(true);
                     pc.setActdid(MaxIDTbl.getID);
-                    pcm.insertActivityDetails(pc);       
-                    
-                    FrmPurchaseOrderAddDetails fad = new FrmPurchaseOrderAddDetails(null, true);
-                    fad.lblPONumber.setText(pc.getActNo());
-                    fad.setVisible(true);
-                    
+                    pcm.insertActivityDetails(pc);
                 }
-            } 
+            }
             msg.showMsgSucess();
             pcm.showTbl_Vendor(jTable1, model);
+            String x = pc.getActNo();
+            FrmPurchaseOrderAddDetails.Actid = x;
+            FrmPurchaseOrderAddDetails fad = new FrmPurchaseOrderAddDetails(null, true, x);
+            fad.setVisible(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
