@@ -322,7 +322,17 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDataActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-       
+        try {
+            int index = jTable1.getSelectedRow();
+            String x = jTable1.getValueAt(index, 1).toString().trim();
+            if (evt.getClickCount()==2){
+                FrmPurchaseOrderAddDetails.Actid = x;
+                FrmPurchaseOrderAddDetails fd = new FrmPurchaseOrderAddDetails(null, closable, x);
+                fd.setVisible(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened

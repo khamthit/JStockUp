@@ -6,10 +6,15 @@
 package views;
 
 import Data.ButtonColor;
+import com.l2fprod.common.swing.renderer.DefaultCellRenderer;
 import java.sql.*;
+import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
+import model.Purchase;
+import model.TableHeader;
 import modelManager.LangType;
 import static modelManager.LangType.LN;
+import modelManager.PurchaseeManager;
 import sysConnect.module;
 
 /**
@@ -22,7 +27,8 @@ public class FrmPurchaseOrderAddDetails extends javax.swing.JDialog {
     String frm,sql;
     DefaultTableModel model = new DefaultTableModel();
     public static String Actid;
-    
+    Purchase pc = new Purchase();
+    PurchaseeManager pcm = new PurchaseeManager();
     public FrmPurchaseOrderAddDetails(java.awt.Frame parent, boolean modal, String xy) {
         super(parent, modal);
         initComponents();
@@ -30,14 +36,21 @@ public class FrmPurchaseOrderAddDetails extends javax.swing.JDialog {
         model = (DefaultTableModel)jTable1.getModel();
         LangType.showLang();
         LangType.showLangForm();
-        lblPONumber.setText(Actid);        
+        lblPONumber.setText(Actid); 
+        TableHeader.TableHeaderFont(jTable1);
+        TableHeader.TableHeader_0(jTable1, frm);
+        DefaultCellRenderer cellRender = new DefaultCellRenderer();
+        cellRender.setHorizontalAlignment(JLabel.CENTER);
+        jTable1.getColumnModel().getColumn(4).setCellRenderer(cellRender);
+        jTable1.getColumnModel().getColumn(5).setCellRenderer(cellRender);
+        jTable1.getColumnModel().getColumn(6).setCellRenderer(cellRender);
     }
     public void showLang(){
         try {
             lblFormName.setText(LangType.hmapForm.get(frm.toUpperCase())[LN]);
             btnFinished.setText(LangType.hmapSys.get("btnfinished".concat(frm).toUpperCase())[LN]);
-            lblPONO.setText(LangType.hmapSys.get("lblpono".concat(frm).toUpperCase())[LN]);
-            
+            lblPONO.setText(LangType.hmapSys.get("lblpono".concat(frm).toUpperCase())[LN]);       
+            lblCount.setText(LangType.hmapSys.get("lblCount".concat(frm).toUpperCase())[LN]);
         } catch (Exception e) {
         }
     }
@@ -56,6 +69,8 @@ public class FrmPurchaseOrderAddDetails extends javax.swing.JDialog {
         lblPONO = new javax.swing.JLabel();
         btnFinished = new javax.swing.JButton();
         lblPONumber = new javax.swing.JLabel();
+        lblCount = new javax.swing.JLabel();
+        lblCountTotal = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -65,6 +80,9 @@ public class FrmPurchaseOrderAddDetails extends javax.swing.JDialog {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
@@ -105,6 +123,16 @@ public class FrmPurchaseOrderAddDetails extends javax.swing.JDialog {
         lblPONumber.setText("PO Number");
         lblPONumber.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        lblCount.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblCount.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCount.setText("Count");
+        lblCount.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        lblCountTotal.setFont(new java.awt.Font("Saysettha MX", 1, 12)); // NOI18N
+        lblCountTotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblCountTotal.setText("0");
+        lblCountTotal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -113,11 +141,16 @@ public class FrmPurchaseOrderAddDetails extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblFormName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblPONO, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblPONO, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPONumber, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblPONumber, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblCount, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnFinished, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)))
+                        .addComponent(lblCountTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnFinished, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGap(2, 2, 2))
         );
         jPanel1Layout.setVerticalGroup(
@@ -128,7 +161,9 @@ public class FrmPurchaseOrderAddDetails extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPONO)
                     .addComponent(btnFinished)
-                    .addComponent(lblPONumber))
+                    .addComponent(lblPONumber)
+                    .addComponent(lblCount)
+                    .addComponent(lblCountTotal))
                 .addGap(2, 2, 2))
         );
 
@@ -142,15 +177,22 @@ public class FrmPurchaseOrderAddDetails extends javax.swing.JDialog {
         jTable1.setForeground(new java.awt.Color(0, 51, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "lblProGroup_L1", "lblProGroup_L1", "lblProGroup_L2", "lblProGroup_Info"
+                "Barcode", "Barcode", "PackBarcode", "Product", "Qty", "Price", "TotalPrice"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -164,6 +206,22 @@ public class FrmPurchaseOrderAddDetails extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+            jTable1.getColumnModel().getColumn(1).setMinWidth(100);
+            jTable1.getColumnModel().getColumn(1).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(2).setMinWidth(100);
+            jTable1.getColumnModel().getColumn(2).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(3).setMinWidth(150);
+            jTable1.getColumnModel().getColumn(3).setMaxWidth(150);
+            jTable1.getColumnModel().getColumn(4).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(4).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(5).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(5).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(6).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(6).setMaxWidth(80);
+        }
 
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -198,6 +256,15 @@ public class FrmPurchaseOrderAddDetails extends javax.swing.JDialog {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        try {
+            showLang();
+            pcm.showFrmPurchaseOrderAddDetails(jTable1, model, lblPONumber.getText().trim());
+            pcm.showCountFrmPurchaseOrderAddDetails(lblPONumber.getText().trim());
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -247,6 +314,8 @@ public class FrmPurchaseOrderAddDetails extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblCount;
+    public static javax.swing.JLabel lblCountTotal;
     private javax.swing.JLabel lblFormName;
     private javax.swing.JLabel lblPONO;
     public static javax.swing.JLabel lblPONumber;

@@ -424,7 +424,7 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
             FrmPurchaseOrderAddDetails fad = new FrmPurchaseOrderAddDetails(null, true, x);
             fad.setVisible(true);
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }//GEN-LAST:event_btnPOActionPerformed
 

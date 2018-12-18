@@ -8,11 +8,13 @@ package modelManager;
 import Data.Msg;
 import java.util.HashMap;
 import java.sql.*;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.Purchase;
 import model.RemoveTableCount;
 import sysConnect.module;
+import views.FrmPurchaseOrderAddDetails;
 
 
 /**
@@ -148,9 +150,30 @@ public class PurchaseeManager {
             e.printStackTrace();
         }
     }
-    public void showFrmPurchaseOrderAddDetails(JTable table, DefaultTableModel model){
+    public void showFrmPurchaseOrderAddDetails(JTable table, DefaultTableModel model, String x){
         try {
-            
+            RemoveTableCount.RemoveTable(table, model);
+            sql = "Select actdid, barode, packBarcode, item_"+ LangType.Lang +" as items, qty, costprice, totalMoney \n" +
+                    "from vw_PODetails \n" +
+                    "where ActNo = N'"+ x +"'\n" +
+                    "order by item_"+ LangType.Lang +"";
+            ResultSet rs = c.createStatement().executeQuery(sql);
+            while (rs.next()){
+                model.addRow(new Object[]{rs.getString("actdid"), rs.getString("barode"), rs.getString("packbarcode"), rs.getString("items"), rs.getDouble("qty"), 
+                rs.getDouble("costprice"), rs.getDouble("totalMoney")});
+            }
+            table.setModel(model);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void showCountFrmPurchaseOrderAddDetails(String x){
+        try {
+            sql = "Select count(barode) as countbarcode from vw_PODetails where ActNo = N'"+ x +"'";
+            ResultSet rs = c.createStatement().executeQuery(sql);
+            if (rs.next()){
+                FrmPurchaseOrderAddDetails.lblCountTotal.setText(rs.getString("countbarcode"));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
