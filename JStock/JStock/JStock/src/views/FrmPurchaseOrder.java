@@ -59,12 +59,6 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
         } catch (Exception e) {
         }
     }
-    public void showClear(){
-        try {
-            
-        } catch (Exception e) {
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -303,7 +297,7 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-     
+        pcm.showSearchTbl_Activity(jTable1, model, txtSearch.getText().trim());
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void btnDataMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDataMouseEntered
