@@ -243,7 +243,14 @@ public class FrmPurchaseOrderAddDetails extends javax.swing.JDialog {
     }//GEN-LAST:event_btnFinishedMouseExited
 
     private void btnFinishedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinishedActionPerformed
-        
+        try {
+            pc.setActNo(lblPONumber.getText().trim());
+            pcm.updateActiviting(pc);
+            dispose();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnFinishedActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked

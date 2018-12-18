@@ -371,7 +371,7 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnData;
+    public static javax.swing.JButton btnData;
     private javax.swing.JButton btnNew;
     private javax.swing.JButton btnPrint;
     private javax.swing.JPanel jPanel1;

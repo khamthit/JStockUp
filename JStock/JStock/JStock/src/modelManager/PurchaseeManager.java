@@ -194,4 +194,22 @@ public class PurchaseeManager {
             e.printStackTrace();
         }
     }
+    public Boolean updateActiviting(Purchase pc){
+        try {
+            sql = "update act set act.Activing = 0\n" +
+                    "from tbl_ActivityDetails act \n" +
+                    "left join tbl_Activity a on a.ACTID = act.actid\n" +
+                    "where a.ActNo = (?)";
+            PreparedStatement p = c.prepareStatement(sql);
+            p.setString(1, pc.getActNo());
+            p.executeUpdate();
+            p.executeUpdate();
+            p.close();
+            msg.showMsgSucess();
+            return true;            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
