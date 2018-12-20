@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PO_L1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="01186bd5-c5e9-47b0-bdb8-0a7da4905760">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="2.143588810000002"/>
+	<property name="ireport.x" value="410"/>
+	<property name="ireport.y" value="257"/>
 	<parameter name="ActNo" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[exec pd_ReportPO_L1 @actNo = $P{ActNo}]]>
@@ -82,7 +82,7 @@
 				<text><![CDATA[ບາໂຄດ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="112" y="12" width="197" height="34" backcolor="#6699FF" uuid="8ee08bf9-b611-4001-a54f-de50f58c271b"/>
+				<reportElement mode="Opaque" x="112" y="12" width="196" height="34" backcolor="#6699FF" uuid="8ee08bf9-b611-4001-a54f-de50f58c271b"/>
 				<box>
 					<topPen lineWidth="0.75"/>
 					<bottomPen lineWidth="0.75"/>
@@ -93,23 +93,23 @@
 				<text><![CDATA[ສິນຄ້າ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="309" y="12" width="61" height="34" backcolor="#6699FF" uuid="fe10154a-a93d-49e1-bb2b-47f72d872f9e"/>
+				<reportElement mode="Opaque" x="308" y="12" width="61" height="34" backcolor="#6699FF" uuid="fe10154a-a93d-49e1-bb2b-47f72d872f9e"/>
 				<box>
 					<topPen lineWidth="0.75"/>
 					<bottomPen lineWidth="0.75"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Saysettha MX" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ຈໍານວນ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="370" y="12" width="75" height="34" backcolor="#6699FF" uuid="e148bd6f-3301-47a7-885c-81a6d99f7600"/>
+				<reportElement mode="Opaque" x="369" y="12" width="76" height="34" backcolor="#6699FF" uuid="e148bd6f-3301-47a7-885c-81a6d99f7600"/>
 				<box>
 					<topPen lineWidth="0.75"/>
 					<bottomPen lineWidth="0.75"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Saysettha MX" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ລາຄາ]]></text>
@@ -145,14 +145,14 @@
 			</textField>
 			<textField pattern="##,###">
 				<reportElement x="308" y="0" width="61" height="20" uuid="f510c418-6784-4311-9eab-df0bcdb83ea7"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Saysettha MX"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
 			</textField>
 			<textField pattern="##,###">
 				<reportElement x="369" y="0" width="75" height="20" uuid="ccb8c6f2-e1a1-4e6c-903f-8a1797a19455"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Saysettha MX"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Costprice}]]></textFieldExpression>
