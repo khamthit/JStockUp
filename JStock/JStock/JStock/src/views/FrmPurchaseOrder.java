@@ -362,7 +362,12 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPrintMouseExited
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-        // TODO add your handling code here:
+        try {
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void lblPOCheckMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPOCheckMouseEntered
