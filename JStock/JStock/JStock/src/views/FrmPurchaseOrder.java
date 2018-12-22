@@ -363,8 +363,11 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         try {
-            
-            
+            if (LangType.Lang == "L1"){
+                
+            }else{
+                
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
