@@ -150,12 +150,27 @@ public class PurchaseeManager {
             e.printStackTrace();
         }
     }
+    public void showTbl_ActivityActived(JTable table, DefaultTableModel model){
+        try {
+            RemoveTableCount.RemoveTable(table, model);
+            sql = "select createdate, actno, products, qty, totalPrice, ven_"+ LangType.Lang +" AS vendor, email, website, createUser from Vw_POActived\n" +
+                    "order by createDate Desc";
+            ResultSet rs = c.createStatement().executeQuery(sql);
+            while (rs.next()){
+                model.addRow(new Object[]{rs.getString("createdate"), rs.getString("actno"), rs.getDouble("products"), rs.getDouble("qty"), rs.getDouble("totalPrice"), 
+                rs.getString("vendor"), rs.getString("email"), rs.getString("website"), rs.getString("createUser")});
+            }
+            table.setModel(model);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public void showSearchTbl_Activity(JTable table, DefaultTableModel model, String x){
         try {
             RemoveTableCount.RemoveTable(table, model);
             sql = "select createdate, actno, products, qty, totalPrice, ven_"+ LangType.Lang +" AS vendor, email, website, createUser from vw_PO\n" +
                     "where Createdate like N'%"+ x +"%' or actno like N'%"+ x +"%' or email like N'%"+ x +"%' or website like N'%"+ x +"%' "
-                    + "or createuser like N'%"+ x +"%' or ven_"+ LangType.Lang +"  like N'%"+ x +"%' or qty like "+ x +" or totalPrice like "+ x +" order by createDate";
+                    + "or createuser like N'%"+ x +"%' or ven_"+ LangType.Lang +"  like N'%"+ x +"%' or qty = "+ x +" or totalPrice = "+ x +" order by createDate";
             ResultSet rs = c.createStatement().executeQuery(sql);
             while (rs.next()){
                 model.addRow(new Object[]{rs.getString("createdate"), rs.getString("actno"), rs.getDouble("products"), rs.getDouble("qty"), rs.getDouble("totalPrice"), 

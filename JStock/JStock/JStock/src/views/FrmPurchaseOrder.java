@@ -199,6 +199,11 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
                 lblPOCheckMouseEntered(evt);
             }
         });
+        lblPOCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblPOCheckActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -377,6 +382,17 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
     private void lblPOCheckMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPOCheckMouseEntered
 
     }//GEN-LAST:event_lblPOCheckMouseEntered
+
+    private void lblPOCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblPOCheckActionPerformed
+        try {
+            if (lblPOCheck.isSelected()==true){
+                pcm.showTbl_ActivityActived(jTable1, model);
+            }else{
+                btnData.doClick();
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_lblPOCheckActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
