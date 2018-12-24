@@ -108,7 +108,6 @@ public class FrmVendor extends javax.swing.JInternalFrame {
         txtvendorInfo = new javax.swing.JTextArea();
         lblAddress = new javax.swing.JLabel();
         lblCreateVendor = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/vendor.png"))); // NOI18N
@@ -294,9 +293,6 @@ public class FrmVendor extends javax.swing.JInternalFrame {
         lblCreateVendor.setText("Create Vendor");
         lblCreateVendor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jDateChooser1.setDateFormatString("dd-MM-yyyy");
-        jDateChooser1.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -342,8 +338,7 @@ public class FrmVendor extends javax.swing.JInternalFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtBankname, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                             .addComponent(txtBankAccount)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -401,10 +396,8 @@ public class FrmVendor extends javax.swing.JInternalFrame {
                     .addComponent(txtBankAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblBankAccount))
                 .addGap(2, 2, 2)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblCreateVendor, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(2, 2, 2)
+                .addComponent(lblCreateVendor, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAddress))
@@ -507,7 +500,6 @@ public class FrmVendor extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnData;
     private javax.swing.JButton btnSave;
-    public static com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

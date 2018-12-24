@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PO_L2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="01186bd5-c5e9-47b0-bdb8-0a7da4905760">
+	<property name="ireport.zoom" value="1.000000000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ActNo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[exec pd_ReportPO_L2 @actNo = $P{ActNo}]]>
+	</queryString>
+	<field name="Barode" class="java.lang.String"/>
+	<field name="actNo" class="java.lang.String"/>
+	<field name="item_l2" class="java.lang.String"/>
+	<field name="qty" class="java.lang.Double"/>
+	<field name="Costprice" class="java.lang.Double"/>
+	<field name="sumTotal" class="java.lang.Double"/>
+	<field name="Ven_L2" class="java.lang.String"/>
+	<field name="Phone1" class="java.lang.String"/>
+	<field name="phone2" class="java.lang.String"/>
+	<field name="Fax" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="WebSite" class="java.lang.String"/>
+	<field name="PostalCode" class="java.lang.String"/>
+	<field name="com_name_l1" class="java.lang.String"/>
+	<field name="com_name_l2" class="java.lang.String"/>
+	<field name="phone_1" class="java.lang.String"/>
+	<field name="phone_2" class="java.lang.String"/>
+	<field name="Com_address" class="java.lang.String"/>
+	<field name="Imag" class="java.lang.Object"/>
+	<variable name="Costprice_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{Costprice}]]></variableExpression>
+	</variable>
+	<variable name="sumTotal_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{sumTotal}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="25" width="555" height="25" uuid="9f10dccb-e930-4a4d-acb3-c6c8e9fd3727"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Purchase Details (PO)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="50" width="79" height="20" uuid="8acfe1a2-cba0-4ec6-a174-eae9254c6924"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" size="12"/>
+				</textElement>
+				<text><![CDATA[Vendor Name]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="84" y="50" width="225" height="20" uuid="3105101a-a51c-475a-86d3-71113b99b7cf"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Saysettha MX" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Ven_L2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="0" width="554" height="25" uuid="2d9a2a4f-9f67-4e13-bfba-93c976712770"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{com_name_l2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="353" y="50" width="188" height="20" uuid="0b4e0d93-c765-45d9-8717-7cf1a0948e2f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Bill No  "+ $F{actNo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="12" width="112" height="34" backcolor="#6699FF" uuid="aed32919-a118-496f-941a-46fd90ebc1c1"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Saysettha MX" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Barcode]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="112" y="12" width="196" height="34" backcolor="#6699FF" uuid="8ee08bf9-b611-4001-a54f-de50f58c271b"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Saysettha MX" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Product]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="308" y="12" width="61" height="34" backcolor="#6699FF" uuid="fe10154a-a93d-49e1-bb2b-47f72d872f9e"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="369" y="12" width="76" height="34" backcolor="#6699FF" uuid="e148bd6f-3301-47a7-885c-81a6d99f7600"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="445" y="12" width="111" height="34" backcolor="#6699FF" uuid="4825fc29-066a-43ab-a139-b23ce85ace5f"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="111" height="20" uuid="c62dc972-603a-421b-a6a3-5c73c6018949"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Saysettha MX" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" "+$F{Barode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="0" width="197" height="20" uuid="b29dfe40-31a4-4c59-97d3-27b718e11ba9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Saysettha MX" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{item_l2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="##,###">
+				<reportElement x="308" y="0" width="61" height="20" uuid="f510c418-6784-4311-9eab-df0bcdb83ea7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
+			</textField>
+			<textField pattern="##,### ">
+				<reportElement x="369" y="0" width="75" height="20" uuid="ccb8c6f2-e1a1-4e6c-903f-8a1797a19455"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Costprice}]]></textFieldExpression>
+			</textField>
+			<textField pattern="##,### ">
+				<reportElement x="444" y="0" width="111" height="20" uuid="9f8f2783-d9ee-40ab-8a90-682b425d9d74"/>
+				<box>
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sumTotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="78714614-fc82-4c96-ba89-b58232ba6f9a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Saysettha MX"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="369" height="28" backcolor="#6699FF" uuid="3f6d7cce-c2c2-4e49-b186-94458de7bdb3"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ລວມທັງໝົດ ]]></text>
+			</staticText>
+			<textField pattern="##,### ">
+				<reportElement mode="Opaque" x="369" y="0" width="76" height="28" backcolor="#6699FF" uuid="3e9b54cc-3854-4560-9229-ebdf02bf375c"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Costprice_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="##,### ">
+				<reportElement mode="Opaque" x="445" y="0" width="110" height="28" backcolor="#6699FF" uuid="4faff2d4-bda1-44fa-8f71-a34ee9ce6711"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sumTotal_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -18,7 +18,14 @@ import model.TableHeader;
 import modelManager.LangType;
 import static modelManager.LangType.LN;
 import modelManager.PurchaseeManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import sysConnect.module;
+import Data.PathReport;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JDialog;
+import net.sf.jasperreports.swing.JRViewer;
 
 /**
  *
@@ -31,31 +38,33 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
      */
     Connection c = module.getConnection();
     String sql, frm;
-    HashMap<String, Object[]>hmStock = null;
+    HashMap<String, Object[]> hmStock = null;
     Purchase pc = new Purchase();
     PurchaseeManager pcm = new PurchaseeManager();
     DefaultTableModel model = new DefaultTableModel();
+
     public FrmPurchaseOrder() {
         initComponents();
         frm = this.getClass().getSimpleName();
-        model = (DefaultTableModel)jTable1.getModel();
+        model = (DefaultTableModel) jTable1.getModel();
         TableHeader.TableHeaderFont(jTable1);
         TableHeader.TableHeader_0(jTable1, frm);
         LangType.showLang();
-        LangType.showLangForm();     
+        LangType.showLangForm();
         DefaultCellRenderer cellRender = new DefaultCellRenderer();
         cellRender.setHorizontalAlignment(JLabel.CENTER);
         jTable1.getColumnModel().getColumn(2).setCellRenderer(cellRender);
         jTable1.getColumnModel().getColumn(3).setCellRenderer(cellRender);
-    }    
-    public void showLang(){
+    }
+
+    public void showLang() {
         try {
             lblFormName.setText(LangType.hmapForm.get(frm.toUpperCase())[LN]);
             lblSearch.setText(LangType.hmapSys.get("lblsearch".concat(frm).toUpperCase())[LN]);
             btnData.setText(LangType.hmapSys.get("btnData".concat(frm).toUpperCase())[LN]);
             btnNew.setText(LangType.hmapSys.get("btnNew".concat(frm).toUpperCase())[LN]);
             btnPrint.setText(LangType.hmapSys.get("btnPrint".concat(frm).toUpperCase())[LN]);
-            lblPOCheck.setText(LangType.hmapSys.get("lblPoCheck".concat(frm).toUpperCase())[LN]);            
+            lblPOCheck.setText(LangType.hmapSys.get("lblPoCheck".concat(frm).toUpperCase())[LN]);
         } catch (Exception e) {
         }
     }
@@ -319,7 +328,7 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
         try {
             int index = jTable1.getSelectedRow();
             String x = jTable1.getValueAt(index, 1).toString().trim();
-            if (evt.getClickCount()==2){
+            if (evt.getClickCount() == 2) {
                 FrmPurchaseOrderAddDetails.Actid = x;
                 FrmPurchaseOrderAddDetails fd = new FrmPurchaseOrderAddDetails(null, closable, x);
                 fd.setVisible(true);
@@ -363,10 +372,22 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         try {
-            if (LangType.Lang == "L1"){
-                
-            }else{
-                
+            int index = jTable1.getSelectedRow();
+            String acno = jTable1.getValueAt(index, 0).toString();
+            JDialog dl = new JDialog();
+            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+            int w = (int) d.getWidth();
+            int h = (int) d.getHeight();
+            setBounds(0, 0, w, h);
+            Map param = new HashMap();
+            param.put("ActNo", acno);
+            if (LangType.Lang == "L1") {
+                dl.setTitle("");
+                JasperPrint print = JasperFillManager.fillReport(PathReport.path + "PO_L1.Jasper", param, c);
+                dl.setContentPane(new JRViewer(print));
+                dl.setVisible(true);
+            } else {
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -374,7 +395,7 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void lblPOCheckMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPOCheckMouseEntered
-        
+
     }//GEN-LAST:event_lblPOCheckMouseEntered
 
 
