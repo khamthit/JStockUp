@@ -10,6 +10,6 @@ package Data;
  * @author Admin
  */
 public class PathReport {
-    public static String path = "/src/Report/";    
+    public static String path = "src/Report/";    
     
 }

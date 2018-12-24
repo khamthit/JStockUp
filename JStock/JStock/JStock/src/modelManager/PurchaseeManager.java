@@ -139,7 +139,7 @@ public class PurchaseeManager {
         try {
             RemoveTableCount.RemoveTable(table, model);
             sql = "select createdate, actno, products, qty, totalPrice, ven_"+ LangType.Lang +" AS vendor, email, website, createUser from vw_PO\n" +
-                    "order by createDate";
+                    "order by createDate Desc";
             ResultSet rs = c.createStatement().executeQuery(sql);
             while (rs.next()){
                 model.addRow(new Object[]{rs.getString("createdate"), rs.getString("actno"), rs.getDouble("products"), rs.getDouble("qty"), rs.getDouble("totalPrice"), 

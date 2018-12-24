@@ -417,12 +417,17 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
                     pcm.insertActivityDetails(pc);
                 }
             }
-            msg.showMsgSucess();
             pcm.showTbl_Vendor(jTable1, model);
-            String x = pc.getActNo();
+            String x = "";
+            x = pc.getActNo();
             FrmPurchaseOrderAddDetails.Actid = x;
-            FrmPurchaseOrderAddDetails fad = new FrmPurchaseOrderAddDetails(null, true, x);
-            fad.setVisible(true);
+            if (x.equals("")){
+                msg.showMsgWarming();
+            }else{
+                FrmPurchaseOrderAddDetails fad = new FrmPurchaseOrderAddDetails(null, true, x);
+                fad.setVisible(true);
+            }
+            
         } catch (Exception e) {
             //e.printStackTrace();
         }

@@ -371,27 +371,7 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPrintMouseExited
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-        try {
-            int index = jTable1.getSelectedRow();
-            String acno = jTable1.getValueAt(index, 0).toString();
-            JDialog dl = new JDialog();
-            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-            int w = (int) d.getWidth();
-            int h = (int) d.getHeight();
-            setBounds(0, 0, w, h);
-            Map param = new HashMap();
-            param.put("ActNo", acno);
-            if (LangType.Lang == "L1") {
-                dl.setTitle("");
-                JasperPrint print = JasperFillManager.fillReport(PathReport.path + "PO_L1.Jasper", param, c);
-                dl.setContentPane(new JRViewer(print));
-                dl.setVisible(true);
-            } else {
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void lblPOCheckMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPOCheckMouseEntered

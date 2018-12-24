@@ -6,8 +6,15 @@
 package views;
 
 import Data.ButtonColor;
+import Data.PathReport;
 import com.l2fprod.common.swing.renderer.DefaultCellRenderer;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 import model.Purchase;
@@ -16,6 +23,9 @@ import modelManager.LangType;
 import static modelManager.LangType.LN;
 import modelManager.PurchaseeManager;
 import sysConnect.module;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.swing.JRViewer;
 
 /**
  *
@@ -24,19 +34,20 @@ import sysConnect.module;
 public class FrmPurchaseOrderAddDetails extends javax.swing.JDialog {
 
     Connection c = module.getConnection();
-    String frm,sql;
+    String frm, sql;
     DefaultTableModel model = new DefaultTableModel();
     public static String Actid;
     Purchase pc = new Purchase();
     PurchaseeManager pcm = new PurchaseeManager();
+
     public FrmPurchaseOrderAddDetails(java.awt.Frame parent, boolean modal, String xy) {
         super(parent, modal);
         initComponents();
         frm = this.getClass().getSimpleName();
-        model = (DefaultTableModel)jTable1.getModel();
+        model = (DefaultTableModel) jTable1.getModel();
         LangType.showLang();
         LangType.showLangForm();
-        lblPONumber.setText(Actid); 
+        lblPONumber.setText(Actid);
         TableHeader.TableHeaderFont(jTable1);
         TableHeader.TableHeader_0(jTable1, frm);
         DefaultCellRenderer cellRender = new DefaultCellRenderer();
@@ -45,11 +56,12 @@ public class FrmPurchaseOrderAddDetails extends javax.swing.JDialog {
         jTable1.getColumnModel().getColumn(5).setCellRenderer(cellRender);
         jTable1.getColumnModel().getColumn(6).setCellRenderer(cellRender);
     }
-    public void showLang(){
+
+    public void showLang() {
         try {
             lblFormName.setText(LangType.hmapForm.get(frm.toUpperCase())[LN]);
             btnFinished.setText(LangType.hmapSys.get("btnfinished".concat(frm).toUpperCase())[LN]);
-            lblPONO.setText(LangType.hmapSys.get("lblpono".concat(frm).toUpperCase())[LN]);       
+            lblPONO.setText(LangType.hmapSys.get("lblpono".concat(frm).toUpperCase())[LN]);
             lblCount.setText(LangType.hmapSys.get("lblCount".concat(frm).toUpperCase())[LN]);
         } catch (Exception e) {
         }
@@ -246,15 +258,31 @@ public class FrmPurchaseOrderAddDetails extends javax.swing.JDialog {
         try {
             pc.setActNo(lblPONumber.getText().trim());
             pcm.updateActiviting(pc);
-            dispose();
-            
+            DialogReport dl = new DialogReport(null, rootPaneCheckingEnabled);
+            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+            int w = (int) d.getWidth();
+            int h = (int) d.getHeight();
+            dl.setBounds(0, 0, w, h);
+            Map param = new HashMap();
+            param.put("ActNo", lblPONumber.getText().trim());
+            if (LangType.Lang == "L1") {
+                dl.setTitle("ລາຍງານ ການສັ່ງຊື້ (PO)");
+                JasperPrint print = JasperFillManager.fillReport(PathReport.path + "PO_L1.Jasper", param, c);
+                dl.setContentPane(new JRViewer(print));
+                dl.setVisible(true);
+            } else {
+                dl.setTitle("Purchase Details (PO)");
+                JasperPrint print = JasperFillManager.fillReport(PathReport.path + "PO_L2.Jasper", param, c);
+                dl.setContentPane(new JRViewer(print));
+                dl.setVisible(true);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_btnFinishedActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-       
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
