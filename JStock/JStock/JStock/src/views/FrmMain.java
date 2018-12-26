@@ -81,6 +81,7 @@ public class FrmMain extends javax.swing.JFrame {
             btnItem.setText(hmapSys.get("btnItem".concat(frm).toUpperCase())[LN]);
             btnVendor.setText(hmapSys.get("btnVendor".concat(frm).toUpperCase())[LN]);
             btnPurchaseOrder.setText(hmapSys.get("btnPurchaseOrder".concat(frm).toUpperCase())[LN]);
+            btnReceivePO.setText(hmapSys.get("btnReceivePO".concat(frm).toUpperCase())[LN]);
             
             mm.showCompany(m);
             lblAddress.setText(m.getAddress());
@@ -150,6 +151,7 @@ public class FrmMain extends javax.swing.JFrame {
         btnVendor = new com.xzq.osc.JocHyperlink();
         TaskProductAcitivity = new com.l2fprod.common.swing.JTaskPaneGroup();
         btnPurchaseOrder = new com.xzq.osc.JocHyperlink();
+        btnReceivePO = new com.xzq.osc.JocHyperlink();
         jLabel1 = new javax.swing.JLabel();
         panelSetForm = new javax.swing.JPanel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
@@ -729,6 +731,20 @@ public class FrmMain extends javax.swing.JFrame {
         });
         TaskProductAcitivity.getContentPane().add(btnPurchaseOrder);
 
+        btnReceivePO.setActiveColor(new java.awt.Color(102, 0, 102));
+        btnReceivePO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Receive_Order.png"))); // NOI18N
+        btnReceivePO.setRolloverColor(new java.awt.Color(102, 0, 102));
+        btnReceivePO.setText("Receive Order");
+        btnReceivePO.setUnvisitColor(new java.awt.Color(51, 51, 255));
+        btnReceivePO.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        btnReceivePO.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnReceivePO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReceivePOActionPerformed(evt);
+            }
+        });
+        TaskProductAcitivity.getContentPane().add(btnReceivePO);
+
         jTaskPane1.add(TaskProductAcitivity);
 
         jPanel7.add(jTaskPane1, java.awt.BorderLayout.CENTER);
@@ -1113,6 +1129,10 @@ public class FrmMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnPurchaseOrderActionPerformed
 
+    private void btnReceivePOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceivePOActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReceivePOActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1165,6 +1185,7 @@ public class FrmMain extends javax.swing.JFrame {
     private com.xzq.osc.JocHyperlink btnProSize;
     private com.xzq.osc.JocHyperlink btnProUnit;
     private com.xzq.osc.JocHyperlink btnPurchaseOrder;
+    private com.xzq.osc.JocHyperlink btnReceivePO;
     private javax.swing.JButton btnSetting;
     private com.xzq.osc.JocHyperlink btnVendor;
     private com.xzq.osc.JocHyperlink btnWareHouse;
