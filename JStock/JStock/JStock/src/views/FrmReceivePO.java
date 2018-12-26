@@ -6,18 +6,35 @@
 package views;
 
 import Data.ButtonColor;
-
-/**
- *
- * @author Admin
- */
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
+import model.Receive;
+import model.TableHeader;
+import modelManager.LangType;
+import modelManager.ReceiveManager;
+import sysConnect.module;
 public class FrmReceivePO extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form FrmReceivePO
-     */
+    Connection c = module.getConnection();
+    String sql, frm;
+    DefaultTableModel model = new DefaultTableModel();
+    Receive rc = new Receive();
+    ReceiveManager rcm = new ReceiveManager();
     public FrmReceivePO() {
         initComponents();
+        frm = this.getClass().getSimpleName();
+        model = (DefaultTableModel)jTable1.getModel();
+        LangType.showLang();
+        LangType.showLangForm();
+        TableHeader.TableHeaderFont(jTable1);
+        TableHeader.TableHeader_1(jTable1, frm);
+    }
+    public void showLang(){
+        try {
+            lblFormName.setText(LangType.hmapForm.get(frm.toUpperCase())[LangType.LN]);
+            btnData.setText(LangType.hmapSys.get("btnData".concat(frm).toUpperCase())[LangType.LN]);
+            lblSearch.setText(LangType.hmapSys.get("lblSearch".concat(frm).toUpperCase())[LangType.LN]);            
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -40,6 +57,23 @@ public class FrmReceivePO extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Receive_Order.png"))); // NOI18N
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -50,7 +84,7 @@ public class FrmReceivePO extends javax.swing.JInternalFrame {
 
         lblSearch.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
         lblSearch.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblSearch.setText("ActNo");
+        lblSearch.setText("Search");
         lblSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtSearch.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
@@ -91,10 +125,9 @@ public class FrmReceivePO extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSearch)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnData, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btnData, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(2, 2, 2))
         );
         jPanel1Layout.setVerticalGroup(
@@ -119,14 +152,14 @@ public class FrmReceivePO extends javax.swing.JInternalFrame {
         jTable1.setForeground(new java.awt.Color(0, 51, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "lblProGroup_L1", "lblProGroup_L1", "lblProGroup_L2", "lblProGroup_Info"
+                "ActNo", "Vendor", "Phone1", "Phone2", "Fax", "Email", "CreateDate", "Createuser"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -141,6 +174,24 @@ public class FrmReceivePO extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(100);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(1).setMinWidth(130);
+            jTable1.getColumnModel().getColumn(1).setMaxWidth(130);
+            jTable1.getColumnModel().getColumn(2).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(2).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(3).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(3).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(4).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(4).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(5).setMinWidth(130);
+            jTable1.getColumnModel().getColumn(5).setMaxWidth(130);
+            jTable1.getColumnModel().getColumn(6).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(6).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(7).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(7).setMaxWidth(80);
+        }
 
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -165,12 +216,20 @@ public class FrmReceivePO extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDataMouseExited
 
     private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
-       
+        rcm.showReceive(jTable1, model);
     }//GEN-LAST:event_btnDataActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        try {
+            showLang();
+            rcm.showReceive(jTable1, model);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_formInternalFrameOpened
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

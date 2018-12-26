@@ -37,6 +37,21 @@ public class TableHeader {
         }
         
     }
+    public static void TableHeader_1(JTable table, String frm){
+        try {
+            JTableHeader th = table.getTableHeader();
+            TableColumnModel tcm = th.getColumnModel();
+            table.getColumnCount();
+            for(int i=1; i < table.getColumnCount(); i++){
+                TableColumn tc = tcm.getColumn(i);            
+                tc.setHeaderValue(LangType.hmapSys.get(table.getModel().getColumnName(i).concat(frm).toUpperCase()) [LN]);                
+            }
+            table.setAutoCreateRowSorter(true);
+            th.repaint();
+        } catch (Exception e) {
+        }
+        
+    }
     public static void RemoveTable(JTable table, DefaultTableModel model){
         try {
             int indx = table.getRowCount()-1;
