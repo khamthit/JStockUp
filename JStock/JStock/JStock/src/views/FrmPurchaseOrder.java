@@ -6,6 +6,7 @@
 package views;
 
 import Data.ButtonColor;
+import Data.Msg;
 import com.l2fprod.common.swing.renderer.DefaultCellRenderer;
 import java.sql.Connection;
 import java.util.HashMap;
@@ -42,7 +43,7 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
     Purchase pc = new Purchase();
     PurchaseeManager pcm = new PurchaseeManager();
     DefaultTableModel model = new DefaultTableModel();
-
+    Msg msg = new Msg();
     public FrmPurchaseOrder() {
         initComponents();
         frm = this.getClass().getSimpleName();
@@ -376,7 +377,23 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPrintMouseExited
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-        
+        try {
+            int index = jTable1.getSelectedRow();
+            String x = "";
+            x = jTable1.getValueAt(index, 1).toString();
+            if (lblPOCheck.isSelected()==true){
+                if (x.equals("")){
+                    msg.showMsgWarming();
+                }else{
+                    
+                }
+            }else{
+                
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void lblPOCheckMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPOCheckMouseEntered
