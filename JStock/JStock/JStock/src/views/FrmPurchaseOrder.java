@@ -23,6 +23,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import sysConnect.module;
 import Data.PathReport;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JDialog;
@@ -44,6 +45,7 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
     PurchaseeManager pcm = new PurchaseeManager();
     DefaultTableModel model = new DefaultTableModel();
     Msg msg = new Msg();
+
     public FrmPurchaseOrder() {
         initComponents();
         frm = this.getClass().getSimpleName();
@@ -198,6 +200,9 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
         lblPOCheck.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblPOCheckMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblPOCheckMouseExited(evt);
             }
         });
         lblPOCheck.addActionListener(new java.awt.event.ActionListener() {
@@ -379,37 +384,56 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         try {
             int index = jTable1.getSelectedRow();
-            String x = "";
+            String x = "0";
             x = jTable1.getValueAt(index, 1).toString();
-            if (lblPOCheck.isSelected()==true){
-                if (x.equals("")){
+            if (lblPOCheck.isSelected() == true) {
+                if (x.equals("0")) {
                     msg.showMsgWarming();
-                }else{
-                    
+                } else {
+                    Map param = new HashMap();
+                    param.put("ActNo", x);
+                    JDialog dl = new JDialog();
+                    Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+                    int w = (int) d.getWidth();
+                    int h = (int) d.getHeight();
+                    dl.setBounds(0, 0, w, h);
+                    dl.setTitle("Purchase Details");
+                    if (LangType.Lang == "L1") {
+                        JasperPrint print = JasperFillManager.fillReport(PathReport.path + "PO_L1.Jasper", param, c);
+                        dl.getContentPane().add(new JRViewer(print));
+                        dl.setVisible(true);
+                    } else {
+                        JasperPrint print = JasperFillManager.fillReport(PathReport.path + "PO_L2.Jasper", param, c);
+                        dl.getContentPane().add(new JRViewer(print));
+                        dl.setVisible(true);
+                    }
                 }
-            }else{
-                
+            } else {
+                msg.showMsgCheckCombo();
             }
-            
         } catch (Exception e) {
-            e.printStackTrace();
+            msg.showMsgWarming();
         }
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void lblPOCheckMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPOCheckMouseEntered
-
+        lblPOCheck.setBackground(new Color(180,150,255));
     }//GEN-LAST:event_lblPOCheckMouseEntered
 
     private void lblPOCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblPOCheckActionPerformed
         try {
-            if (lblPOCheck.isSelected()==true){
+            if (lblPOCheck.isSelected() == true) {
                 pcm.showTbl_ActivityActived(jTable1, model);
-            }else{
+            } else {
                 btnData.doClick();
             }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_lblPOCheckActionPerformed
+
+    private void lblPOCheckMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPOCheckMouseExited
+        lblPOCheck.setBackground(new Color(255,255,255));
+    }//GEN-LAST:event_lblPOCheckMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

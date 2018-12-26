@@ -58,5 +58,15 @@ public class Msg {
         } catch (Exception e) {
         }
     }
+    public void showMsgCheckCombo(){
+        try {
+            if ("L1".equals(Lang)) {
+                JOptionPane.showMessageDialog(null, "<html><p><font color=\"#000\"size=\"3\" face=\"Saysettha OT\">" + "ເລືອກຂໍ້ມູນກ່ອນ" + "</font></p></html>", "ແຈ້ງເຕືອນ", JOptionPane.ERROR_MESSAGE, iconFalse);
+            } else {
+                JOptionPane.showMessageDialog(null, "<html><p><font color=\"#000\"size=\"3\" face=\"Saysettha OT\">" + "Check Data First" + "</font></p></html>", "MESSAGE", JOptionPane.ERROR_MESSAGE, iconFalse);
+            }
+        } catch (Exception e) {
+        }
+    }
     
 }
