@@ -13,26 +13,30 @@ import model.TableHeader;
 import modelManager.LangType;
 import modelManager.ReceiveManager;
 import sysConnect.module;
+
 public class FrmReceivePO extends javax.swing.JInternalFrame {
+
     Connection c = module.getConnection();
     String sql, frm;
     DefaultTableModel model = new DefaultTableModel();
     Receive rc = new Receive();
     ReceiveManager rcm = new ReceiveManager();
+
     public FrmReceivePO() {
         initComponents();
         frm = this.getClass().getSimpleName();
-        model = (DefaultTableModel)jTable1.getModel();
+        model = (DefaultTableModel) jTable1.getModel();
         LangType.showLang();
         LangType.showLangForm();
         TableHeader.TableHeaderFont(jTable1);
         TableHeader.TableHeader_1(jTable1, frm);
     }
-    public void showLang(){
+
+    public void showLang() {
         try {
             lblFormName.setText(LangType.hmapForm.get(frm.toUpperCase())[LangType.LN]);
             btnData.setText(LangType.hmapSys.get("btnData".concat(frm).toUpperCase())[LangType.LN]);
-            lblSearch.setText(LangType.hmapSys.get("lblSearch".concat(frm).toUpperCase())[LangType.LN]);            
+            lblSearch.setText(LangType.hmapSys.get("lblSearch".concat(frm).toUpperCase())[LangType.LN]);
         } catch (Exception e) {
         }
     }
@@ -220,7 +224,17 @@ public class FrmReceivePO extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDataActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        
+        try {
+            if (evt.getClickCount() == 2) {
+                int index = jTable1.getSelectedRow();
+                String actno = jTable1.getValueAt(index, 0).toString();
+                FrmReceivePO_Get fpg = new FrmReceivePO_Get(null, closable);
+                fpg.lblPONumber.setText(actno);
+                fpg.setVisible(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
