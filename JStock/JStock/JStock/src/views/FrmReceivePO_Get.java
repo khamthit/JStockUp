@@ -7,25 +7,39 @@ package views;
 
 import Data.ButtonColor;
 import java.sql.*;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import model.ReceivePO_Get;
 import model.TableHeader;
 import modelManager.LangType;
 import static modelManager.LangType.LN;
+import modelManager.ReceivePO_GetManager;
 import sysConnect.module;
+
 public class FrmReceivePO_Get extends javax.swing.JDialog {
+
     Connection c = module.getConnection();
     String sql, frm;
     DefaultTableModel model = new DefaultTableModel();
+    ReceivePO_Get rpg = new ReceivePO_Get();
+    ReceivePO_GetManager rpgm = new ReceivePO_GetManager();
+
     public FrmReceivePO_Get(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         frm = this.getClass().getSimpleName();
-        model = (DefaultTableModel)jTable1.getModel();
+        model = (DefaultTableModel) jTable1.getModel();
         TableHeader.TableHeaderFont(jTable1);
+        TableHeader.TableHeader_0(jTable1, frm);
         LangType.showLang();
         LangType.showLangForm();
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        jTable1.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
     }
-    public void showLang(){
+
+    public void showLang() {
         try {
             lblFormName.setText(LangType.hmapForm.get(frm.toUpperCase())[LN]);
             btnSucess.setText(LangType.hmapSys.get("btnSucess".concat(frm).toUpperCase())[LN]);
@@ -175,18 +189,48 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jTable1.setFont(new java.awt.Font("Saysettha OT", 0, 12)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Saysettha OT", 0, 10)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(0, 51, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "lblBarcode", "lblBarcode", "Item", "Unit", "Costprice", "Qty"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jTable1.setRowHeight(30);
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+            jTable1.getColumnModel().getColumn(1).setMinWidth(150);
+            jTable1.getColumnModel().getColumn(1).setMaxWidth(150);
+            jTable1.getColumnModel().getColumn(2).setMinWidth(200);
+            jTable1.getColumnModel().getColumn(2).setMaxWidth(200);
+            jTable1.getColumnModel().getColumn(3).setMinWidth(100);
+            jTable1.getColumnModel().getColumn(3).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(4).setMinWidth(100);
+            jTable1.getColumnModel().getColumn(4).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(5).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(5).setMaxWidth(80);
+        }
 
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -197,7 +241,7 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-        
+
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void btnDataMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDataMouseEntered
@@ -212,12 +256,13 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDataMouseExited
 
     private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
-        
+
     }//GEN-LAST:event_btnDataActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
             showLang();
+            rpgm.showReceivePO_Get(jTable1, model, lblPONumber.getText().trim());
         } catch (Exception e) {
         }
     }//GEN-LAST:event_formWindowOpened
