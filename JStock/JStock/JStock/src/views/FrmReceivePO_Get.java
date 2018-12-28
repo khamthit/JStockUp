@@ -243,7 +243,7 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-
+        rpgm.showSearchReceivePO_Get(jTable1, model, lblPONumber.getText().trim(), txtSearch.getText().trim());
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void btnDataMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDataMouseEntered
