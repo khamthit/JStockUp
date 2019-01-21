@@ -42,6 +42,7 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     HashMap<String, Object[]> hmStock = null;
     HashMap<String, Object[]> hmVendor = null;
     Msg msg = new Msg();
+    String ActNumber = "";
 
     public FrmPurchaseOrderAdd(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -125,6 +126,9 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -172,7 +176,7 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
 
         lblStock.setBackground(new java.awt.Color(255, 255, 255));
         lblStock.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblStock.setText("Stock");
+        lblStock.setText("Purchase");
         lblStock.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,18 +241,18 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblFormName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(lblStock, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblChooserVendor, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
-                        .addComponent(cbbVendorStock, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblStock)
+                        .addGap(2, 2, 2)
+                        .addComponent(lblChooserVendor, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbbVendorStock, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
                         .addComponent(btnPO, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
-                        .addComponent(btnImport, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnImport, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
-                        .addComponent(lblSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
@@ -324,10 +328,10 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
             jTable1.getColumnModel().getColumn(4).setMaxWidth(200);
             jTable1.getColumnModel().getColumn(5).setMinWidth(200);
             jTable1.getColumnModel().getColumn(5).setMaxWidth(200);
-            jTable1.getColumnModel().getColumn(6).setMinWidth(80);
-            jTable1.getColumnModel().getColumn(6).setMaxWidth(80);
-            jTable1.getColumnModel().getColumn(7).setMinWidth(60);
-            jTable1.getColumnModel().getColumn(7).setMaxWidth(60);
+            jTable1.getColumnModel().getColumn(6).setMinWidth(70);
+            jTable1.getColumnModel().getColumn(6).setMaxWidth(70);
+            jTable1.getColumnModel().getColumn(7).setMinWidth(50);
+            jTable1.getColumnModel().getColumn(7).setMaxWidth(50);
         }
 
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -357,7 +361,7 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDataMouseExited
 
     private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
-         pcm.showTbl_Vendor(jTable1, model);
+        pcm.showTbl_Vendor(jTable1, model);
     }//GEN-LAST:event_btnDataActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -385,19 +389,19 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
         try {
             //this is insert activity
             String indx = cbbVendorStock.getSelectedItem().toString();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date dt = new Date();
-            String sd = sdf.format(dt);
-            Date now = new Date();
-            now = sdf.parse(sd);
-            MaxIDTbl.maxID("actid", "tbl_activity");
-            MaxIDTbl.maxID("actno", "tbl_activity");
-            pc.setActid(MaxIDTbl.getID);
-            pc.setActNo("0" + MaxIDTbl.getID);
-            pc.setActivityCreateDate(ConvertDateSQL.convertUtilDateToSqlDate(now));
-            pc.setCreateUser(FrmMain.txtUsername.getText());
-            pc.setActivityRec_type("PO");
-            pcm.insertActivity(pc);
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//            Date dt = new Date();
+//            String sd = sdf.format(dt);
+//            Date now = new Date();
+//            now = sdf.parse(sd);
+//            MaxIDTbl.maxID("actid", "tbl_activity");
+//            MaxIDTbl.maxID("actno", "tbl_activity");
+//            pc.setActid(MaxIDTbl.getID);
+//            pc.setActNo("0" + MaxIDTbl.getID);
+//            pc.setActivityCreateDate(ConvertDateSQL.convertUtilDateToSqlDate(now));
+//            pc.setCreateUser(FrmMain.txtUsername.getText());
+//            pc.setActivityRec_type("PO");
+//            pcm.insertActivity(pc);
             int row = jTable1.getRowCount();
             for (int i = 0; i < row; i++) {
                 Boolean ch = (Boolean) jTable1.getValueAt(i, 1);
@@ -421,12 +425,12 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
             String x = "";
             x = pc.getActNo();
             FrmPurchaseOrderAddDetails.Actid = x;
-            if (x.equals("")){
+            if (x.equals("")) {
                 msg.showMsgWarming();
-            }else{
+            } else {
                 FrmPurchaseOrderAddDetails fad = new FrmPurchaseOrderAddDetails(null, true, x);
                 fad.setVisible(true);
-            }            
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -449,6 +453,8 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
             showLang();
             pcm.showTbl_Vendor(jTable1, model);
             showMapVendor();
+            btnPO.setEnabled(false);
+            btnImport.setEnabled(false);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_formWindowOpened
@@ -456,17 +462,46 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     private void lblStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblStockActionPerformed
         try {
             if (lblStock.isSelected() == true) {
-                showMapStock();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date dt = new Date();
+                String sd = sdf.format(dt);
+                Date now = new Date();
+                now = sdf.parse(sd);
+                MaxIDTbl.maxID("actid", "tbl_activity");
+                MaxIDTbl.maxID("actno", "tbl_activity");
+                pc.setActid(MaxIDTbl.getID);
+                pc.setActNo("0" + MaxIDTbl.getID);
+                pc.setActivityCreateDate(ConvertDateSQL.convertUtilDateToSqlDate(now));
+                pc.setCreateUser(FrmMain.txtUsername.getText());
+                pc.setActivityRec_type("PO");
+                pc.setCheckMark(true);
+                pcm.insertActivity(pc);
+                String sLang = "";
+                if (LangType.Lang == "L1") {
+                    sLang = " - ເລກບິນ ";
+                } else {
+                    sLang = " - Bill No ";
+                }
+                ActNumber = pc.getActNo();
+                lblFormName.setText(lblFormName.getText() + sLang + pc.getActNo());
                 pcm.showTbl_Vendor(jTable1, model);
-                btnPO.setEnabled(false);
-            } else {
-                showMapVendor();
                 btnPO.setEnabled(true);
+                btnImport.setEnabled(true);
+            } else {
+                pcm.deleteActivity(ActNumber);
+                pcm.deleteActivityDetail(ActNumber);
+                btnPO.setEnabled(false);
+                btnImport.setEnabled(false);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_lblStockActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        pcm.deleteActivityDetail(ActNumber);
+        pcm.deleteActivity(ActNumber);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

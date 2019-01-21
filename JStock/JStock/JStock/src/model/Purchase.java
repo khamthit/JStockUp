@@ -40,6 +40,15 @@ public class Purchase {
     float Saleprice;
     Boolean ActivityDetails_RecType;
     Boolean Activiing;
+    Boolean checkMark;
+
+    public void setCheckMark(Boolean checkMark) {
+        this.checkMark = checkMark;
+    }
+
+    public Boolean getCheckMark() {
+        return checkMark;
+    }
 
     public int getActid() {
         return Actid;
