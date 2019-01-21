@@ -60,7 +60,6 @@ public class module {
 //        Connection c = DriverManager.getConnection(db,us,pas);
 //        return c;  
 
-            //String url = "jdbc:sqlserver://DESKTOP-CBH2504\\ADMIN; databaseName = JStock";
             String url = "jdbc:sqlserver://LAPTOP-UJFR8QFD\\ADMIN:1433; databaseName = JStock";
             us = "sa";
             pas = "operator@123";
