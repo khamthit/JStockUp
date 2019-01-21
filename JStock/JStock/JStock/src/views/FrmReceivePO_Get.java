@@ -258,7 +258,7 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDataMouseExited
 
     private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
-
+         rpgm.showReceivePO_Get(jTable1, model, lblPONumber.getText().trim());
     }//GEN-LAST:event_btnDataActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

@@ -43,7 +43,7 @@ public class ReceivePO_GetManager {
                     "left join tbl_Vendor v on v.venid = act.venid\n" +
                     "left join tbl_Item it on it.ITID = act.itid\n" +
                     "left join tbl_ProUnit pu on pu.PUID = it.PUID\n" +
-                    "where act.barode like N'"+ x1 +"%' or act.item_"+LangType.Lang+" like N'"+ x1 +"%' or pu.unit_"+ LangType.Lang +" like N'"+ x1 +"%' or act.CostPrice = "+ x1 +" "
+                    "where act.barode like N'"+ x1 +"%' or act.item_"+LangType.Lang+" like N'%"+ x1 +"%' or pu.unit_"+ LangType.Lang +" like N'%"+ x1 +"%' "
                     + "group by act.actdid, act.Barode, ac.actNo, act.item_"+ LangType.Lang +", act.Costprice, receive_qty, pu.Unit_"+ LangType.Lang +" "
                     + "having ac.ActNo = N'"+ x +"'";
             ResultSet rs = c.createStatement().executeQuery(sql);
