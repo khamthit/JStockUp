@@ -6,8 +6,12 @@
 package views;
 
 import Data.ButtonColor;
+import java.awt.event.KeyEvent;
 import java.sql.*;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
 import javax.swing.JLabel;
+import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.ReceivePO_Get;
@@ -218,6 +222,11 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
         });
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jTable1.setRowHeight(30);
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable1KeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setMinWidth(0);
@@ -280,6 +289,21 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
     private void btnSucessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSucessActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSucessActionPerformed
+
+    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+        try {
+            if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+                InputMap im = jTable1.getInputMap();
+                im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER,0), "Action.NextCell");
+                im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB,0), "Action.NextCell");
+                ActionMap am = jTable1.getActionMap();
+
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTable1KeyPressed
 
     /**
      * @param args the command line arguments

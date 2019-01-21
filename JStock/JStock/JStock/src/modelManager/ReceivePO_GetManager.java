@@ -7,6 +7,7 @@ package modelManager;
 import java.sql.*;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import model.ReceivePO_Get;
 import model.RemoveTableCount;
 import sysConnect.module;
 
@@ -54,5 +55,13 @@ public class ReceivePO_GetManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public Boolean getProduct(ReceivePO_Get rcg){
+        try {
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

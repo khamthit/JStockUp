@@ -357,7 +357,7 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDataMouseExited
 
     private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
-
+         pcm.showTbl_Vendor(jTable1, model);
     }//GEN-LAST:event_btnDataActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -426,10 +426,9 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
             }else{
                 FrmPurchaseOrderAddDetails fad = new FrmPurchaseOrderAddDetails(null, true, x);
                 fad.setVisible(true);
-            }
-            
+            }            
         } catch (Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
         }
     }//GEN-LAST:event_btnPOActionPerformed
 
@@ -459,8 +458,10 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
             if (lblStock.isSelected() == true) {
                 showMapStock();
                 pcm.showTbl_Vendor(jTable1, model);
+                btnPO.setEnabled(false);
             } else {
                 showMapVendor();
+                btnPO.setEnabled(true);
             }
         } catch (Exception e) {
             e.printStackTrace();
