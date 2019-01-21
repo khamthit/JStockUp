@@ -318,8 +318,8 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setMinWidth(0);
             jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
-            jTable1.getColumnModel().getColumn(1).setMinWidth(80);
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(1).setMinWidth(60);
+            jTable1.getColumnModel().getColumn(1).setMaxWidth(60);
             jTable1.getColumnModel().getColumn(2).setMinWidth(120);
             jTable1.getColumnModel().getColumn(2).setMaxWidth(120);
             jTable1.getColumnModel().getColumn(3).setMinWidth(120);
@@ -367,10 +367,7 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         try {
             int index = jTable1.getSelectedRow();
-            Boolean x = (Boolean) jTable1.getValueAt(index, 1);
-            if (x == true) {
-
-            }
+            jTable1.setValueAt(true, index, 1);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -488,6 +485,7 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
                 btnPO.setEnabled(true);
                 btnImport.setEnabled(true);
             } else {
+                showLang();
                 pcm.deleteActivity(ActNumber);
                 pcm.deleteActivityDetail(ActNumber);
                 btnPO.setEnabled(false);
