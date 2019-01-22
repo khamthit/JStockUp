@@ -98,10 +98,8 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
             btnData.setText(LangType.hmapSys.get("btnData".concat(frm).toUpperCase())[LN]);
             btnImport.setText(LangType.hmapSys.get("btnimport".concat(frm).toUpperCase())[LN]);
             btnPO.setText(LangType.hmapSys.get("btnPO".concat(frm).toUpperCase())[LN]);
-            lblSearch.setText(LangType.hmapSys.get("lblSearch".concat(frm).toUpperCase())[LN]);
             lblStock.setText(LangType.hmapSys.get("lblStock".concat(frm).toUpperCase())[LN]);
             lblChooserVendor.setText(LangType.hmapSys.get("lblchooservendor".concat(frm).toUpperCase())[LN]);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -118,8 +116,6 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         lblFormName = new javax.swing.JLabel();
-        lblSearch = new javax.swing.JLabel();
-        txtSearch = new javax.swing.JTextField();
         btnData = new javax.swing.JButton();
         lblStock = new javax.swing.JCheckBox();
         lblChooserVendor = new javax.swing.JLabel();
@@ -148,22 +144,9 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
         lblFormName.setText("Purchase Order");
         lblFormName.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        lblSearch.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        lblSearch.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblSearch.setText("Search");
-        lblSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        txtSearch.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        txtSearch.setToolTipText("");
-        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSearchKeyReleased(evt);
-            }
-        });
-
         btnData.setBackground(new java.awt.Color(255, 255, 255));
         btnData.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        btnData.setText("Refresh");
+        btnData.setText("Data");
         btnData.setContentAreaFilled(false);
         btnData.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnData.setOpaque(true);
@@ -258,12 +241,9 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
                         .addComponent(btnPO, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
                         .addComponent(btnImport, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(lblSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(btnData)))
+                        .addComponent(btnData, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(181, 181, 181)))
                 .addGap(2, 2, 2))
         );
         jPanel1Layout.setVerticalGroup(
@@ -272,8 +252,6 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
                 .addComponent(lblFormName, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSearch)
                     .addComponent(btnData)
                     .addComponent(lblStock)
                     .addComponent(lblChooserVendor)
@@ -356,13 +334,6 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-        try {
-            pcm.showSearchTbl_Vendor(jTable1, model, txtSearch.getText().trim());
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_txtSearchKeyReleased
 
     private void btnDataMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDataMouseEntered
         try {
@@ -501,8 +472,8 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     }//GEN-LAST:event_lblStockActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        pcm.deleteActivityDetail(ActNumber);
-        pcm.deleteActivity(ActNumber);
+//        pcm.deleteActivityDetail(ActNumber);
+//        pcm.deleteActivity(ActNumber);
     }//GEN-LAST:event_formWindowClosed
 
     private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
@@ -589,8 +560,6 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblChooserVendor;
     private javax.swing.JLabel lblFormName;
-    private javax.swing.JLabel lblSearch;
     private javax.swing.JCheckBox lblStock;
-    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
