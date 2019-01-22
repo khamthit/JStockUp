@@ -403,7 +403,7 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
             }
             lblStock.setEnabled(true);
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }//GEN-LAST:event_btnPOActionPerformed
 
@@ -497,6 +497,9 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
             }
             if (evt.getKeyCode()==KeyEvent.VK_ENTER){
                 model.addRow(new Object[]{"", true, "", "", "", "", 0, ""});
+            }
+            if (evt.getKeyCode()==KeyEvent.VK_DELETE){
+                model.removeRow(i);
             }
         } catch (Exception e) {
             e.printStackTrace();

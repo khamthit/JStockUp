@@ -6,6 +6,7 @@
 package views;
 
 import Data.ButtonColor;
+import Data.ConvertDateSQL;
 import Data.Msg;
 import com.l2fprod.common.swing.renderer.DefaultCellRenderer;
 import java.sql.Connection;
@@ -26,6 +27,8 @@ import Data.PathReport;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JDialog;
 import net.sf.jasperreports.swing.JRViewer;
 
@@ -287,6 +290,11 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
                 jTable1MouseClicked(evt);
             }
         });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable1KeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setMinWidth(100);
@@ -434,6 +442,25 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
     private void lblPOCheckMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPOCheckMouseExited
         lblPOCheck.setBackground(new Color(255,255,255));
     }//GEN-LAST:event_lblPOCheckMouseExited
+
+    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+        try {
+            int indx = jTable1.getSelectedRow();
+            String x = jTable1.getValueAt(indx, 1).toString().trim();
+            SimpleDateFormat dff = new SimpleDateFormat("yyyy-MM-dd");
+            Date now = new Date();
+            String sd = dff.format(now);
+            Date dt = new Date();
+            dt = dff.parse(sd);
+            pc.setActivityCreateDate(ConvertDateSQL.convertUtilDateToSqlDate(dt));
+            pc.setCreateUser(FrmMain.txtUsername.getText().trim());            
+            pcm.voidTbl_ActivityDetails(x, pc);            
+            msg.showMsgSucess();
+            pcm.showTbl_Activity(jTable1, model);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTable1KeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -208,7 +208,6 @@ public class PurchaseeManager {
             e.printStackTrace();
         }
     }
-
     public void showTbl_ActivityActived(JTable table, DefaultTableModel model) {
         try {
             RemoveTableCount.RemoveTable(table, model);
@@ -241,7 +240,6 @@ public class PurchaseeManager {
             e.printStackTrace();
         }
     }
-
     public void showFrmPurchaseOrderAddDetails(JTable table, DefaultTableModel model, String x) {
         try {
             RemoveTableCount.RemoveTable(table, model);
@@ -271,7 +269,6 @@ public class PurchaseeManager {
             e.printStackTrace();
         }
     }
-
     public Boolean updateActiviting(Purchase pc) {
         try {
             sql = "update act set act.Activing = 0\n"
@@ -289,5 +286,23 @@ public class PurchaseeManager {
             e.printStackTrace();
         }
         return false;
+    } 
+    public Boolean voidTbl_ActivityDetails(String x, Purchase pc){
+        try {
+            sql = "update atc set atc.activing = 0, atc.void = 1, atc.voidDate = ?, atc.voidbyUser = ? \n" +
+                    "from tbl_activitydetails atc\n" +
+                    "left join tbl_activity act on act.actid = atc.actid\n" +
+                    "where act.actno = '"+ x +"'";
+            PreparedStatement p = c.prepareStatement(sql);
+            p.setDate(1, (Date) pc.getActivityCreateDate());
+            p.setString(2, pc.getCreateUser());
+            p.executeUpdate();
+            p.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
+    
 }
