@@ -91,18 +91,17 @@ public class PurchaseeManager {
             ResultSet rs = c.createStatement().executeQuery(sql);
             while (rs.next()){
                 table.setValueAt(rs.getString("itid"), indx, 0);
-                table.setValueAt(rs.getBoolean("chooser"), indx, 1);
+                table.setValueAt(true, indx, 1);
                 table.setValueAt(rs.getString("barode"), indx, 2);
                 table.setValueAt(rs.getString("packbarcode"), indx, 3);
                 table.setValueAt(rs.getString("Item_L1"), indx, 4);
                 table.setValueAt(rs.getString("item_L2"), indx, 5);
                 table.setValueAt(rs.getDouble("costprice"), indx, 6);
-                table.setValueAt(0, indx, 7);
-                table.editCellAt(indx, 7, null);
+                //table.setValueAt(1, indx, 7);
                 table.requestFocus();                
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
     
