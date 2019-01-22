@@ -6,12 +6,16 @@
 package modelManager;
 
 import Data.Msg;
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import javax.swing.ActionMap;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.InputMap;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 import model.Purchase;
 import model.RemoveTableCount;
@@ -63,7 +67,6 @@ public class PurchaseeManager {
         }
         return null;
     }
-
     public void showTbl_Items(JTable table, DefaultTableModel model) {
         try {
             RemoveTableCount.RemoveTable(table, model);
@@ -80,6 +83,29 @@ public class PurchaseeManager {
             e.printStackTrace();
         }
     }
+    public void showItemKey(String x, JTable table){
+        try {  
+            int indx = table.getSelectedRow();
+            sql = "Select itid, 'false' as chooser, barode, packBarcode, item_l1, item_l2, costprice, '' As Qty from tbl_Item\n"
+                    + "where itemuse = 1 and barode = N'"+ x +"'";
+            ResultSet rs = c.createStatement().executeQuery(sql);
+            while (rs.next()){
+                table.setValueAt(rs.getString("itid"), indx, 0);
+                table.setValueAt(rs.getBoolean("chooser"), indx, 1);
+                table.setValueAt(rs.getString("barode"), indx, 2);
+                table.setValueAt(rs.getString("packbarcode"), indx, 3);
+                table.setValueAt(rs.getString("Item_L1"), indx, 4);
+                table.setValueAt(rs.getString("item_L2"), indx, 5);
+                table.setValueAt(rs.getDouble("costprice"), indx, 6);
+                table.setValueAt(0, indx, 7);
+                table.editCellAt(indx, 7, null);
+                table.requestFocus();                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     public void showSearchTbl_Vendor(JTable table, DefaultTableModel model, String x) {
         try {
             RemoveTableCount.RemoveTable(table, model);

@@ -446,8 +446,8 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
             showLang();
-           // pcm.showTbl_Items(jTable1, model);
-            showMapVendor();
+            // pcm.showTbl_Items(jTable1, model);
+
             btnPO.setEnabled(false);
             btnImport.setEnabled(false);
         } catch (Exception e) {
@@ -479,15 +479,16 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
                 }
                 ActNumber = pc.getActNo();
                 lblFormName.setText(lblFormName.getText() + sLang + pc.getActNo());
-                //pcm.showTbl_Items(jTable1, model);
                 btnPO.setEnabled(true);
                 btnImport.setEnabled(true);
+                showMapVendor();
             } else {
                 showLang();
                 pcm.deleteActivityDetail(ActNumber);
                 pcm.deleteActivity(ActNumber);
                 btnPO.setEnabled(false);
                 btnImport.setEnabled(false);
+                cbbVendorStock.setSelectedItem(null);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -506,6 +507,9 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
                 int i = jTable1.getSelectedRow();
                 Boolean ch = (Boolean) jTable1.getValueAt(i, 1);
                 if (ch == true) {
+                    String x = jTable1.getValueAt(i, 2).toString().trim();
+                    pcm.showItemKey(x, jTable1);
+                    
                     MaxIDTbl.maxID("Actdid", "tbl_activityDetails");
                     pc.setItid(Integer.parseInt(jTable1.getValueAt(i, 0).toString()));
                     pc.setVenid(Integer.parseInt(hmVendor.get(indx)[0].toString()));
@@ -530,10 +534,10 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
         try {
             int indx = jTable1.getSelectedRow();
-            String x = jTable1.getValueAt(indx, 2).toString();
             
+
             
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
