@@ -9,6 +9,7 @@ import Data.Msg;
 import java.util.HashMap;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -63,7 +64,7 @@ public class PurchaseeManager {
         return null;
     }
 
-    public void showTbl_Vendor(JTable table, DefaultTableModel model) {
+    public void showTbl_Items(JTable table, DefaultTableModel model) {
         try {
             RemoveTableCount.RemoveTable(table, model);
             sql = "Select itid, 'false' as chooser, barode, packBarcode, item_l1, item_l2, costprice, '' As Qty from tbl_Item\n"
@@ -79,7 +80,6 @@ public class PurchaseeManager {
             e.printStackTrace();
         }
     }
-
     public void showSearchTbl_Vendor(JTable table, DefaultTableModel model, String x) {
         try {
             RemoveTableCount.RemoveTable(table, model);

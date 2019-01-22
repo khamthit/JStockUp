@@ -8,6 +8,7 @@ package views;
 import Data.ButtonColor;
 import Data.ConvertDateSQL;
 import Data.Msg;
+import java.awt.event.KeyEvent;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -296,7 +297,7 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
                 java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false, false, false, true
+                false, false, true, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -312,6 +313,14 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
+            }
+        });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTable1KeyReleased(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -361,13 +370,14 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDataMouseExited
 
     private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
-        pcm.showTbl_Vendor(jTable1, model);
+        pcm.showTbl_Items(jTable1, model);
     }//GEN-LAST:event_btnDataActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         try {
             int index = jTable1.getSelectedRow();
             jTable1.setValueAt(true, index, 1);
+            lblStock.setEnabled(false);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -385,40 +395,27 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     private void btnPOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPOActionPerformed
         try {
             //this is insert activity
-            String indx = cbbVendorStock.getSelectedItem().toString();
-//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//            Date dt = new Date();
-//            String sd = sdf.format(dt);
-//            Date now = new Date();
-//            now = sdf.parse(sd);
-//            MaxIDTbl.maxID("actid", "tbl_activity");
-//            MaxIDTbl.maxID("actno", "tbl_activity");
-//            pc.setActid(MaxIDTbl.getID);
-//            pc.setActNo("0" + MaxIDTbl.getID);
-//            pc.setActivityCreateDate(ConvertDateSQL.convertUtilDateToSqlDate(now));
-//            pc.setCreateUser(FrmMain.txtUsername.getText());
-//            pc.setActivityRec_type("PO");
-//            pcm.insertActivity(pc);
-            int row = jTable1.getRowCount();
-            for (int i = 0; i < row; i++) {
-                Boolean ch = (Boolean) jTable1.getValueAt(i, 1);
-                if (ch == true) {
-                    MaxIDTbl.maxID("Actdid", "tbl_activityDetails");
-                    pc.setItid(Integer.parseInt(jTable1.getValueAt(i, 0).toString()));
-                    pc.setVenid(Integer.parseInt(hmVendor.get(indx)[0].toString()));
-                    pc.setBarcode(jTable1.getValueAt(i, 2).toString().trim());
-                    pc.setPackbarcode(jTable1.getValueAt(i, 3).toString().trim());
-                    pc.setItem_l1(jTable1.getValueAt(i, 4).toString().trim());
-                    pc.setItem_l2(jTable1.getValueAt(i, 5).toString().trim());
-                    pc.setCostprice(Float.parseFloat(jTable1.getValueAt(i, 6).toString()));
-                    pc.setQty(Float.parseFloat(jTable1.getValueAt(i, 7).toString()));
-                    pc.setActivityRec_type("PO");
-                    pc.setActiviing(true);
-                    pc.setActdid(MaxIDTbl.getID);
-                    pcm.insertActivityDetails(pc);
-                }
-            }
-            pcm.showTbl_Vendor(jTable1, model);
+//            String indx = cbbVendorStock.getSelectedItem().toString();
+//            int row = jTable1.getRowCount();
+//            for (int i = 0; i < row; i++) {
+//                Boolean ch = (Boolean) jTable1.getValueAt(i, 1);
+//                if (ch == true) {
+//                    MaxIDTbl.maxID("Actdid", "tbl_activityDetails");
+//                    pc.setItid(Integer.parseInt(jTable1.getValueAt(i, 0).toString()));
+//                    pc.setVenid(Integer.parseInt(hmVendor.get(indx)[0].toString()));
+//                    pc.setBarcode(jTable1.getValueAt(i, 2).toString().trim());
+//                    pc.setPackbarcode(jTable1.getValueAt(i, 3).toString().trim());
+//                    pc.setItem_l1(jTable1.getValueAt(i, 4).toString().trim());
+//                    pc.setItem_l2(jTable1.getValueAt(i, 5).toString().trim());
+//                    pc.setCostprice(Float.parseFloat(jTable1.getValueAt(i, 6).toString()));
+//                    pc.setQty(Float.parseFloat(jTable1.getValueAt(i, 7).toString()));
+//                    pc.setActivityRec_type("PO");
+//                    pc.setActiviing(true);
+//                    pc.setActdid(MaxIDTbl.getID);
+//                    pcm.insertActivityDetails(pc);
+//                }
+//            }
+            pcm.showTbl_Items(jTable1, model);
             String x = "";
             x = pc.getActNo();
             FrmPurchaseOrderAddDetails.Actid = x;
@@ -428,6 +425,7 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
                 FrmPurchaseOrderAddDetails fad = new FrmPurchaseOrderAddDetails(null, true, x);
                 fad.setVisible(true);
             }
+            lblStock.setEnabled(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -448,7 +446,7 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
             showLang();
-            pcm.showTbl_Vendor(jTable1, model);
+           // pcm.showTbl_Items(jTable1, model);
             showMapVendor();
             btnPO.setEnabled(false);
             btnImport.setEnabled(false);
@@ -481,13 +479,13 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
                 }
                 ActNumber = pc.getActNo();
                 lblFormName.setText(lblFormName.getText() + sLang + pc.getActNo());
-                pcm.showTbl_Vendor(jTable1, model);
+                //pcm.showTbl_Items(jTable1, model);
                 btnPO.setEnabled(true);
                 btnImport.setEnabled(true);
             } else {
                 showLang();
-                pcm.deleteActivity(ActNumber);
                 pcm.deleteActivityDetail(ActNumber);
+                pcm.deleteActivity(ActNumber);
                 btnPO.setEnabled(false);
                 btnImport.setEnabled(false);
             }
@@ -500,6 +498,46 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
         pcm.deleteActivityDetail(ActNumber);
         pcm.deleteActivity(ActNumber);
     }//GEN-LAST:event_formWindowClosed
+
+    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+        try {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                String indx = cbbVendorStock.getSelectedItem().toString();
+                int i = jTable1.getSelectedRow();
+                Boolean ch = (Boolean) jTable1.getValueAt(i, 1);
+                if (ch == true) {
+                    MaxIDTbl.maxID("Actdid", "tbl_activityDetails");
+                    pc.setItid(Integer.parseInt(jTable1.getValueAt(i, 0).toString()));
+                    pc.setVenid(Integer.parseInt(hmVendor.get(indx)[0].toString()));
+                    pc.setBarcode(jTable1.getValueAt(i, 2).toString().trim());
+                    pc.setPackbarcode(jTable1.getValueAt(i, 3).toString().trim());
+                    pc.setItem_l1(jTable1.getValueAt(i, 4).toString().trim());
+                    pc.setItem_l2(jTable1.getValueAt(i, 5).toString().trim());
+                    pc.setCostprice(Float.parseFloat(jTable1.getValueAt(i, 6).toString()));
+                    pc.setQty(Float.parseFloat(jTable1.getValueAt(i, 7).toString()));
+                    pc.setActivityRec_type("PO");
+                    pc.setActiviing(true);
+                    pc.setActdid(MaxIDTbl.getID);
+                    pcm.insertActivityDetails(pc);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTable1KeyPressed
+
+    private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
+        try {
+            int indx = jTable1.getSelectedRow();
+            String x = jTable1.getValueAt(indx, 2).toString();
+            
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTable1KeyReleased
 
     /**
      * @param args the command line arguments
