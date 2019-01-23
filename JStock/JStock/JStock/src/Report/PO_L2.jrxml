@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PO_L2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="01186bd5-c5e9-47b0-bdb8-0a7da4905760">
-	<property name="ireport.zoom" value="1.000000000000001"/>
+	<property name="ireport.zoom" value="1.1000000000000016"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="ActNo" class="java.lang.String"/>
@@ -45,14 +45,14 @@
 				<text><![CDATA[Purchase Details (PO)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="50" width="79" height="20" uuid="8acfe1a2-cba0-4ec6-a174-eae9254c6924"/>
+				<reportElement x="1" y="50" width="83" height="20" uuid="8acfe1a2-cba0-4ec6-a174-eae9254c6924"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Saysettha MX" size="12"/>
 				</textElement>
 				<text><![CDATA[Vendor Name]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="84" y="50" width="225" height="20" uuid="3105101a-a51c-475a-86d3-71113b99b7cf"/>
+				<reportElement x="87" y="50" width="225" height="20" uuid="3105101a-a51c-475a-86d3-71113b99b7cf"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Saysettha MX" size="12"/>
 				</textElement>
@@ -170,7 +170,7 @@
 				<textFieldExpression><![CDATA[$F{Costprice}]]></textFieldExpression>
 			</textField>
 			<textField pattern="##,### ">
-				<reportElement x="444" y="0" width="111" height="20" uuid="9f8f2783-d9ee-40ab-8a90-682b425d9d74"/>
+				<reportElement x="444" y="0" width="112" height="20" uuid="9f8f2783-d9ee-40ab-8a90-682b425d9d74"/>
 				<box>
 					<leftPen lineWidth="0.0"/>
 					<rightPen lineWidth="0.75"/>
@@ -194,7 +194,7 @@
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="28" splitType="Stretch">
+		<band height="143" splitType="Stretch">
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="0" width="369" height="28" backcolor="#6699FF" uuid="3f6d7cce-c2c2-4e49-b186-94458de7bdb3"/>
 				<box>
@@ -219,7 +219,7 @@
 				<textFieldExpression><![CDATA[$V{Costprice_1}]]></textFieldExpression>
 			</textField>
 			<textField pattern="##,### ">
-				<reportElement mode="Opaque" x="445" y="0" width="110" height="28" backcolor="#6699FF" uuid="4faff2d4-bda1-44fa-8f71-a34ee9ce6711"/>
+				<reportElement mode="Opaque" x="445" y="0" width="111" height="28" backcolor="#6699FF" uuid="4faff2d4-bda1-44fa-8f71-a34ee9ce6711"/>
 				<box>
 					<topPen lineWidth="0.75"/>
 					<bottomPen lineWidth="0.75"/>
@@ -230,6 +230,34 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$V{sumTotal_1}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="177" y="34" width="132" height="20" uuid="80a00fd8-99e8-49a3-9db7-16c4b801b92d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" size="12"/>
+				</textElement>
+				<text><![CDATA[Approve by]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="112" width="131" height="20" uuid="c0ac304d-b708-4f05-ad5b-c026248a066e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" size="12"/>
+				</textElement>
+				<text><![CDATA[Date : .... /.... /........]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="34" width="132" height="20" uuid="98911275-eb5a-4398-842b-12c2f792f762"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" size="12"/>
+				</textElement>
+				<text><![CDATA[Purchase by]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="181" y="112" width="131" height="20" uuid="f5f8c8ae-f0bf-4359-a245-be6ce24b23fc"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" size="12"/>
+				</textElement>
+				<text><![CDATA[Date : .... /.... /........]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PO_L1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="01186bd5-c5e9-47b0-bdb8-0a7da4905760">
-	<property name="ireport.zoom" value="1.000000000000001"/>
+	<property name="ireport.zoom" value="1.1000000000000025"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="ActNo" class="java.lang.String"/>
@@ -45,7 +45,7 @@
 				<text><![CDATA[ລາຍງານໃບສັ່ງຊື້ຕາມຫົວເລກບິນ (ແບບລະອຽດ)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="-9" y="50" width="83" height="20" uuid="8acfe1a2-cba0-4ec6-a174-eae9254c6924"/>
+				<reportElement x="0" y="50" width="84" height="20" uuid="8acfe1a2-cba0-4ec6-a174-eae9254c6924"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Saysettha MX" size="12"/>
 				</textElement>
@@ -170,7 +170,7 @@
 				<textFieldExpression><![CDATA[$F{Costprice}]]></textFieldExpression>
 			</textField>
 			<textField pattern="##,### ">
-				<reportElement x="444" y="0" width="111" height="20" uuid="9f8f2783-d9ee-40ab-8a90-682b425d9d74"/>
+				<reportElement x="444" y="0" width="112" height="20" uuid="9f8f2783-d9ee-40ab-8a90-682b425d9d74"/>
 				<box>
 					<leftPen lineWidth="0.0"/>
 					<rightPen lineWidth="0.75"/>
@@ -182,19 +182,8 @@
 			</textField>
 		</band>
 	</detail>
-	<pageFooter>
-		<band height="20" splitType="Stretch">
-			<textField>
-				<reportElement x="455" y="0" width="100" height="20" uuid="78714614-fc82-4c96-ba89-b58232ba6f9a"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Saysettha MX"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-		</band>
-	</pageFooter>
 	<summary>
-		<band height="28" splitType="Stretch">
+		<band height="148" splitType="Stretch">
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="0" width="369" height="28" backcolor="#6699FF" uuid="3f6d7cce-c2c2-4e49-b186-94458de7bdb3"/>
 				<box>
@@ -219,7 +208,7 @@
 				<textFieldExpression><![CDATA[$V{Costprice_1}]]></textFieldExpression>
 			</textField>
 			<textField pattern="##,### ">
-				<reportElement mode="Opaque" x="445" y="0" width="110" height="28" backcolor="#6699FF" uuid="4faff2d4-bda1-44fa-8f71-a34ee9ce6711"/>
+				<reportElement mode="Opaque" x="445" y="0" width="111" height="28" backcolor="#6699FF" uuid="4faff2d4-bda1-44fa-8f71-a34ee9ce6711"/>
 				<box>
 					<topPen lineWidth="0.75"/>
 					<bottomPen lineWidth="0.75"/>
@@ -230,6 +219,34 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$V{sumTotal_1}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="0" y="38" width="132" height="20" uuid="683e1ee2-b3dd-48fc-9878-93f76de0702d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" size="12"/>
+				</textElement>
+				<text><![CDATA[ຜູ້ສັ່ງຊື້]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="116" width="131" height="20" uuid="3296064e-8ef9-4f0d-9d4f-f1988ac6636b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" size="12"/>
+				</textElement>
+				<text><![CDATA[ວັນເດືອນປີ : .... /.... /........]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="177" y="116" width="131" height="20" uuid="335708f3-25ff-4987-9579-44a9ab2c7009"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" size="12"/>
+				</textElement>
+				<text><![CDATA[ວັນເດືອນປີ : .... /.... /........]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="176" y="38" width="132" height="20" uuid="66a71d0c-f3d5-49d7-a3b7-40d3cbf5b017"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Saysettha MX" size="12"/>
+				</textElement>
+				<text><![CDATA[ຜູ້ອະນຸມັດ]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>
