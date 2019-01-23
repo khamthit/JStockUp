@@ -348,7 +348,6 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
         try {
             showLang();
             // pcm.showTbl_Items(jTable1, model);
-
             btnPO.setEnabled(false);
         } catch (Exception e) {
         }

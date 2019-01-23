@@ -358,8 +358,7 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
             if (evt.getClickCount() == 2) {
                 if (lblPOCheck.isSelected() == true) {
                     int idx = jTable1.getSelectedRow();
-                    String actNo = jTable1.getValueAt(idx, 1).toString().trim();
-                    
+                    String actNo = jTable1.getValueAt(idx, 1).toString().trim();                    
                     FrmReport dl = new FrmReport();
                     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
                     int w = (int) d.getWidth();

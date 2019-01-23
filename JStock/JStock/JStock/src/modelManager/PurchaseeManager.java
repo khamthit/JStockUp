@@ -87,7 +87,7 @@ public class PurchaseeManager {
         try {  
             int indx = table.getSelectedRow();
             sql = "Select itid, 'false' as chooser, barode, packBarcode, item_l1, item_l2, costprice, '' As Qty from tbl_Item\n"
-                    + "where itemuse = 1 and barode = N'"+ x +"'";
+                    + "where itemuse = 1 and barode = N'"+ x +"' or item_l1 like N'"+ x +"%' or item_l2 like N'"+ x +"%'";
             ResultSet rs = c.createStatement().executeQuery(sql);
             while (rs.next()){
                 table.setValueAt(rs.getString("itid"), indx, 0);
