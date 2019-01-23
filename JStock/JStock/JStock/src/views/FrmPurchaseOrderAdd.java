@@ -95,7 +95,6 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     public void showLang() {
         try {
             lblFormName.setText(LangType.hmapForm.get(frm.toUpperCase())[LN]);
-            btnData.setText(LangType.hmapSys.get("btnData".concat(frm).toUpperCase())[LN]);
             btnImport.setText(LangType.hmapSys.get("btnimport".concat(frm).toUpperCase())[LN]);
             btnPO.setText(LangType.hmapSys.get("btnPO".concat(frm).toUpperCase())[LN]);
             lblStock.setText(LangType.hmapSys.get("lblStock".concat(frm).toUpperCase())[LN]);
@@ -116,7 +115,6 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         lblFormName = new javax.swing.JLabel();
-        btnData = new javax.swing.JButton();
         lblStock = new javax.swing.JCheckBox();
         lblChooserVendor = new javax.swing.JLabel();
         cbbVendorStock = new javax.swing.JComboBox<>();
@@ -143,26 +141,6 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
         lblFormName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFormName.setText("Purchase Order");
         lblFormName.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        btnData.setBackground(new java.awt.Color(255, 255, 255));
-        btnData.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        btnData.setText("Data");
-        btnData.setContentAreaFilled(false);
-        btnData.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnData.setOpaque(true);
-        btnData.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnDataMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnDataMouseExited(evt);
-            }
-        });
-        btnData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDataActionPerformed(evt);
-            }
-        });
 
         lblStock.setBackground(new java.awt.Color(255, 255, 255));
         lblStock.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
@@ -241,9 +219,7 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
                         .addComponent(btnPO, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
                         .addComponent(btnImport, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnData, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(181, 181, 181)))
+                        .addGap(276, 276, 276)))
                 .addGap(2, 2, 2))
         );
         jPanel1Layout.setVerticalGroup(
@@ -252,7 +228,6 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
                 .addComponent(lblFormName, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnData)
                     .addComponent(lblStock)
                     .addComponent(lblChooserVendor)
                     .addComponent(cbbVendorStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -334,21 +309,6 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnDataMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDataMouseEntered
-        try {
-            ButtonColor.showButtonEnter(btnData);
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_btnDataMouseEntered
-
-    private void btnDataMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDataMouseExited
-        ButtonColor.showButtonExited(btnData);
-    }//GEN-LAST:event_btnDataMouseExited
-
-    private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
-        pcm.showTbl_Items(jTable1, model);
-    }//GEN-LAST:event_btnDataActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         try {
@@ -553,7 +513,6 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnData;
     private javax.swing.JButton btnImport;
     private javax.swing.JButton btnPO;
     private javax.swing.JComboBox<String> cbbVendorStock;

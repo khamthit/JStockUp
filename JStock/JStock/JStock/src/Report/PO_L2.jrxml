@@ -205,7 +205,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Saysettha MX" isBold="true"/>
 				</textElement>
-				<text><![CDATA[ລວມທັງໝົດ ]]></text>
+				<text><![CDATA[TOTAL  ]]></text>
 			</staticText>
 			<textField pattern="##,### ">
 				<reportElement mode="Opaque" x="369" y="0" width="76" height="28" backcolor="#6699FF" uuid="3e9b54cc-3854-4560-9229-ebdf02bf375c"/>

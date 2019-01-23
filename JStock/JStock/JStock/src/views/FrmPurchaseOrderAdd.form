@@ -57,9 +57,7 @@
                           <Component id="btnPO" min="-2" pref="88" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                           <Component id="btnImport" min="-2" pref="80" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnData" min="-2" pref="89" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="181" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="276" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
@@ -72,7 +70,6 @@
                   <Component id="lblFormName" min="-2" pref="39" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnData" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblStock" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblChooserVendor" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cbbVendorStock" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -96,27 +93,6 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnData">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Saysettha MX" size="12" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Data"/>
-            <Property name="contentAreaFilled" type="boolean" value="false"/>
-            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
-            </Property>
-            <Property name="opaque" type="boolean" value="true"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnDataMouseEntered"/>
-            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnDataMouseExited"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDataActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="lblStock">
           <Properties>
