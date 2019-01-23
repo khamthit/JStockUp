@@ -10,6 +10,7 @@ import Data.ConvertDateSQL;
 import Data.Msg;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -30,6 +31,7 @@ import java.util.Date;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
+import javax.swing.JFileChooser;
 import javax.swing.JTable;
 import javax.swing.KeyStroke;
 import org.apache.commons.beanutils.converters.SqlDateConverter;
@@ -95,7 +97,6 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     public void showLang() {
         try {
             lblFormName.setText(LangType.hmapForm.get(frm.toUpperCase())[LN]);
-            btnImport.setText(LangType.hmapSys.get("btnimport".concat(frm).toUpperCase())[LN]);
             btnPO.setText(LangType.hmapSys.get("btnPO".concat(frm).toUpperCase())[LN]);
             lblStock.setText(LangType.hmapSys.get("lblStock".concat(frm).toUpperCase())[LN]);
             lblChooserVendor.setText(LangType.hmapSys.get("lblchooservendor".concat(frm).toUpperCase())[LN]);
@@ -119,7 +120,6 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
         lblChooserVendor = new javax.swing.JLabel();
         cbbVendorStock = new javax.swing.JComboBox<>();
         btnPO = new javax.swing.JButton();
-        btnImport = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -181,26 +181,6 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
             }
         });
 
-        btnImport.setBackground(new java.awt.Color(255, 255, 255));
-        btnImport.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
-        btnImport.setText("Import");
-        btnImport.setContentAreaFilled(false);
-        btnImport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnImport.setOpaque(true);
-        btnImport.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnImportMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnImportMouseExited(evt);
-            }
-        });
-        btnImport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImportActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -217,9 +197,7 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
                         .addComponent(cbbVendorStock, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
                         .addComponent(btnPO, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(btnImport, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(276, 276, 276)))
+                        .addGap(358, 358, 358)))
                 .addGap(2, 2, 2))
         );
         jPanel1Layout.setVerticalGroup(
@@ -231,8 +209,7 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
                     .addComponent(lblStock)
                     .addComponent(lblChooserVendor)
                     .addComponent(cbbVendorStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPO)
-                    .addComponent(btnImport))
+                    .addComponent(btnPO))
                 .addGap(2, 2, 2))
         );
 
@@ -367,25 +344,12 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnPOActionPerformed
 
-    private void btnImportMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImportMouseEntered
-        ButtonColor.showButtonEnter(btnImport);
-    }//GEN-LAST:event_btnImportMouseEntered
-
-    private void btnImportMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImportMouseExited
-        ButtonColor.showButtonExited(btnImport);
-    }//GEN-LAST:event_btnImportMouseExited
-
-    private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnImportActionPerformed
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
             showLang();
             // pcm.showTbl_Items(jTable1, model);
 
             btnPO.setEnabled(false);
-            btnImport.setEnabled(false);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_formWindowOpened
@@ -416,14 +380,12 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
                 ActNumber = pc.getActNo();
                 lblFormName.setText(lblFormName.getText() + sLang + pc.getActNo());
                 btnPO.setEnabled(true);
-                btnImport.setEnabled(true);
                 showMapVendor();
             } else {
                 showLang();
                 pcm.deleteActivityDetail(ActNumber);
                 pcm.deleteActivity(ActNumber);
                 btnPO.setEnabled(false);
-                btnImport.setEnabled(false);
                 cbbVendorStock.setSelectedItem(null);
             }
         } catch (Exception e) {
@@ -513,7 +475,6 @@ public class FrmPurchaseOrderAdd extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnImport;
     private javax.swing.JButton btnPO;
     private javax.swing.JComboBox<String> cbbVendorStock;
     private javax.swing.JPanel jPanel1;

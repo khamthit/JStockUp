@@ -325,7 +325,15 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-        pcm.showSearchTbl_Activity(jTable1, model, txtSearch.getText().trim());
+        try {
+            if (lblPOCheck.isSelected() == true) {
+                pcm.searchTbl_ActivityActived(jTable1, model, txtSearch.getText().trim());
+            } else {
+                pcm.showSearchTbl_Activity(jTable1, model, txtSearch.getText().trim());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void btnDataMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDataMouseEntered
@@ -348,9 +356,33 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
             int index = jTable1.getSelectedRow();
             String x = jTable1.getValueAt(index, 1).toString().trim();
             if (evt.getClickCount() == 2) {
-                FrmPurchaseOrderAddDetails.Actid = x;
-                FrmPurchaseOrderAddDetails fd = new FrmPurchaseOrderAddDetails(null, closable, x);
-                fd.setVisible(true);
+                if (lblPOCheck.isSelected() == true) {
+                    int idx = jTable1.getSelectedRow();
+                    String actNo = jTable1.getValueAt(idx, 1).toString().trim();
+                    
+                    FrmReport dl = new FrmReport();
+                    Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+                    int w = (int) d.getWidth();
+                    int h = (int) d.getHeight();
+                    dl.setBounds(0, 0, w, h);
+                    Map param = new HashMap();
+                    param.put("ActNo", actNo);
+                    if (LangType.Lang == "L1") {
+                        dl.setTitle("ລາຍງານ ການສັ່ງຊື້ (PO)");
+                        JasperPrint print = JasperFillManager.fillReport(PathReport.path + "PO_L1.Jasper", param, c);
+                        dl.setContentPane(new JRViewer(print));
+                        dl.setVisible(true);
+                    } else {
+                        dl.setTitle("Purchase Details (PO)");
+                        JasperPrint print = JasperFillManager.fillReport(PathReport.path + "PO_L2.Jasper", param, c);
+                        dl.setContentPane(new JRViewer(print));
+                        dl.setVisible(true);
+                    }
+                } else {
+                    FrmPurchaseOrderAddDetails.Actid = x;
+                    FrmPurchaseOrderAddDetails fd = new FrmPurchaseOrderAddDetails(null, closable, x);
+                    fd.setVisible(true);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -425,7 +457,7 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void lblPOCheckMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPOCheckMouseEntered
-        lblPOCheck.setBackground(new Color(180,150,255));
+        lblPOCheck.setBackground(new Color(180, 150, 255));
     }//GEN-LAST:event_lblPOCheckMouseEntered
 
     private void lblPOCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblPOCheckActionPerformed
@@ -440,7 +472,7 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lblPOCheckActionPerformed
 
     private void lblPOCheckMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPOCheckMouseExited
-        lblPOCheck.setBackground(new Color(255,255,255));
+        lblPOCheck.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_lblPOCheckMouseExited
 
     private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
@@ -453,8 +485,8 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
             Date dt = new Date();
             dt = dff.parse(sd);
             pc.setActivityCreateDate(ConvertDateSQL.convertUtilDateToSqlDate(dt));
-            pc.setCreateUser(FrmMain.txtUsername.getText().trim());            
-            pcm.voidTbl_ActivityDetails(x, pc);            
+            pc.setCreateUser(FrmMain.txtUsername.getText().trim());
+            pcm.voidTbl_ActivityDetails(x, pc);
             msg.showMsgSucess();
             pcm.showTbl_Activity(jTable1, model);
         } catch (Exception e) {
