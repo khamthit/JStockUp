@@ -30,6 +30,7 @@ import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import net.sf.jasperreports.swing.JRViewer;
 
 /**
@@ -431,7 +432,7 @@ public class FrmPurchaseOrder extends javax.swing.JInternalFrame {
                 } else {
                     Map param = new HashMap();
                     param.put("ActNo", x);
-                    JDialog dl = new JDialog();
+                    JFrame dl = new JFrame();
                     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
                     int w = (int) d.getWidth();
                     int h = (int) d.getHeight();
