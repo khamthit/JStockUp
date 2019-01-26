@@ -5,6 +5,7 @@
  */
 package modelManager;
 import java.sql.*;
+import java.util.HashMap;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.ReceivePO_Get;
@@ -58,10 +59,38 @@ public class ReceivePO_GetManager {
     }
     public Boolean getProduct(ReceivePO_Get rcg){
         try {
-            
+            sql = "update tbl_activitydetails set stockid = ?, stockname_l1 = ?, stockname_l2 = ?, Receive_activity = ?, Receive_qty = ?,\n" +
+            "Receive_bill = ?, Receive_POBill = ? where Actdid = (?)";
+            PreparedStatement p = c.prepareStatement(sql);
+            p.setInt(1, rcg.getStockID());
+            p.setString(2, rcg.getStockName_L1());
+            p.setString(3, rcg.getStockName_L2());
+            p.setBoolean(4, rcg.getReceive_activity());
+            p.setDouble(5, rcg.getReceive_qty());
+            p.setString(6, rcg.getReceive_bill());
+            p.setString(7, rcg.getReceive_POBill());
+            p.setInt(8, rcg.getActdid());
+            p.executeUpdate();
+            p.close();
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
+    }
+    public HashMap<String, Object[]>mapStock(){
+        try {
+            HashMap<String, Object[]>map = new HashMap();
+            sql = "Select stockid, StockName_"+ LangType.Lang +" as stocks, stockname_L1, stockname_l2 from tbl_Stock\n" +
+                    "order by StockName_"+ LangType.Lang +"";
+            ResultSet rs = c.createStatement().executeQuery(sql);
+            while (rs.next()){
+                map.put(rs.getString("stocks"), new Object[]{rs.getString("stockid"), rs.getString("stockname_l1"), rs.getString("stockname_l2")});
+            }
+            return map;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

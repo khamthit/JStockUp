@@ -8,6 +8,9 @@ package views;
 import Data.ButtonColor;
 import java.awt.event.KeyEvent;
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JLabel;
@@ -19,6 +22,7 @@ import model.TableHeader;
 import modelManager.LangType;
 import static modelManager.LangType.LN;
 import modelManager.ReceivePO_GetManager;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import sysConnect.module;
 
 public class FrmReceivePO_Get extends javax.swing.JDialog {
@@ -28,7 +32,7 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
     DefaultTableModel model = new DefaultTableModel();
     ReceivePO_Get rpg = new ReceivePO_Get();
     ReceivePO_GetManager rpgm = new ReceivePO_GetManager();
-
+    HashMap<String, Object[]>mStockName = null;
     public FrmReceivePO_Get(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -42,7 +46,6 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         jTable1.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
     }
-
     public void showLang() {
         try {
             lblFormName.setText(LangType.hmapForm.get(frm.toUpperCase())[LN]);
@@ -50,7 +53,21 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
             btnData.setText(LangType.hmapSys.get("btnData".concat(frm).toUpperCase())[LN]);
             lblPONumber1.setText(LangType.hmapSys.get("lblponumber".concat(frm).toUpperCase())[LN]);
             lblBarcode.setText(LangType.hmapSys.get("lblBarcode".concat(frm).toUpperCase())[LN]);
+            lblStock.setText(LangType.hmapSys.get("lblStock".concat(frm).toUpperCase())[LN]);
         } catch (Exception e) {
+        }
+    }
+    public void showStockName(){
+        try {
+              mStockName = rpgm.mapStock();
+              Map<String, Object[]>smap = new TreeMap<>(mStockName);
+              smap.keySet().forEach((s->{
+                  cbbStock.addItem(s);
+              }));
+              cbbStock.setSelectedIndex(-1);
+              AutoCompleteDecorator.decorate(cbbStock);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -71,6 +88,8 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
         lblPONumber1 = new javax.swing.JLabel();
         lblPONumber = new javax.swing.JLabel();
         btnSucess = new javax.swing.JButton();
+        cbbStock = new javax.swing.JComboBox<>();
+        lblStock = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -153,26 +172,38 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
             }
         });
 
+        cbbStock.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        cbbStock.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        lblStock.setFont(new java.awt.Font("Saysettha MX", 0, 12)); // NOI18N
+        lblStock.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblStock.setText("Stock");
+        lblStock.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblFormName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblFormName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(lblPONumber1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPONumber, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(btnSucess, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblPONumber1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblPONumber, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addComponent(lblStock, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnData, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbbStock, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSucess, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnData, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(2, 2, 2))
         );
         jPanel1Layout.setVerticalGroup(
@@ -186,7 +217,9 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
                     .addComponent(btnData)
                     .addComponent(lblPONumber1)
                     .addComponent(lblPONumber)
-                    .addComponent(btnSucess))
+                    .addComponent(btnSucess)
+                    .addComponent(cbbStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStock))
                 .addGap(4, 4, 4))
         );
 
@@ -233,14 +266,14 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
             jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
             jTable1.getColumnModel().getColumn(1).setMinWidth(200);
             jTable1.getColumnModel().getColumn(1).setMaxWidth(200);
-            jTable1.getColumnModel().getColumn(2).setMinWidth(280);
-            jTable1.getColumnModel().getColumn(2).setMaxWidth(280);
+            jTable1.getColumnModel().getColumn(2).setMinWidth(350);
+            jTable1.getColumnModel().getColumn(2).setMaxWidth(350);
             jTable1.getColumnModel().getColumn(3).setMinWidth(100);
             jTable1.getColumnModel().getColumn(3).setMaxWidth(100);
-            jTable1.getColumnModel().getColumn(4).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(4).setMaxWidth(100);
-            jTable1.getColumnModel().getColumn(5).setMinWidth(80);
-            jTable1.getColumnModel().getColumn(5).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(4).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(4).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(5).setMinWidth(50);
+            jTable1.getColumnModel().getColumn(5).setMaxWidth(50);
         }
 
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -273,6 +306,7 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
             showLang();
+            showStockName();
             rpgm.showReceivePO_Get(jTable1, model, lblPONumber.getText().trim());
         } catch (Exception e) {
         }
@@ -293,12 +327,18 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
     private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
         try {
             if (evt.getKeyCode()==KeyEvent.VK_ENTER){
-                InputMap im = jTable1.getInputMap();
-                im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER,0), "Action.NextCell");
-                im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB,0), "Action.NextCell");
-                ActionMap am = jTable1.getActionMap();
-
-                
+                String idx = cbbStock.getSelectedItem().toString();
+                int index = jTable1.getSelectedRow();
+                int Actdid = Integer.parseInt(jTable1.getValueAt(index, 0).toString().trim());
+                rpg.setActdid(Actdid);
+                rpg.setReceive_activity(true);
+                rpg.setReceive_POBill(lblPONumber.getText().trim());
+                rpg.setReceive_qty(Double.parseDouble(jTable1.getValueAt(index, 5).toString().trim()));
+                rpg.setReceive_bill(lblPONumber.getText().trim());
+                rpg.setStockID(Integer.parseInt(mStockName.get(idx)[0].toString()));
+                rpg.setStockName_L1(mStockName.get(idx)[1].toString());
+                rpg.setStockName_L2(mStockName.get(idx)[2].toString());
+                rpgm.getProduct(rpg);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -350,6 +390,7 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnData;
     private javax.swing.JButton btnSucess;
+    private javax.swing.JComboBox<String> cbbStock;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -358,6 +399,7 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
     private javax.swing.JLabel lblFormName;
     public static javax.swing.JLabel lblPONumber;
     private javax.swing.JLabel lblPONumber1;
+    private javax.swing.JLabel lblStock;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
