@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package modelManager;
+import Data.Msg;
 import java.sql.*;
 import java.util.HashMap;
 import javax.swing.JTable;
@@ -15,11 +16,11 @@ import sysConnect.module;
 public class ReceivePO_GetManager {
     Connection c = module.getConnection();
     String sql;
-    
+    Msg msg = new Msg();
     public void showReceivePO_Get(JTable table, DefaultTableModel model, String x){
         try {
             RemoveTableCount.RemoveTable(table, model);
-            sql = "Select act.actdid, act.Barode, act.item_"+ LangType.Lang +" AS item, pu.unit_"+ LangType.Lang +" AS units, act.Costprice, isnull(Receive_qty, '0') as receive_qty\n" +
+            sql = "Select act.actdid, act.Barode, act.item_"+ LangType.Lang +" AS item, pu.unit_"+ LangType.Lang +" AS units, act.Costprice, isnull(Receive_qty, '') as receive_qty\n" +
                     "from tbl_activitydetails act\n" +
                     "left join tbl_Activity ac on ac.ACTID = act.actid\n" +
                     "left join tbl_Vendor v on v.venid = act.venid\n" +
@@ -92,5 +93,22 @@ public class ReceivePO_GetManager {
             e.printStackTrace();
         }
         return null;
+    }
+    public Boolean getSucess(ReceivePO_Get rcg){
+        try {
+            sql = "update act set Receive_activity = 1 \n" +
+                    "from tbl_activitydetails act \n" +
+                    "left join tbl_Activity ac on ac.ACTID = act.ACTID\n" +
+                    "where ac.ActNo = (?)";
+            PreparedStatement p = c.prepareStatement(sql);
+            p.setString(1, rcg.getReceive_POBill());
+            p.executeUpdate();
+            p.close();
+            msg.showMsgSucess();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

@@ -30,7 +30,7 @@ public class ReceiveManager {
                     + "left join tbl_Vendor v on v.venid = act.venid\n"
                     + "left join tbl_Item i on i.ITID = act.itid\n"
                     + "where act.Rec_type = 'PO' and Receive_activity is null\n"
-                    + "group by ac.actNo, ac.CreateDate, ac.CreateUser, act.rec_type, act.receive_activity, v.ven_l1, v.phone1, v.phone2, v.fax, v.email\n"
+                    + "group by ac.actNo, ac.CreateDate, ac.CreateUser, act.rec_type, act.receive_activity, v.ven_"+ LangType.Lang +", v.phone1, v.phone2, v.fax, v.email\n"
                     + "order by ac.CreateDate desc, actNo desc";
             ResultSet rs = c.createStatement().executeQuery(sql);
             while (rs.next()){

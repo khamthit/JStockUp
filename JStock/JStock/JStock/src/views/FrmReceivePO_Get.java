@@ -6,6 +6,7 @@
 package views;
 
 import Data.ButtonColor;
+import Data.Msg;
 import java.awt.event.KeyEvent;
 import java.sql.*;
 import java.util.HashMap;
@@ -33,6 +34,8 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
     ReceivePO_Get rpg = new ReceivePO_Get();
     ReceivePO_GetManager rpgm = new ReceivePO_GetManager();
     HashMap<String, Object[]>mStockName = null;
+    Msg msg = new Msg();
+    
     public FrmReceivePO_Get(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -42,9 +45,6 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
         TableHeader.TableHeader_0(jTable1, frm);
         LangType.showLang();
         LangType.showLangForm();
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        jTable1.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
     }
     public void showLang() {
         try {
@@ -197,7 +197,7 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbbStock, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSucess, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSucess, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -321,7 +321,14 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSucessMouseExited
 
     private void btnSucessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSucessActionPerformed
-        // TODO add your handling code here:
+        try {
+            rpg.setReceive_POBill(lblPONumber.getText().trim());
+            rpgm.getSucess(rpg);
+            dispose();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnSucessActionPerformed
 
     private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
@@ -341,7 +348,8 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
                 rpgm.getProduct(rpg);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            msg.showMsgWarming();
         }
     }//GEN-LAST:event_jTable1KeyPressed
 
