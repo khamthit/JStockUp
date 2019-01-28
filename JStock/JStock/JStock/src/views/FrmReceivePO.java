@@ -205,7 +205,7 @@ public class FrmReceivePO extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-        rcm.showSearchReceive(jTable1, model, txtSearch.getText().trim());
+        rcm.showSearchReceive(jTable1, model, txtSearch.getText());
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void btnDataMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDataMouseEntered

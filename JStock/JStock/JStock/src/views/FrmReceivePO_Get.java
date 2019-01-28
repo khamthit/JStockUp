@@ -268,10 +268,10 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
             jTable1.getColumnModel().getColumn(1).setMaxWidth(200);
             jTable1.getColumnModel().getColumn(2).setMinWidth(350);
             jTable1.getColumnModel().getColumn(2).setMaxWidth(350);
-            jTable1.getColumnModel().getColumn(3).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(3).setMaxWidth(100);
-            jTable1.getColumnModel().getColumn(4).setMinWidth(80);
-            jTable1.getColumnModel().getColumn(4).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(3).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(3).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(4).setMinWidth(50);
+            jTable1.getColumnModel().getColumn(4).setMaxWidth(50);
             jTable1.getColumnModel().getColumn(5).setMinWidth(50);
             jTable1.getColumnModel().getColumn(5).setMaxWidth(50);
         }
@@ -346,6 +346,7 @@ public class FrmReceivePO_Get extends javax.swing.JDialog {
                 rpg.setStockName_L1(mStockName.get(idx)[1].toString());
                 rpg.setStockName_L2(mStockName.get(idx)[2].toString());
                 rpgm.getProduct(rpg);
+                rpgm.showReceivePO_Get(jTable1, model, lblPONumber.getText().trim());
             }
         } catch (Exception e) {
 //            e.printStackTrace();
